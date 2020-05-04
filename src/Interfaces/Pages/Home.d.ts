@@ -3,10 +3,15 @@ import { WithTranslation } from "next-i18next";
 // #endregion Global Imports
 
 declare namespace IHomePage {
-    export interface IProps extends WithTranslation {}
+    export interface IProps extends WithTranslation {
+        cinData?: any;
+        name?: any;
+    }
 
     export interface InitialProps {
-        namespacesRequired: string[];
+        namespacesRequired?: string[];
+        cinData?: any;
+        name?: any;
     }
 
     export interface IStateProps {
