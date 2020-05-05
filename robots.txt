@@ -1,0 +1,3 @@
+Sitemap: http://kitaablu.com/static/sitemaps/sitemap.xml
+User-agent:*
+Disallow
