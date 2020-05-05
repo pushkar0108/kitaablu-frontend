@@ -1,0 +1,1 @@
+{"ast":null,"code":"var __jsx = React.createElement;\n// #region Global Imports\nimport * as React from \"react\"; // #endregion Global Imports\n// #region Local Imports\n\n// #endregion Local Imports\nvar Footer = function Footer() {\n  return __jsx(\"div\", {\n    className: \"footer\"\n  }, \"Footer\");\n};\n\nexport { Footer };","map":null,"metadata":{},"sourceType":"module"}

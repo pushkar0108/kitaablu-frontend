@@ -1,0 +1,1 @@
+{"ast":null,"code":"// #region Global Imports\nimport { combineReducers } from \"redux\"; // #endregion Global Imports\n// #region Local Imports\n\nimport { HomeReducer } from \"./home\"; // #endregion Local Imports\n\nexport default combineReducers({\n  home: HomeReducer\n});","map":null,"metadata":{},"sourceType":"module"}

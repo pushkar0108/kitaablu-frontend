@@ -102,7 +102,7 @@ typings/
 .cache
 
 # next.js build output
-.next
+# .next
 out
 
 # nuxt.js build output
@@ -145,7 +145,7 @@ bundles
 bundle
 
 # Dist Folder
-dist
+# dist // add later
 
 #Docusaurus website build folder
 documentation/website/build
