@@ -1,12 +1,22 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import { initGA, logPageView } from '@Services/analytics';
 import { LayoutProps } from "./Layout";
 
 const Layout: React.FunctionComponent<LayoutProps> = ({
     children,
 }): JSX.Element => {
+
+    useEffect(() => {
+        console.log("GAAAAAAAA!");
+        if (!(window as any).GA_INITIALIZED) {
+            initGA();
+            (window as any).GA_INITIALIZED = true;
+        }
+        logPageView();
+    });
 
     const router = useRouter()
     const handleClick = e => {
