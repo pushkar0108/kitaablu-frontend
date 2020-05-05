@@ -34,91 +34,87 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
 
     return (
         <Layout>
-            <div className="col-md-8">
-                <h1 className="my-4">
-                    <small>Top Directors</small>
-                </h1>
-                <div className="card mb-4">
-                    <div className="card-body">
-                        <table className="table table-hover">
-                            <thead>
-                                <tr className="text-semibold text-fiord-blue">
-                                    <th scope="col">DIN</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr className="text-semibold text-reagent-gray">
-                                    <td>
-                                        <Link href="/director/[din]" as="/director/08008293">
-                                            <a>08008293</a>
-                                        </Link>
-                                    </td>
-                                </tr>
-                                <tr className="text-semibold text-reagent-gray">
-                                    <td>
-                                        <Link href="/director/[din]" as="/director/08008293">
-                                            <a>08008293</a>
-                                        </Link>
-                                    </td>
-                                </tr>
-                                <tr className="text-semibold text-reagent-gray">
-                                    <td>
-                                        <Link href="/director/[din]" as="/director/08008293">
-                                            <a>08008293</a>
-                                        </Link>
-                                    </td>
-                                </tr>
-                                <tr className="text-semibold text-reagent-gray">
-                                    <td>
-                                        <Link href="/director/[din]" as="/director/08008293">
-                                            <a>08008293</a>
-                                        </Link>
-                                    </td>
-                                </tr>
-                                <tr className="text-semibold text-reagent-gray">
-                                    <td>
-                                        <Link href="/director/[din]" as="/director/08008293">
-                                            <a>08008293</a>
-                                        </Link>
-                                    </td>
-                                </tr>
-                                <tr className="text-semibold text-reagent-gray">
-                                    <td>
-                                        <Link href="/director/[din]" as="/director/08008293">
-                                            <a>08008293</a>
-                                        </Link>
-                                    </td>
-                                </tr>
-                                <tr className="text-semibold text-reagent-gray">
-                                    <td>
-                                        <Link href="/director/[din]" as="/director/08008293">
-                                            <a>08008293</a>
-                                        </Link>
-                                    </td>
-                                </tr>
-                                <tr className="text-semibold text-reagent-gray">
-                                    <td>
-                                        <Link href="/director/[din]" as="/director/02888316">
-                                            <a>02888316</a>
-                                        </Link>
-                                    </td>
-                                </tr>
-                                <tr className="text-semibold text-reagent-gray">
-                                    <td>
-                                        <Link href="/director/[din]" as="/director/06365134">
-                                            <a>06365134</a>
-                                        </Link>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+
+            <h1 className="my-4">
+                <small>Top Directors</small>
+            </h1>
+            <div className="card mb-4">
+                <div className="card-body">
+                    <table className="table table-hover">
+                        <thead>
+                            <tr className="text-semibold text-fiord-blue">
+                                <th scope="col">DIN</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr className="text-semibold text-reagent-gray">
+                                <td>
+                                    <Link href="/director/[din]" as="/director/08008293">
+                                        <a>08008293</a>
+                                    </Link>
+                                </td>
+                            </tr>
+                            <tr className="text-semibold text-reagent-gray">
+                                <td>
+                                    <Link href="/director/[din]" as="/director/08008293">
+                                        <a>08008293</a>
+                                    </Link>
+                                </td>
+                            </tr>
+                            <tr className="text-semibold text-reagent-gray">
+                                <td>
+                                    <Link href="/director/[din]" as="/director/08008293">
+                                        <a>08008293</a>
+                                    </Link>
+                                </td>
+                            </tr>
+                            <tr className="text-semibold text-reagent-gray">
+                                <td>
+                                    <Link href="/director/[din]" as="/director/08008293">
+                                        <a>08008293</a>
+                                    </Link>
+                                </td>
+                            </tr>
+                            <tr className="text-semibold text-reagent-gray">
+                                <td>
+                                    <Link href="/director/[din]" as="/director/08008293">
+                                        <a>08008293</a>
+                                    </Link>
+                                </td>
+                            </tr>
+                            <tr className="text-semibold text-reagent-gray">
+                                <td>
+                                    <Link href="/director/[din]" as="/director/08008293">
+                                        <a>08008293</a>
+                                    </Link>
+                                </td>
+                            </tr>
+                            <tr className="text-semibold text-reagent-gray">
+                                <td>
+                                    <Link href="/director/[din]" as="/director/08008293">
+                                        <a>08008293</a>
+                                    </Link>
+                                </td>
+                            </tr>
+                            <tr className="text-semibold text-reagent-gray">
+                                <td>
+                                    <Link href="/director/[din]" as="/director/02888316">
+                                        <a>02888316</a>
+                                    </Link>
+                                </td>
+                            </tr>
+                            <tr className="text-semibold text-reagent-gray">
+                                <td>
+                                    <Link href="/director/[din]" as="/director/06365134">
+                                        <a>06365134</a>
+                                    </Link>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-            <div className="col-md-4">
-                CONTENT COMING SOON
-            </div>
         </Layout>
     );
 };

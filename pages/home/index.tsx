@@ -1,8 +1,9 @@
 // #region Global Imports
 import * as React from "react";
-import { NextPage } from "next";
+import { NextPage, GetServerSideProps } from "next";
 import Link from 'next/link';
 import { useSelector, useDispatch } from "react-redux";
+import { Http } from '../../src/Services/API/Http';
 // #endregion Global Imports
 
 // #region Local Imports
@@ -20,7 +21,7 @@ import {
 } from "@Styled/Home";
 import { IStore } from "@Redux/IStore";
 import { HomeActions } from "@Actions";
-import { Heading, LocaleButton } from "@Components";
+import { Heading, LocaleButton, Layout } from "@Components";
 // #endregion Local Imports
 
 // #region Interface Imports
@@ -30,10 +31,10 @@ import { IHomePage, ReduxNextPageContext } from "@Interfaces";
 const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
     t,
     i18n,
+    cinData,
 }) => {
     const home = useSelector((state: IStore) => state.home);
     const dispatch = useDispatch();
-
     const renderLocaleButtons = (activeLanguage: string) =>
         ["en", "es", "tr"].map(lang => (
             <LocaleButton
@@ -45,50 +46,33 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
         ));
 
     return (
-        <Container>
-            <Top>
-                <img src="/images/pankod-logo.png" alt="Pankod Logo" />
-            </Top>
-            <Middle>
-                <MiddleLeft>
-                    <MiddleLeftButtons>
-                        {renderLocaleButtons(i18n.language)}
-                    </MiddleLeftButtons>
-                </MiddleLeft>
-                <MiddleRight>
-                    <TopText>{t("common:Hello")}</TopText>
-                    <Heading text={t("common:World")} />
-                    <Link href="/company/[cin]" as="/company/U55209DL2018PTC329158">
-                        <a>U55209DL2018PTC329158</a>
-                    </Link>
-                    <Link href="/company/[cin]" as="/company/U55209DL2018PTC329275">
-                        <a>U55209DL2018PTC329275</a>
-                    </Link>
-                    <Link href="/company/[cin]" as="/company/U55209DL2018PTC329769">
-                        <a>U55209DL2018PTC329769</a>
-                    </Link>
-                    <Apod>
-                        <ApodButton
-                            onClick={() => {
-                                dispatch(
-                                    HomeActions.GetApod({
-                                        params: { hd: false },
-                                    })
-                                );
-                            }}
-                        >
-                            Discover Space
-                        </ApodButton>
-                        <img
-                            src={home.image.url}
-                            height="300"
-                            width="150"
-                            alt="Discover Space"
-                        />
-                    </Apod>
-                </MiddleRight>
-            </Middle>
-        </Container>
+        <Layout>
+            <h1 className="my-4">
+                <div>Home</div>
+            </h1>
+            <div className="card mb-4">
+                <div className="card-body">
+                    <h2 className="card-title">What we do?</h2>
+                    <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+                    <a href="#" className="btn btn-primary">Read More &rarr;</a>
+                </div>
+                <div className="card-footer text-muted">
+                    Posted on January 1, 2017 by
+                                <a href="#">Start Bootstrap</a>
+                </div>
+            </div>
+            <div className="card mb-4">
+                <div className="card-body">
+                    <h2 className="card-title">We have authentic data</h2>
+                    <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+                    <a href="#" className="btn btn-primary">Read More &rarr;</a>
+                </div>
+                <div className="card-footer text-muted">
+                    Posted on January 1, 2017 by
+                                <a href="#">Start Bootstrap</a>
+                </div>
+            </div>
+        </Layout>
     );
 };
 
@@ -100,9 +84,10 @@ Home.getInitialProps = async (
             params: { hd: true },
         })
     );
-    return { namespacesRequired: ["common"] };
+    return {
+        namespacesRequired: ["common"],
+    };
 };
 
 const Extended = withTranslation("common")(Home);
-
 export default Extended;
