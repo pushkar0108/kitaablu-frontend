@@ -124,10 +124,10 @@ const Home: NextPage<IDirectorPage.IProps, IDirectorPage.InitialProps> = ({
                                     {
                                         dinData.companies.map((company, index) => {
                                             return (
-                                                <tr key={`director_${company[0]}`} className="text-semibold text-reagent-gray">
+                                                <tr key={`director_${company.CIN}`} className="text-semibold text-reagent-gray">
                                                     <td>{index + 1}</td>
                                                     <td>
-                                                        <Link href="/company/[cin]" as={`/company/${company[0]}`}>
+                                                        <Link href="/company/[cin]" as={`/company/${company.CIN}`}>
                                                             <a>{company.CIN}</a>
                                                         </Link>
                                                     </td>
@@ -168,10 +168,10 @@ const Home: NextPage<IDirectorPage.IProps, IDirectorPage.InitialProps> = ({
                                     {
                                         dinData.llps.map((llp, index) => {
                                             return (
-                                                <tr key={`charge_${llp[1]}`} className="text-semibold text-reagent-gray">
+                                                <tr key={`charge_${llp.CIN}`} className="text-semibold text-reagent-gray">
                                                     <td>{index + 1}</td>
                                                     <td>
-                                                        <Link href="/company/[cin]" as={`/company/${llp[0]}`}>
+                                                        <Link href="/company/[cin]" as={`/company/${llp.CIN}`}>
                                                             <a>{llp.CIN}</a>
                                                         </Link>
                                                     </td>
