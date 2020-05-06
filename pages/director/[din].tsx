@@ -79,32 +79,6 @@ const Home: NextPage<IDirectorPage.IProps, IDirectorPage.InitialProps> = ({
         }
     ];
 
-    // remove later
-
-    if(!dinData.companies) {
-        dinData.companies = [
-            ["U74140DL2005PLC134597", "ACCORD FINANCIAL CONSULTANCY LIMITED", "29/11/2007", "-", "ACTIVE compliant"],
-            ["U74140DL2005PLC134597", "ACCORD FINANCIAL CONSULTANCY LIMITED", "29/11/2007", "-", "ACTIVE compliant"],
-            ["U74140DL2005PLC134597", "ACCORD FINANCIAL CONSULTANCY LIMITED", "29/11/2007", "-", "ACTIVE compliant"]
-        ];
-    }
-
-    if(!dinData.llps) {
-        dinData.llps = [
-            ["AAG-4536", "ACCORD FINANCIAL SERVICES LLP", "25/05/2016", "-"]
-        ];
-    }
-
-    const renderLocaleButtons = (activeLanguage: string) =>
-        ["en", "es", "tr"].map(lang => (
-            <LocaleButton
-                key={lang}
-                lang={lang}
-                isActive={activeLanguage === lang}
-                onClick={() => i18n.changeLanguage(lang)}
-            />
-        ));
-
     return (
         <Layout>
 
@@ -133,74 +107,89 @@ const Home: NextPage<IDirectorPage.IProps, IDirectorPage.InitialProps> = ({
             <div className="card mb-4">
                 <h2 className="card-header">List Of Companies</h2>
                 <div className="card-body">
-                    <table className="table table-hover">
-                        <thead>
-                            <tr className="text-semibold text-fiord-blue">
-                                <th scope="col">#</th>
-                                <th scope="col">CIN/FCRN</th>
-                                <th scope="col">Company Name</th>
-                                <th scope="col">Begin date</th>
-                                <th scope="col">End date</th>
-                                <th scope="col">Active compliance</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                dinData.companies.map((company, index) => {
-                                    return (
-                                        <tr key={`director_${company[0]}`} className="text-semibold text-reagent-gray">
-                                            <td>{index + 1}</td>
-                                            <td>
-                                                <Link href="/company/[cin]" as={`/company/${company[0]}`}>
-                                                    <a>{company[0]}</a>
-                                                </Link>
-                                            </td>
-                                            <td>{company[1]}</td>
-                                            <td>{company[2]}</td>
-                                            <td>{company[3]}</td>
-                                            <td>{company[4]}</td>
-                                        </tr>
-                                    );
-                                })
-                            }
-                        </tbody>
-                    </table>
+                    {
+                        dinData.companies.length ? (
+                            <table className="table table-hover">
+                                <thead>
+                                    <tr className="text-semibold text-fiord-blue">
+                                        <th scope="col">#</th>
+                                        <th scope="col">CIN/FCRN</th>
+                                        <th scope="col">Company Name</th>
+                                        <th scope="col">Begin date</th>
+                                        <th scope="col">End date</th>
+                                        <th scope="col">Active compliance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        dinData.companies.map((company, index) => {
+                                            return (
+                                                <tr key={`director_${company[0]}`} className="text-semibold text-reagent-gray">
+                                                    <td>{index + 1}</td>
+                                                    <td>
+                                                        <Link href="/company/[cin]" as={`/company/${company[0]}`}>
+                                                            <a>{company.CIN}</a>
+                                                        </Link>
+                                                    </td>
+                                                    <td>{company.name}</td>
+                                                    <td>{company.beginDate}</td>
+                                                    <td>{company.endDate}</td>
+                                                    <td>{company.status}</td>
+                                                </tr>
+                                            );
+                                        })
+                                    }
+                                </tbody>
+                            </table>
+                        ) :
+                        <div>
+                            No Companies mapped to the director
+                        </div>
+                    }
                 </div>
             </div>
             <div className="card mb-4">
                 <h2 className="card-header">List Of LLP</h2>
                 <div className="card-body">
-                    <table className="table table-hover">
-                        <thead className="bg-light">
-                            <tr className="text-semibold text-fiord-blue">
-                                <th scope="col" className="border-0">#</th>
-                                <th scope="col" className="border-0">LLPIN/FLLPIN</th>
-                                <th scope="col" className="border-0">LLP Name</th>
-                                <th scope="col" className="border-0">Begin date</th>
-                                <th scope="col" className="border-0">End date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                dinData.llps.map((llp, index) => {
-                                    return (
-                                        <tr key={`charge_${llp[1]}`} className="text-semibold text-reagent-gray">
-                                            <td>{index + 1}</td>
-                                            <td>
-                                                <Link href="/company/[cin]" as={`/company/${llp[0]}`}>
-                                                    <a>{llp[0]}</a>
-                                                </Link>
-                                            </td>
-                                            <td>{llp[1]}</td>
-                                            <td>{llp[2]}</td>
-                                            <td>{llp[3]}</td>
-                                            <td>{llp[4]}</td>
-                                        </tr>
-                                    );
-                                })
-                            }
-                        </tbody>
-                    </table>
+                    {
+                        dinData.llps.length ? (
+                            <table className="table table-hover">
+                                <thead className="bg-light">
+                                    <tr className="text-semibold text-fiord-blue">
+                                        <th scope="col" className="border-0">#</th>
+                                        <th scope="col" className="border-0">LLPIN/FLLPIN</th>
+                                        <th scope="col" className="border-0">LLP Name</th>
+                                        <th scope="col" className="border-0">Begin date</th>
+                                        <th scope="col" className="border-0">End date</th>
+                                        <th scope="col" className="border-0">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        dinData.llps.map((llp, index) => {
+                                            return (
+                                                <tr key={`charge_${llp[1]}`} className="text-semibold text-reagent-gray">
+                                                    <td>{index + 1}</td>
+                                                    <td>
+                                                        <Link href="/company/[cin]" as={`/company/${llp[0]}`}>
+                                                            <a>{llp.CIN}</a>
+                                                        </Link>
+                                                    </td>
+                                                    <td>{llp.name}</td>
+                                                    <td>{llp.beginDate}</td>
+                                                    <td>{llp.endDate}</td>
+                                                    <td>{llp.status}</td>
+                                                </tr>
+                                            );
+                                        })
+                                    }
+                                </tbody>
+                            </table>
+                        ) :
+                        <div>
+                            No LLPs mapped to the director
+                        </div>
+                    }
                 </div>
             </div>
         </Layout>

@@ -24434,29 +24434,7 @@ var Home = function Home(_ref) {
   }, {
     title: "Gender",
     value: dinData["gender"]
-  }]; // remove later
-
-  if (!dinData.companies) {
-    dinData.companies = [["U74140DL2005PLC134597", "ACCORD FINANCIAL CONSULTANCY LIMITED", "29/11/2007", "-", "ACTIVE compliant"], ["U74140DL2005PLC134597", "ACCORD FINANCIAL CONSULTANCY LIMITED", "29/11/2007", "-", "ACTIVE compliant"], ["U74140DL2005PLC134597", "ACCORD FINANCIAL CONSULTANCY LIMITED", "29/11/2007", "-", "ACTIVE compliant"]];
-  }
-
-  if (!dinData.llps) {
-    dinData.llps = [["AAG-4536", "ACCORD FINANCIAL SERVICES LLP", "25/05/2016", "-"]];
-  }
-
-  var renderLocaleButtons = function renderLocaleButtons(activeLanguage) {
-    return ["en", "es", "tr"].map(function (lang) {
-      return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_7__["LocaleButton"], {
-        key: lang,
-        lang: lang,
-        isActive: activeLanguage === lang,
-        onClick: function onClick() {
-          return i18n.changeLanguage(lang);
-        }
-      });
-    });
-  };
-
+  }];
   return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_7__["Layout"], null, __jsx("h1", {
     className: "my-4"
   }, __jsx("small", null, dinData["DIN"]), __jsx("div", null, dinData["name"])), __jsx("div", {
@@ -24477,7 +24455,7 @@ var Home = function Home(_ref) {
     className: "card-header"
   }, "List Of Companies"), __jsx("div", {
     className: "card-body"
-  }, __jsx("table", {
+  }, dinData.companies.length ? __jsx("table", {
     className: "table table-hover"
   }, __jsx("thead", null, __jsx("tr", {
     className: "text-semibold text-fiord-blue"
@@ -24500,14 +24478,14 @@ var Home = function Home(_ref) {
     }, __jsx("td", null, index + 1), __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
       href: "/company/[cin]",
       as: "/company/".concat(company[0])
-    }, __jsx("a", null, company[0]))), __jsx("td", null, company[1]), __jsx("td", null, company[2]), __jsx("td", null, company[3]), __jsx("td", null, company[4]));
-  }))))), __jsx("div", {
+    }, __jsx("a", null, company.CIN))), __jsx("td", null, company.name), __jsx("td", null, company.beginDate), __jsx("td", null, company.endDate), __jsx("td", null, company.status));
+  }))) : __jsx("div", null, "No Companies mapped to the director"))), __jsx("div", {
     className: "card mb-4"
   }, __jsx("h2", {
     className: "card-header"
   }, "List Of LLP"), __jsx("div", {
     className: "card-body"
-  }, __jsx("table", {
+  }, dinData.llps.length ? __jsx("table", {
     className: "table table-hover"
   }, __jsx("thead", {
     className: "bg-light"
@@ -24528,15 +24506,18 @@ var Home = function Home(_ref) {
   }, "Begin date"), __jsx("th", {
     scope: "col",
     className: "border-0"
-  }, "End date"))), __jsx("tbody", null, dinData.llps.map(function (llp, index) {
+  }, "End date"), __jsx("th", {
+    scope: "col",
+    className: "border-0"
+  }, "Status"))), __jsx("tbody", null, dinData.llps.map(function (llp, index) {
     return __jsx("tr", {
       key: "charge_".concat(llp[1]),
       className: "text-semibold text-reagent-gray"
     }, __jsx("td", null, index + 1), __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
       href: "/company/[cin]",
       as: "/company/".concat(llp[0])
-    }, __jsx("a", null, llp[0]))), __jsx("td", null, llp[1]), __jsx("td", null, llp[2]), __jsx("td", null, llp[3]), __jsx("td", null, llp[4]));
-  }))))));
+    }, __jsx("a", null, llp.CIN))), __jsx("td", null, llp.name), __jsx("td", null, llp.beginDate), __jsx("td", null, llp.endDate), __jsx("td", null, llp.status));
+  }))) : __jsx("div", null, "No LLPs mapped to the director"))));
 };
 
 Home.getInitialProps = function _callee(ctx) {
@@ -25346,7 +25327,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 8:
+/***/ 6:
 /*!**************************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fdirector%2F%5Bdin%5D&absolutePagePath=%2FUsers%2Fpushkargoel%2FMyapps%2Fnext-boilerplate%2Fpages%2Fdirector%2F%5Bdin%5D.tsx ***!
   \**************************************************************************************************************************************************************************/
@@ -25369,5 +25350,5 @@ module.exports = dll_b9380c54b6aeb86e51e7;
 
 /***/ })
 
-},[[8,"static/runtime/webpack.js","styles"]]]);
+},[[6,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=[din].js.map

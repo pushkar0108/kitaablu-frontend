@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1838,23 +1838,7 @@ const Home = ({
   }, {
     title: "Gender",
     value: dinData["gender"]
-  }]; // remove later
-
-  if (!dinData.companies) {
-    dinData.companies = [["U74140DL2005PLC134597", "ACCORD FINANCIAL CONSULTANCY LIMITED", "29/11/2007", "-", "ACTIVE compliant"], ["U74140DL2005PLC134597", "ACCORD FINANCIAL CONSULTANCY LIMITED", "29/11/2007", "-", "ACTIVE compliant"], ["U74140DL2005PLC134597", "ACCORD FINANCIAL CONSULTANCY LIMITED", "29/11/2007", "-", "ACTIVE compliant"]];
-  }
-
-  if (!dinData.llps) {
-    dinData.llps = [["AAG-4536", "ACCORD FINANCIAL SERVICES LLP", "25/05/2016", "-"]];
-  }
-
-  const renderLocaleButtons = activeLanguage => ["en", "es", "tr"].map(lang => __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_6__["LocaleButton"], {
-    key: lang,
-    lang: lang,
-    isActive: activeLanguage === lang,
-    onClick: () => i18n.changeLanguage(lang)
-  }));
-
+  }];
   return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_6__["Layout"], null, __jsx("h1", {
     className: "my-4"
   }, __jsx("small", null, dinData["DIN"]), __jsx("div", null, dinData["name"])), __jsx("div", {
@@ -1875,7 +1859,7 @@ const Home = ({
     className: "card-header"
   }, "List Of Companies"), __jsx("div", {
     className: "card-body"
-  }, __jsx("table", {
+  }, dinData.companies.length ? __jsx("table", {
     className: "table table-hover"
   }, __jsx("thead", null, __jsx("tr", {
     className: "text-semibold text-fiord-blue"
@@ -1898,14 +1882,14 @@ const Home = ({
     }, __jsx("td", null, index + 1), __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
       href: "/company/[cin]",
       as: `/company/${company[0]}`
-    }, __jsx("a", null, company[0]))), __jsx("td", null, company[1]), __jsx("td", null, company[2]), __jsx("td", null, company[3]), __jsx("td", null, company[4]));
-  }))))), __jsx("div", {
+    }, __jsx("a", null, company.CIN))), __jsx("td", null, company.name), __jsx("td", null, company.beginDate), __jsx("td", null, company.endDate), __jsx("td", null, company.status));
+  }))) : __jsx("div", null, "No Companies mapped to the director"))), __jsx("div", {
     className: "card mb-4"
   }, __jsx("h2", {
     className: "card-header"
   }, "List Of LLP"), __jsx("div", {
     className: "card-body"
-  }, __jsx("table", {
+  }, dinData.llps.length ? __jsx("table", {
     className: "table table-hover"
   }, __jsx("thead", {
     className: "bg-light"
@@ -1926,15 +1910,18 @@ const Home = ({
   }, "Begin date"), __jsx("th", {
     scope: "col",
     className: "border-0"
-  }, "End date"))), __jsx("tbody", null, dinData.llps.map((llp, index) => {
+  }, "End date"), __jsx("th", {
+    scope: "col",
+    className: "border-0"
+  }, "Status"))), __jsx("tbody", null, dinData.llps.map((llp, index) => {
     return __jsx("tr", {
       key: `charge_${llp[1]}`,
       className: "text-semibold text-reagent-gray"
     }, __jsx("td", null, index + 1), __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
       href: "/company/[cin]",
       as: `/company/${llp[0]}`
-    }, __jsx("a", null, llp[0]))), __jsx("td", null, llp[1]), __jsx("td", null, llp[2]), __jsx("td", null, llp[3]), __jsx("td", null, llp[4]));
-  }))))));
+    }, __jsx("a", null, llp.CIN))), __jsx("td", null, llp.name), __jsx("td", null, llp.beginDate), __jsx("td", null, llp.endDate), __jsx("td", null, llp.status));
+  }))) : __jsx("div", null, "No LLPs mapped to the director"))));
 };
 
 Home.getInitialProps = async ctx => {
@@ -2661,7 +2648,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 8:
+/***/ 6:
 /*!****************************************!*\
   !*** multi ./pages/director/[din].tsx ***!
   \****************************************/
