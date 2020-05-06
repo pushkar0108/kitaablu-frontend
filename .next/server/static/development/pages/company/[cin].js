@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1768,10 +1768,10 @@ module.exports = _typeof;
 
 /***/ }),
 
-/***/ "./pages/director/[din].tsx":
-/*!**********************************!*\
-  !*** ./pages/director/[din].tsx ***!
-  \**********************************/
+/***/ "./pages/company/[cin].tsx":
+/*!*********************************!*\
+  !*** ./pages/company/[cin].tsx ***!
+  \*********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1804,50 +1804,103 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0__["createElement"];
 const Home = ({
   t,
   i18n,
-  dinData
+  cinData
 }) => {
   const home = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(state => state.home);
   const dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
+
+  if (!cinData) {
+    return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_6__["Layout"], null, __jsx("div", null, "NO DATA PRESENT FOR CIN"));
+  }
+
+  const details = JSON.parse(cinData.data);
   const refData = [{
-    title: "DIN",
-    value: dinData["DIN"]
+    title: "CIN",
+    value: details["CIN"]
   }, {
-    title: "Name",
-    value: dinData["name"]
+    title: "Company Name",
+    value: details["Company Name"]
   }, {
-    title: "Date of birth",
-    value: dinData["dob"]
+    title: "LLP Name",
+    value: details["LLP Name"]
   }, {
-    title: "Father Name",
-    value: '*********'
+    title: "ROC Code",
+    value: details["ROC Code"]
   }, {
-    title: "Mobile",
-    value: '*********'
+    title: "Registration Number",
+    value: details["Registration Number"]
   }, {
-    title: "Phone",
-    value: '*********'
+    title: "Company Category",
+    value: details["Company Category"]
   }, {
-    title: "Email",
-    value: '*********'
+    title: "Company SubCategory",
+    value: details["Company SubCategory"]
+  }, {
+    title: "Class of Company",
+    value: details["Class of Company"]
+  }, {
+    title: "Authorised Capital(Rs)",
+    value: details["Authorised Capital(Rs)"]
+  }, {
+    title: "Paid up Capital(Rs)",
+    value: details["Paid up Capital(Rs)"]
+  }, {
+    title: "Number of Members(Applicable in case of company without Share Capital)",
+    value: details["Number of Members(Applicable in case of company without Share Capital)"]
+  }, {
+    title: "Number of Partners",
+    value: details["Number of Partners"]
+  }, {
+    title: "Number of Designated Partners",
+    value: details["Number of Designated Partners"]
+  }, {
+    title: "Date of Incorporation",
+    value: details["Date of Incorporation"]
+  }, {
+    title: "Registered Address",
+    value: details["Registered Address"]
   }, {
     title: "Address",
-    value: '*********'
+    value: details["Address other than R/o where all or any books of account and papers are maintained"]
   }, {
-    title: "City",
-    value: dinData["city"]
+    title: "Email Id",
+    value: details["Email Id"]
   }, {
-    title: "Gender",
-    value: dinData["gender"]
+    title: "Whether Listed or not",
+    value: details["Whether Listed or not"]
+  }, {
+    title: "Suspended at stock exchange",
+    value: details["Suspended at stock exchange"]
+  }, {
+    title: "Date of last AGM",
+    value: details["Date of last AGM"]
+  }, {
+    title: "Date of Balance Sheet",
+    value: details["Date of Balance Sheet"]
+  }, {
+    title: "Company Status(for efiling)",
+    value: details["Company Status(for efiling)"]
+  }, {
+    title: "LLP Status",
+    value: details["LLP Status"]
   }];
+
+  const renderLocaleButtons = activeLanguage => ["en", "es", "tr"].map(lang => __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_6__["LocaleButton"], {
+    key: lang,
+    lang: lang,
+    isActive: activeLanguage === lang,
+    onClick: () => i18n.changeLanguage(lang)
+  }));
+
   return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_6__["Layout"], null, __jsx("h1", {
     className: "my-4"
-  }, __jsx("small", null, dinData["DIN"]), __jsx("div", null, dinData["name"])), __jsx("div", {
+  }, __jsx("small", null, details["CIN"]), __jsx("div", null, details["Company Name"] || details["LLP Name"])), __jsx("div", {
     className: "card mb-4"
   }, __jsx("div", {
     className: "card-body"
   }, __jsx("table", {
     className: "table table-hover"
-  }, __jsx("tbody", null, refData.map(data => {
+  }, __jsx("tbody", null, refData.filter(data => data.value).map(data => {
     return __jsx("tr", {
       key: data.title
     }, __jsx("th", {
@@ -1857,9 +1910,9 @@ const Home = ({
     className: "card mb-4"
   }, __jsx("h2", {
     className: "card-header"
-  }, "List Of Companies"), __jsx("div", {
+  }, "Directors"), __jsx("div", {
     className: "card-body"
-  }, dinData.companies.length ? __jsx("table", {
+  }, __jsx("table", {
     className: "table table-hover"
   }, __jsx("thead", null, __jsx("tr", {
     className: "text-semibold text-fiord-blue"
@@ -1867,29 +1920,29 @@ const Home = ({
     scope: "col"
   }, "#"), __jsx("th", {
     scope: "col"
-  }, "CIN/FCRN"), __jsx("th", {
+  }, "DIN/PAN"), __jsx("th", {
     scope: "col"
-  }, "Company Name"), __jsx("th", {
+  }, "Name"), __jsx("th", {
     scope: "col"
   }, "Begin date"), __jsx("th", {
     scope: "col"
   }, "End date"), __jsx("th", {
     scope: "col"
-  }, "Active compliance"))), __jsx("tbody", null, dinData.companies.map((company, index) => {
+  }, "Surrendered DIN"))), __jsx("tbody", null, details.dins.map((director, index) => {
     return __jsx("tr", {
-      key: `director_${company.CIN}`,
+      key: `director_${director[0]}`,
       className: "text-semibold text-reagent-gray"
     }, __jsx("td", null, index + 1), __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-      href: "/company/[cin]",
-      as: `/company/${company.CIN}`
-    }, __jsx("a", null, company.CIN))), __jsx("td", null, company.name), __jsx("td", null, company.beginDate), __jsx("td", null, company.endDate), __jsx("td", null, company.status));
-  }))) : __jsx("div", null, "No Companies mapped to the director"))), __jsx("div", {
+      href: "/director/[din]",
+      as: `/director/${director[0]}`
+    }, __jsx("a", null, director[0]))), __jsx("td", null, director[6]), __jsx("td", null, director[7]), __jsx("td", null, director[8]), __jsx("td", null, director[6]));
+  }))))), __jsx("div", {
     className: "card mb-4"
   }, __jsx("h2", {
     className: "card-header"
-  }, "List Of LLP"), __jsx("div", {
+  }, "Charges"), __jsx("div", {
     className: "card-body"
-  }, dinData.llps.length ? __jsx("table", {
+  }, __jsx("table", {
     className: "table table-hover"
   }, __jsx("thead", {
     className: "bg-light"
@@ -1901,34 +1954,39 @@ const Home = ({
   }, "#"), __jsx("th", {
     scope: "col",
     className: "border-0"
-  }, "LLPIN/FLLPIN"), __jsx("th", {
+  }, "Assets under charge"), __jsx("th", {
     scope: "col",
     className: "border-0"
-  }, "LLP Name"), __jsx("th", {
+  }, "Charge Amount"), __jsx("th", {
     scope: "col",
     className: "border-0"
-  }, "Begin date"), __jsx("th", {
+  }, "Date of Creation"), __jsx("th", {
     scope: "col",
     className: "border-0"
-  }, "End date"), __jsx("th", {
+  }, "Date of Modification"), __jsx("th", {
     scope: "col",
     className: "border-0"
-  }, "Status"))), __jsx("tbody", null, dinData.llps.map((llp, index) => {
+  }, "Status"))), __jsx("tbody", null, details.charges.map((charge, index) => {
     return __jsx("tr", {
-      key: `charge_${llp.CIN}`,
+      key: `charge_${charge[1]}`,
       className: "text-semibold text-reagent-gray"
-    }, __jsx("td", null, index + 1), __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-      href: "/company/[cin]",
-      as: `/company/${llp.CIN}`
-    }, __jsx("a", null, llp.CIN))), __jsx("td", null, llp.name), __jsx("td", null, llp.beginDate), __jsx("td", null, llp.endDate), __jsx("td", null, llp.status));
-  }))) : __jsx("div", null, "No LLPs mapped to the director"))));
+    }, __jsx("td", null, index + 1), __jsx("td", null, charge[0]), __jsx("td", null, charge[1]), __jsx("td", null, charge[2]), __jsx("td", null, charge[3]), __jsx("td", null, charge[4]));
+  }))))));
 };
 
 Home.getInitialProps = async ctx => {
   const {
-    din
+    cin
   } = ctx.query;
-  const dinData = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_3__["Http"].Request('GET', `http://3.7.5.125:4000/v1/director/${din}`);
+  let cinData;
+
+  try {
+    cinData = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_3__["Http"].Request('GET', `http://3.7.5.125:4000/v1/company/${cin}`);
+  } catch (error) {
+    console.log("Error while fetching cin details for cin: ", cin, error);
+    cinData = null;
+  }
+
   await ctx.store.dispatch(_src_Actions__WEBPACK_IMPORTED_MODULE_5__["HomeActions"].GetApod({
     params: {
       hd: true
@@ -1936,9 +1994,19 @@ Home.getInitialProps = async ctx => {
   }));
   return {
     namespacesRequired: ["common"],
-    dinData
+    cinData
   };
-};
+}; // export const getServerSideProps: GetServerSideProps = async (context) => {
+//     const cinData = await Http.Request('GET', `http://3.7.5.125:4000/v1/company/U55209AP2018PTC107672`);
+//     console.log("cinData on server side: ", cinData);
+//     return {
+//       props: {
+//         cinData,
+//         name: "pushkar"
+//       }
+//     }
+// }
+
 
 const Extended = Object(_server_i18n__WEBPACK_IMPORTED_MODULE_4__["withTranslation"])("common")(Home);
 /* harmony default export */ __webpack_exports__["default"] = (Extended);
@@ -2648,14 +2716,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 4:
-/*!****************************************!*\
-  !*** multi ./pages/director/[din].tsx ***!
-  \****************************************/
+/***/ 3:
+/*!***************************************!*\
+  !*** multi ./pages/company/[cin].tsx ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/pushkargoel/Myapps/next-boilerplate/pages/director/[din].tsx */"./pages/director/[din].tsx");
+module.exports = __webpack_require__(/*! /Users/pushkargoel/Myapps/next-boilerplate/pages/company/[cin].tsx */"./pages/company/[cin].tsx");
 
 
 /***/ }),
@@ -2804,4 +2872,4 @@ module.exports = require("url");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=[din].js.map
+//# sourceMappingURL=[cin].js.map

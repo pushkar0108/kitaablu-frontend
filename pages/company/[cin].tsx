@@ -55,6 +55,10 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
             value: details["Company Name"]
         },
         {
+            title: "LLP Name",
+            value: details["LLP Name"]
+        },
+        {
             title: "ROC Code",
             value: details["ROC Code"]
         },
@@ -85,6 +89,14 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
         {
             title: "Number of Members(Applicable in case of company without Share Capital)",
             value: details["Number of Members(Applicable in case of company without Share Capital)"]
+        },
+        {
+            title: "Number of Partners",
+            value: details["Number of Partners"]
+        },
+        {
+            title: "Number of Designated Partners",
+            value: details["Number of Designated Partners"]
         },
         {
             title: "Date of Incorporation",
@@ -121,6 +133,10 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
         {
             title: "Company Status(for efiling)",
             value: details["Company Status(for efiling)"]
+        },
+        {
+            title: "LLP Status",
+            value: details["LLP Status"]
         }
     ];
 
@@ -138,14 +154,14 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
         <Layout>
             <h1 className="my-4">
                 <small>{details["CIN"]}</small>
-                <div>{details["Company Name"]}</div>
+                <div>{details["Company Name"] || details["LLP Name"]}</div>
             </h1>
             <div className="card mb-4">
                 <div className="card-body">
                     <table className="table table-hover">
                         <tbody>
                             {
-                                refData.map(data => {
+                                refData.filter(data => data.value).map(data => {
                                     return (
                                         <tr key={data.title}>
                                             <th scope="row">{data.title}</th>
