@@ -53,23 +53,49 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
             <div className="card mb-4">
                 <div className="card-body">
                     <h2 className="card-title">What we do?</h2>
-                    <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                    <a href="#" className="btn btn-primary">Read More &rarr;</a>
+                    <p className="card-text">
+                        We are provider of commercial information and insight on businesses. The team have one goal - to be your sole resource for critical information. We gather data from a number of official sources and third parties to give you all the information you need, in one easy to use website.
+                    </p>
                 </div>
-                <div className="card-footer text-muted">
+                {/* <div className="card-footer text-muted">
                     Posted on January 1, 2017 by
-                                <a href="#">Start Bootstrap</a>
-                </div>
+                    <a href="#">Start Bootstrap</a>
+                </div> */}
             </div>
             <div className="card mb-4">
                 <div className="card-body">
-                    <h2 className="card-title">We have authentic data</h2>
-                    <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                    <a href="#" className="btn btn-primary">Read More &rarr;</a>
+                    <h2 className="card-title">We have authentic dataset</h2>
+                    <p className="card-text">We have a continuously growing dataset with data of more than 20 Lakh companies and 45 Lakh directors.</p>
+                </div>
+                {/* <div className="card-footer text-muted">
+                    Posted on January 1, 2017 by
+                    <a href="#">Start Bootstrap</a>
+                </div> */}
+            </div>
+            <div className="card mb-4">
+                <div className="card-body">
+                    <h2 className="card-title">How well do you know your customers, suppliers or competitors ?</h2>
+                    <p className="card-text">
+                        When asked how well they know their competition, most business owners respond by naming direct competitors. Knowing your direct competitors is important, but it's not enough. Your direct competitors do not represent the entire competitive landscape facing your business, service or product. A myriad of other dangerous competitors are lurking out there. To succeed in the long term, you must identify, analyze, then differentiate from them.
+                    </p>
+                </div>
+                {/* <div className="card-footer text-muted">
+                    Posted on January 1, 2017 by
+                    <a href="#">Start Bootstrap</a>
+                </div> */}
+            </div>
+
+            <div className="card mb-4">
+                <div className="card-body">
+                    <h2 className="card-title">
+                        Get data in your required formats
+                    </h2>
+                    <p className="card-text">
+                        Just mail us your requirements and we will provide you data in your required formats.
+                    </p>
                 </div>
                 <div className="card-footer text-muted">
-                    Posted on January 1, 2017 by
-                                <a href="#">Start Bootstrap</a>
+                    Email us at info@kitaablu.com
                 </div>
             </div>
         </Layout>

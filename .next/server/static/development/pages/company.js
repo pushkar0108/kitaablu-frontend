@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -2156,6 +2156,19 @@ const Layout = ({
     }
   };
 
+  const handleDinSearchClick = e => {
+    e.preventDefault();
+    let din = document.getElementById('dinInput').value;
+
+    if (din) {
+      router.push('/director/[din]', `/director/${din}`);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        document.getElementById('cinInput').value = '';
+      }, 1000);
+    }
+  };
+
   return __jsx("div", null, __jsx("nav", {
     className: "navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
   }, __jsx("div", {
@@ -2217,7 +2230,7 @@ const Layout = ({
     className: "card my-4"
   }, __jsx("h5", {
     className: "card-header"
-  }, "Available Documents"), __jsx("div", {
+  }, "Documents Coming Soon"), __jsx("div", {
     className: "card-body"
   }, __jsx("div", {
     className: "row"
@@ -2245,7 +2258,7 @@ const Layout = ({
     className: "card my-4 sticky-top"
   }, __jsx("h5", {
     className: "card-header"
-  }, "Search"), __jsx("div", {
+  }, "Search Company"), __jsx("div", {
     className: "card-body"
   }, __jsx("div", {
     className: "input-group"
@@ -2258,6 +2271,25 @@ const Layout = ({
     className: "input-group-btn"
   }, __jsx("button", {
     onClick: handleClick,
+    className: "btn btn-secondary",
+    type: "button"
+  }, "Go!"))))), __jsx("div", {
+    className: "card my-4"
+  }, __jsx("h5", {
+    className: "card-header"
+  }, "Search Director"), __jsx("div", {
+    className: "card-body"
+  }, __jsx("div", {
+    className: "input-group"
+  }, __jsx("input", {
+    id: "dinInput",
+    type: "text",
+    className: "form-control",
+    placeholder: "Search using DIN"
+  }), __jsx("span", {
+    className: "input-group-btn"
+  }, __jsx("button", {
+    onClick: handleDinSearchClick,
     className: "btn btn-secondary",
     type: "button"
   }, "Go!")))))))), __jsx("footer", {
@@ -2591,7 +2623,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 6:
+/***/ 4:
 /*!***************************************!*\
   !*** multi ./pages/company/index.tsx ***!
   \***************************************/

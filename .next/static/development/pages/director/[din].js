@@ -24837,6 +24837,19 @@ var Layout = function Layout(_ref) {
     }
   };
 
+  var handleDinSearchClick = function handleDinSearchClick(e) {
+    e.preventDefault();
+    var din = document.getElementById('dinInput').value;
+
+    if (din) {
+      router.push('/director/[din]', "/director/".concat(din));
+      setTimeout(function () {
+        window.scrollTo(0, 0);
+        document.getElementById('cinInput').value = '';
+      }, 1000);
+    }
+  };
+
   return __jsx("div", null, __jsx("nav", {
     className: "navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
   }, __jsx("div", {
@@ -24898,7 +24911,7 @@ var Layout = function Layout(_ref) {
     className: "card my-4"
   }, __jsx("h5", {
     className: "card-header"
-  }, "Available Documents"), __jsx("div", {
+  }, "Documents Coming Soon"), __jsx("div", {
     className: "card-body"
   }, __jsx("div", {
     className: "row"
@@ -24926,7 +24939,7 @@ var Layout = function Layout(_ref) {
     className: "card my-4 sticky-top"
   }, __jsx("h5", {
     className: "card-header"
-  }, "Search"), __jsx("div", {
+  }, "Search Company"), __jsx("div", {
     className: "card-body"
   }, __jsx("div", {
     className: "input-group"
@@ -24939,6 +24952,25 @@ var Layout = function Layout(_ref) {
     className: "input-group-btn"
   }, __jsx("button", {
     onClick: handleClick,
+    className: "btn btn-secondary",
+    type: "button"
+  }, "Go!"))))), __jsx("div", {
+    className: "card my-4"
+  }, __jsx("h5", {
+    className: "card-header"
+  }, "Search Director"), __jsx("div", {
+    className: "card-body"
+  }, __jsx("div", {
+    className: "input-group"
+  }, __jsx("input", {
+    id: "dinInput",
+    type: "text",
+    className: "form-control",
+    placeholder: "Search using DIN"
+  }), __jsx("span", {
+    className: "input-group-btn"
+  }, __jsx("button", {
+    onClick: handleDinSearchClick,
     className: "btn btn-secondary",
     type: "button"
   }, "Go!")))))))), __jsx("footer", {
@@ -25327,7 +25359,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 4:
+/***/ 7:
 /*!**************************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fdirector%2F%5Bdin%5D&absolutePagePath=%2FUsers%2Fpushkargoel%2FMyapps%2Fnext-boilerplate%2Fpages%2Fdirector%2F%5Bdin%5D.tsx ***!
   \**************************************************************************************************************************************************************************/
@@ -25350,5 +25382,5 @@ module.exports = dll_b9380c54b6aeb86e51e7;
 
 /***/ })
 
-},[[4,"static/runtime/webpack.js","styles"]]]);
+},[[7,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=[din].js.map

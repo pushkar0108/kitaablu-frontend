@@ -31,6 +31,18 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
         }
     };
 
+    const handleDinSearchClick = e => {
+        e.preventDefault();
+        let din = (document.getElementById('dinInput') as HTMLInputElement).value;
+        if(din) {
+            router.push('/director/[din]', `/director/${din}`);
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+                (document.getElementById('cinInput') as HTMLInputElement).value = '';
+            }, 1000);
+        }
+    };
+
     return <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div className="container">
@@ -69,7 +81,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
                 </div>
                 <div className="col-md-4">
                     <div className="card my-4">
-                        <h5 className="card-header">Available Documents</h5>
+                        <h5 className="card-header">Documents Coming Soon</h5>
                         <div className="card-body">
                             <div className="row">
                                 <div className="col-lg-6">
@@ -102,13 +114,30 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
                         </div>
                     </div>
                     <div className="card my-4 sticky-top">
-                        <h5 className="card-header">Search</h5>
+                        <h5 className="card-header">Search Company</h5>
                         <div className="card-body">
                             <div className="input-group">
                                 <input id="cinInput" type="text" className="form-control" placeholder="Search using CIN/LLPIN" />
                                 <span className="input-group-btn">
                                     <button 
                                         onClick={handleClick}
+                                        className="btn btn-secondary" 
+                                        type="button">
+                                            Go!
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="card my-4">
+                        <h5 className="card-header">Search Director</h5>
+                        <div className="card-body">
+                            <div className="input-group">
+                                <input id="dinInput" type="text" className="form-control" placeholder="Search using DIN" />
+                                <span className="input-group-btn">
+                                    <button 
+                                        onClick={handleDinSearchClick}
                                         className="btn btn-secondary" 
                                         type="button">
                                             Go!
