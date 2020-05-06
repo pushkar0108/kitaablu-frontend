@@ -40,7 +40,9 @@ class WebAppDocument extends Document {
     render() {
         return (
             <Html>
-                <Head />
+                <Head>
+                    <script data-ad-client="ca-pub-3756716452024552" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                </Head>
                 <body>
                     <Main />
                     <NextScript />
