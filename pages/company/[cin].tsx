@@ -1,6 +1,7 @@
 // #region Global Imports
 import * as React from "react";
 import { NextPage, GetServerSideProps } from "next";
+import { NextSeo } from 'next-seo';
 import Link from 'next/link';
 import { useSelector, useDispatch } from "react-redux";
 import { Http } from '../../src/Services/API/Http';
@@ -149,12 +150,22 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
                 onClick={() => i18n.changeLanguage(lang)}
             />
         ));
+    
+    const companyName = details["Company Name"] || details["LLP Name"];
+    const SEO = {
+        title: `${companyName}, ${details["CIN"]} - Company, charges, directors, CIN, DIN and contact details _ Kitaablu`,
+        description: `Company information, business information, directors/partners details and director/partners contact information of ${companyName}, ${details["CIN"]}`
+    };
 
     return (
         <Layout>
+            <NextSeo
+                title={SEO.title}
+                description={SEO.description}
+            />
             <h1 className="my-4">
                 <small>{details["CIN"]}</small>
-                <div>{details["Company Name"] || details["LLP Name"]}</div>
+                <div>{companyName}</div>
             </h1>
             <div className="card mb-4">
                 <div className="card-body">
@@ -255,7 +266,7 @@ Home.getInitialProps = async (
 
     let cinData;
     try {
-        cinData = await Http.Request('GET', `http://3.7.5.125:4000/v1/company/${cin}`);
+        cinData = await Http.Request('GET', `api/v1/company/${cin}`);
     } catch (error) {
         console.log("Error while fetching cin details for cin: ", cin, error);
         cinData = null;
