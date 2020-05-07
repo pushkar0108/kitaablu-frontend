@@ -2,6 +2,7 @@
 import * as React from "react";
 import { NextPage, GetServerSideProps } from "next";
 import Link from 'next/link';
+import { NextSeo } from 'next-seo';
 import { useSelector, useDispatch } from "react-redux";
 import { Http } from '../../src/Services/API/Http';
 // #endregion Global Imports
@@ -79,12 +80,21 @@ const Home: NextPage<IDirectorPage.IProps, IDirectorPage.InitialProps> = ({
         }
     ];
 
+    const directorName = dinData["name"];
+    const SEO = {
+        title: `${dinData["name"]}, ${dinData["DIN"]} - Company, charges, directors, CIN, DIN and contact details _ Kitaablu`,
+        description: `Company information, business information, directors/partners details and director/partners contact information of ${directorName}, ${dinData["DIN"]}`
+    };
+
     return (
         <Layout>
-
+            <NextSeo
+                title={SEO.title}
+                description={SEO.description}
+            />
             <h1 className="my-4">
                 <small>{dinData["DIN"]}</small>
-                <div>{dinData["name"]}</div>
+                <div>{directorName}</div>
             </h1>
             <div className="card mb-4">
                 <div className="card-body">
@@ -200,7 +210,7 @@ Home.getInitialProps = async (
     ctx: ReduxNextPageContext
 ): Promise<IDirectorPage.InitialProps> => {
     const { din } = ctx.query;
-    const dinData = await Http.Request('GET', `http://3.7.5.125:4000/v1/director/${din}`);
+    const dinData = await Http.Request('GET', `api/v1/director/${din}`);
 
     await ctx.store.dispatch(
         HomeActions.GetApod({
