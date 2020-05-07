@@ -25333,7 +25333,7 @@ Home.getInitialProps = function _callee(ctx) {
         case 0:
           din = ctx.query.din;
           _context.next = 3;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_src_Services_API_Http__WEBPACK_IMPORTED_MODULE_5__["Http"].Request('GET', "api/v1/director/".concat(din)));
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_src_Services_API_Http__WEBPACK_IMPORTED_MODULE_5__["Http"].Request('GET', "https://kitaablu.com/api/v1/director/".concat(din)));
 
         case 3:
           dinData = _context.sent;
@@ -26164,7 +26164,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 5:
+/***/ 2:
 /*!**************************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fdirector%2F%5Bdin%5D&absolutePagePath=%2FUsers%2Fpushkargoel%2FMyapps%2Fnext-boilerplate%2Fpages%2Fdirector%2F%5Bdin%5D.tsx ***!
   \**************************************************************************************************************************************************************************/
@@ -26187,5 +26187,5 @@ module.exports = dll_b9380c54b6aeb86e51e7;
 
 /***/ })
 
-},[[5,"static/runtime/webpack.js","styles"]]]);
+},[[2,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=[din].js.map

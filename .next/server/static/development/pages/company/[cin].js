@@ -1992,7 +1992,7 @@ Home.getInitialProps = async ctx => {
   let cinData;
 
   try {
-    cinData = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__["Http"].Request('GET', `api/v1/company/${cin}`);
+    cinData = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__["Http"].Request('GET', `https://kitaablu.com/api/v1/company/${cin}`);
   } catch (error) {
     console.log("Error while fetching cin details for cin: ", cin, error);
     cinData = null;

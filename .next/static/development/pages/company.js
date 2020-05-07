@@ -25305,7 +25305,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 6:
+/***/ 5:
 /*!********************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fcompany&absolutePagePath=%2FUsers%2Fpushkargoel%2FMyapps%2Fnext-boilerplate%2Fpages%2Fcompany%2Findex.tsx ***!
   \********************************************************************************************************************************************************/
@@ -25328,5 +25328,5 @@ module.exports = dll_b9380c54b6aeb86e51e7;
 
 /***/ })
 
-},[[6,"static/runtime/webpack.js","styles"]]]);
+},[[5,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=company.js.map

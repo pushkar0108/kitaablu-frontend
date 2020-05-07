@@ -25392,7 +25392,7 @@ Home.getInitialProps = function _callee(ctx) {
           cin = ctx.query.cin;
           _context.prev = 1;
           _context.next = 4;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_src_Services_API_Http__WEBPACK_IMPORTED_MODULE_5__["Http"].Request('GET', "api/v1/company/".concat(cin)));
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_src_Services_API_Http__WEBPACK_IMPORTED_MODULE_5__["Http"].Request('GET', "https://kitaablu.com/api/v1/company/".concat(cin)));
 
         case 4:
           cinData = _context.sent;

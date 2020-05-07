@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1939,7 +1939,7 @@ Home.getInitialProps = async ctx => {
   const {
     din
   } = ctx.query;
-  const dinData = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__["Http"].Request('GET', `api/v1/director/${din}`);
+  const dinData = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__["Http"].Request('GET', `https://kitaablu.com/api/v1/director/${din}`);
   await ctx.store.dispatch(_src_Actions__WEBPACK_IMPORTED_MODULE_6__["HomeActions"].GetApod({
     params: {
       hd: true
@@ -2691,7 +2691,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 5:
+/***/ 3:
 /*!****************************************!*\
   !*** multi ./pages/director/[din].tsx ***!
   \****************************************/

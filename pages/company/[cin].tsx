@@ -266,7 +266,7 @@ Home.getInitialProps = async (
 
     let cinData;
     try {
-        cinData = await Http.Request('GET', `api/v1/company/${cin}`);
+        cinData = await Http.Request('GET', `https://kitaablu.com/api/v1/company/${cin}`);
     } catch (error) {
         console.log("Error while fetching cin details for cin: ", cin, error);
         cinData = null;
