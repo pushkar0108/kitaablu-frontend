@@ -1,7 +1,7 @@
 module.exports =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
-/******/ 	var installedModules = require('../../../../ssr-module-cache.js');
+/******/ 	var installedModules = require('../../../ssr-module-cache.js');
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1768,9 +1768,9 @@ module.exports = _typeof;
 
 /***/ }),
 
-/***/ "./pages/director/[din].tsx":
+/***/ "./pages/director/index.tsx":
 /*!**********************************!*\
-  !*** ./pages/director/[din].tsx ***!
+  !*** ./pages/director/index.tsx ***!
   \**********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1781,18 +1781,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var next_seo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next-seo */ "next-seo");
-/* harmony import */ var next_seo__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_seo__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "react-redux");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../src/Services/API/Http */ "./src/Services/API/Http/index.ts");
-/* harmony import */ var _server_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../server/i18n */ "./server/i18n.ts");
-/* harmony import */ var _src_Actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../src/Actions */ "./src/Actions/index.ts");
-/* harmony import */ var _src_Components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../src/Components */ "./src/Components/index.ts");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _server_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../server/i18n */ "./server/i18n.ts");
+/* harmony import */ var _src_Actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../src/Actions */ "./src/Actions/index.ts");
+/* harmony import */ var _src_Components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../src/Components */ "./src/Components/index.ts");
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0__["createElement"];
 // #region Global Imports
-
-
 
 
  // #endregion Global Imports
@@ -1800,164 +1795,95 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0__["createElement"];
 
 
 
- // #endregion Local Imports
-// #region Interface Imports
 
-// #endregion Interface Imports
+
 const Home = ({
   t,
   i18n,
-  dinData
+  cinData
 }) => {
-  const home = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["useSelector"])(state => state.home);
-  const dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["useDispatch"])();
-  const refData = [{
-    title: "DIN",
-    value: dinData["DIN"]
-  }, {
-    title: "Name",
-    value: dinData["name"]
-  }, {
-    title: "Date of birth",
-    value: dinData["dob"]
-  }, {
-    title: "Father Name",
-    value: '*********'
-  }, {
-    title: "Mobile",
-    value: '*********'
-  }, {
-    title: "Phone",
-    value: '*********'
-  }, {
-    title: "Email",
-    value: '*********'
-  }, {
-    title: "Address",
-    value: '*********'
-  }, {
-    title: "City",
-    value: dinData["city"]
-  }, {
-    title: "Gender",
-    value: dinData["gender"]
-  }];
-  const directorName = dinData["name"];
-  const SEO = {
-    title: `${dinData["name"]}, ${dinData["DIN"]} - Company, charges, directors, CIN, DIN and contact details _ Kitaablu`,
-    description: `Company information, business information, directors/partners details and director/partners contact information of ${directorName}, ${dinData["DIN"]}`
-  };
-  return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_7__["Layout"], null, __jsx(next_seo__WEBPACK_IMPORTED_MODULE_2__["NextSeo"], {
-    title: SEO.title,
-    description: SEO.description
-  }), __jsx("h1", {
+  const home = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(state => state.home);
+  const dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
+
+  const renderLocaleButtons = activeLanguage => ["en", "es", "tr"].map(lang => __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_5__["LocaleButton"], {
+    key: lang,
+    lang: lang,
+    isActive: activeLanguage === lang,
+    onClick: () => i18n.changeLanguage(lang)
+  }));
+
+  return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_5__["Layout"], null, __jsx("h1", {
     className: "my-4"
-  }, __jsx("small", null, dinData["DIN"]), __jsx("div", null, directorName)), __jsx("div", {
+  }, __jsx("small", null, "Top Directors")), __jsx("div", {
     className: "card mb-4"
   }, __jsx("div", {
     className: "card-body"
-  }, __jsx("div", {
-    className: "table-responsive"
-  }, __jsx("table", {
-    className: "table table-hover"
-  }, __jsx("tbody", null, refData.map(data => {
-    return __jsx("tr", {
-      key: data.title
-    }, __jsx("th", {
-      scope: "row"
-    }, data.title), __jsx("td", null, data.value));
-  })))))), __jsx("div", {
-    className: "card mb-4"
-  }, __jsx("h2", {
-    className: "card-header"
-  }, "List Of Companies"), __jsx("div", {
-    className: "card-body"
-  }, dinData.companies.length ? __jsx("div", {
-    className: "table-responsive"
   }, __jsx("table", {
     className: "table table-hover"
   }, __jsx("thead", null, __jsx("tr", {
     className: "text-semibold text-fiord-blue"
   }, __jsx("th", {
     scope: "col"
-  }, "#"), __jsx("th", {
-    scope: "col"
-  }, "CIN/FCRN"), __jsx("th", {
-    scope: "col"
-  }, "Company Name"), __jsx("th", {
-    scope: "col"
-  }, "Begin date"), __jsx("th", {
-    scope: "col"
-  }, "End date"), __jsx("th", {
-    scope: "col"
-  }, "Active compliance"))), __jsx("tbody", null, dinData.companies.map((company, index) => {
-    return __jsx("tr", {
-      key: `director_${company.CIN}`,
-      className: "text-semibold text-reagent-gray"
-    }, __jsx("td", null, index + 1), __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-      href: "/company/[cin]",
-      as: `/company/${company.CIN}`
-    }, __jsx("a", null, company.CIN))), __jsx("td", null, company.name), __jsx("td", null, company.beginDate), __jsx("td", null, company.endDate), __jsx("td", null, company.status));
-  })))) : __jsx("div", null, "No Companies mapped to the director"))), __jsx("div", {
-    className: "card mb-4"
-  }, __jsx("h2", {
-    className: "card-header"
-  }, "List Of LLP"), __jsx("div", {
-    className: "card-body"
-  }, dinData.llps.length ? __jsx("div", {
-    className: "table-responsive"
-  }, __jsx("table", {
-    className: "table table-hover"
-  }, __jsx("thead", {
-    className: "bg-light"
-  }, __jsx("tr", {
-    className: "text-semibold text-fiord-blue"
-  }, __jsx("th", {
-    scope: "col",
-    className: "border-0"
-  }, "#"), __jsx("th", {
-    scope: "col",
-    className: "border-0"
-  }, "LLPIN/FLLPIN"), __jsx("th", {
-    scope: "col",
-    className: "border-0"
-  }, "LLP Name"), __jsx("th", {
-    scope: "col",
-    className: "border-0"
-  }, "Begin date"), __jsx("th", {
-    scope: "col",
-    className: "border-0"
-  }, "End date"), __jsx("th", {
-    scope: "col",
-    className: "border-0"
-  }, "Status"))), __jsx("tbody", null, dinData.llps.map((llp, index) => {
-    return __jsx("tr", {
-      key: `charge_${llp.CIN}`,
-      className: "text-semibold text-reagent-gray"
-    }, __jsx("td", null, index + 1), __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-      href: "/company/[cin]",
-      as: `/company/${llp.CIN}`
-    }, __jsx("a", null, llp.CIN))), __jsx("td", null, llp.name), __jsx("td", null, llp.beginDate), __jsx("td", null, llp.endDate), __jsx("td", null, llp.status));
-  })))) : __jsx("div", null, "No LLPs mapped to the director"))));
+  }, "DIN"))), __jsx("tbody", null, __jsx("tr", {
+    className: "text-semibold text-reagent-gray"
+  }, __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/director/[din]",
+    as: "/director/08008293"
+  }, __jsx("a", null, "08008293")))), __jsx("tr", {
+    className: "text-semibold text-reagent-gray"
+  }, __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/director/[din]",
+    as: "/director/08008293"
+  }, __jsx("a", null, "08008293")))), __jsx("tr", {
+    className: "text-semibold text-reagent-gray"
+  }, __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/director/[din]",
+    as: "/director/08008293"
+  }, __jsx("a", null, "08008293")))), __jsx("tr", {
+    className: "text-semibold text-reagent-gray"
+  }, __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/director/[din]",
+    as: "/director/08008293"
+  }, __jsx("a", null, "08008293")))), __jsx("tr", {
+    className: "text-semibold text-reagent-gray"
+  }, __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/director/[din]",
+    as: "/director/08008293"
+  }, __jsx("a", null, "08008293")))), __jsx("tr", {
+    className: "text-semibold text-reagent-gray"
+  }, __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/director/[din]",
+    as: "/director/08008293"
+  }, __jsx("a", null, "08008293")))), __jsx("tr", {
+    className: "text-semibold text-reagent-gray"
+  }, __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/director/[din]",
+    as: "/director/08008293"
+  }, __jsx("a", null, "08008293")))), __jsx("tr", {
+    className: "text-semibold text-reagent-gray"
+  }, __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/director/[din]",
+    as: "/director/02888316"
+  }, __jsx("a", null, "02888316")))), __jsx("tr", {
+    className: "text-semibold text-reagent-gray"
+  }, __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/director/[din]",
+    as: "/director/06365134"
+  }, __jsx("a", null, "06365134")))))))));
 };
 
 Home.getInitialProps = async ctx => {
-  const {
-    din
-  } = ctx.query;
-  const dinData = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__["Http"].Request('GET', `https://kitaablu.com/api/v1/director/${din}`);
-  await ctx.store.dispatch(_src_Actions__WEBPACK_IMPORTED_MODULE_6__["HomeActions"].GetApod({
+  await ctx.store.dispatch(_src_Actions__WEBPACK_IMPORTED_MODULE_4__["HomeActions"].GetApod({
     params: {
       hd: true
     }
   }));
   return {
-    namespacesRequired: ["common"],
-    dinData
+    namespacesRequired: ["common"]
   };
 };
 
-const Extended = Object(_server_i18n__WEBPACK_IMPORTED_MODULE_5__["withTranslation"])("common")(Home);
+const Extended = Object(_server_i18n__WEBPACK_IMPORTED_MODULE_3__["withTranslation"])("common")(Home);
 /* harmony default export */ __webpack_exports__["default"] = (Extended);
 
 /***/ }),
@@ -2697,14 +2623,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 4:
+/***/ 6:
 /*!****************************************!*\
-  !*** multi ./pages/director/[din].tsx ***!
+  !*** multi ./pages/director/index.tsx ***!
   \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/pushkargoel/Myapps/next-boilerplate/pages/director/[din].tsx */"./pages/director/[din].tsx");
+module.exports = __webpack_require__(/*! /Users/pushkargoel/Myapps/next-boilerplate/pages/director/index.tsx */"./pages/director/index.tsx");
 
 
 /***/ }),
@@ -2728,17 +2654,6 @@ module.exports = require("isomorphic-unfetch");
 /***/ (function(module, exports) {
 
 module.exports = require("next-i18next");
-
-/***/ }),
-
-/***/ "next-seo":
-/*!***************************!*\
-  !*** external "next-seo" ***!
-  \***************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("next-seo");
 
 /***/ }),
 
@@ -2864,4 +2779,4 @@ module.exports = require("url");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=[din].js.map
+//# sourceMappingURL=director.js.map
