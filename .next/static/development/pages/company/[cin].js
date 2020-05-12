@@ -25305,6 +25305,8 @@ var Home = function Home(_ref) {
     className: "card mb-4"
   }, __jsx("div", {
     className: "card-body"
+  }, __jsx("div", {
+    className: "table-responsive"
   }, __jsx("table", {
     className: "table table-hover"
   }, __jsx("tbody", null, refData.filter(function (data) {
@@ -25315,12 +25317,14 @@ var Home = function Home(_ref) {
     }, __jsx("th", {
       scope: "row"
     }, data.title), __jsx("td", null, data.value));
-  }))))), __jsx("div", {
+  })))))), __jsx("div", {
     className: "card mb-4"
   }, __jsx("h2", {
     className: "card-header"
   }, "Directors"), __jsx("div", {
     className: "card-body"
+  }, __jsx("div", {
+    className: "table-responsive"
   }, __jsx("table", {
     className: "table table-hover"
   }, __jsx("thead", null, __jsx("tr", {
@@ -25345,12 +25349,14 @@ var Home = function Home(_ref) {
       href: "/director/[din]",
       as: "/director/".concat(director[0])
     }, __jsx("a", null, director[0]))), __jsx("td", null, director[6]), __jsx("td", null, director[7]), __jsx("td", null, director[8]), __jsx("td", null, director[6]));
-  }))))), __jsx("div", {
+  })))))), __jsx("div", {
     className: "card mb-4"
   }, __jsx("h2", {
     className: "card-header"
   }, "Charges"), __jsx("div", {
     className: "card-body"
+  }, __jsx("div", {
+    className: "table-responsive"
   }, __jsx("table", {
     className: "table table-hover"
   }, __jsx("thead", {
@@ -25380,7 +25386,7 @@ var Home = function Home(_ref) {
       key: "charge_".concat(charge[1]),
       className: "text-semibold text-reagent-gray"
     }, __jsx("td", null, index + 1), __jsx("td", null, charge[0]), __jsx("td", null, charge[1]), __jsx("td", null, charge[2]), __jsx("td", null, charge[3]), __jsx("td", null, charge[4]));
-  }))))));
+  })))))));
 };
 
 Home.getInitialProps = function _callee(ctx) {
@@ -26243,7 +26249,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 7:
+/***/ 2:
 /*!************************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fcompany%2F%5Bcin%5D&absolutePagePath=%2FUsers%2Fpushkargoel%2FMyapps%2Fnext-boilerplate%2Fpages%2Fcompany%2F%5Bcin%5D.tsx ***!
   \************************************************************************************************************************************************************************/
@@ -26266,5 +26272,5 @@ module.exports = dll_b9380c54b6aeb86e51e7;
 
 /***/ })
 
-},[[7,"static/runtime/webpack.js","styles"]]]);
+},[[2,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=[cin].js.map

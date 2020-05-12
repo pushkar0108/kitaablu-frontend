@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1909,6 +1909,8 @@ const Home = ({
     className: "card mb-4"
   }, __jsx("div", {
     className: "card-body"
+  }, __jsx("div", {
+    className: "table-responsive"
   }, __jsx("table", {
     className: "table table-hover"
   }, __jsx("tbody", null, refData.filter(data => data.value).map(data => {
@@ -1917,12 +1919,14 @@ const Home = ({
     }, __jsx("th", {
       scope: "row"
     }, data.title), __jsx("td", null, data.value));
-  }))))), __jsx("div", {
+  })))))), __jsx("div", {
     className: "card mb-4"
   }, __jsx("h2", {
     className: "card-header"
   }, "Directors"), __jsx("div", {
     className: "card-body"
+  }, __jsx("div", {
+    className: "table-responsive"
   }, __jsx("table", {
     className: "table table-hover"
   }, __jsx("thead", null, __jsx("tr", {
@@ -1947,12 +1951,14 @@ const Home = ({
       href: "/director/[din]",
       as: `/director/${director[0]}`
     }, __jsx("a", null, director[0]))), __jsx("td", null, director[6]), __jsx("td", null, director[7]), __jsx("td", null, director[8]), __jsx("td", null, director[6]));
-  }))))), __jsx("div", {
+  })))))), __jsx("div", {
     className: "card mb-4"
   }, __jsx("h2", {
     className: "card-header"
   }, "Charges"), __jsx("div", {
     className: "card-body"
+  }, __jsx("div", {
+    className: "table-responsive"
   }, __jsx("table", {
     className: "table table-hover"
   }, __jsx("thead", {
@@ -1982,7 +1988,7 @@ const Home = ({
       key: `charge_${charge[1]}`,
       className: "text-semibold text-reagent-gray"
     }, __jsx("td", null, index + 1), __jsx("td", null, charge[0]), __jsx("td", null, charge[1]), __jsx("td", null, charge[2]), __jsx("td", null, charge[3]), __jsx("td", null, charge[4]));
-  }))))));
+  })))))));
 };
 
 Home.getInitialProps = async ctx => {
@@ -2759,7 +2765,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 7:
+/***/ 3:
 /*!***************************************!*\
   !*** multi ./pages/company/[cin].tsx ***!
   \***************************************/

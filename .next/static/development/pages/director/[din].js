@@ -25246,6 +25246,8 @@ var Home = function Home(_ref) {
     className: "card mb-4"
   }, __jsx("div", {
     className: "card-body"
+  }, __jsx("div", {
+    className: "table-responsive"
   }, __jsx("table", {
     className: "table table-hover"
   }, __jsx("tbody", null, refData.map(function (data) {
@@ -25254,13 +25256,15 @@ var Home = function Home(_ref) {
     }, __jsx("th", {
       scope: "row"
     }, data.title), __jsx("td", null, data.value));
-  }))))), __jsx("div", {
+  })))))), __jsx("div", {
     className: "card mb-4"
   }, __jsx("h2", {
     className: "card-header"
   }, "List Of Companies"), __jsx("div", {
     className: "card-body"
-  }, dinData.companies.length ? __jsx("table", {
+  }, dinData.companies.length ? __jsx("div", {
+    className: "table-responsive"
+  }, __jsx("table", {
     className: "table table-hover"
   }, __jsx("thead", null, __jsx("tr", {
     className: "text-semibold text-fiord-blue"
@@ -25284,13 +25288,15 @@ var Home = function Home(_ref) {
       href: "/company/[cin]",
       as: "/company/".concat(company.CIN)
     }, __jsx("a", null, company.CIN))), __jsx("td", null, company.name), __jsx("td", null, company.beginDate), __jsx("td", null, company.endDate), __jsx("td", null, company.status));
-  }))) : __jsx("div", null, "No Companies mapped to the director"))), __jsx("div", {
+  })))) : __jsx("div", null, "No Companies mapped to the director"))), __jsx("div", {
     className: "card mb-4"
   }, __jsx("h2", {
     className: "card-header"
   }, "List Of LLP"), __jsx("div", {
     className: "card-body"
-  }, dinData.llps.length ? __jsx("table", {
+  }, dinData.llps.length ? __jsx("div", {
+    className: "table-responsive"
+  }, __jsx("table", {
     className: "table table-hover"
   }, __jsx("thead", {
     className: "bg-light"
@@ -25322,7 +25328,7 @@ var Home = function Home(_ref) {
       href: "/company/[cin]",
       as: "/company/".concat(llp.CIN)
     }, __jsx("a", null, llp.CIN))), __jsx("td", null, llp.name), __jsx("td", null, llp.beginDate), __jsx("td", null, llp.endDate), __jsx("td", null, llp.status));
-  }))) : __jsx("div", null, "No LLPs mapped to the director"))));
+  })))) : __jsx("div", null, "No LLPs mapped to the director"))));
 };
 
 Home.getInitialProps = function _callee(ctx) {
@@ -26164,7 +26170,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 2:
+/***/ 5:
 /*!**************************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fdirector%2F%5Bdin%5D&absolutePagePath=%2FUsers%2Fpushkargoel%2FMyapps%2Fnext-boilerplate%2Fpages%2Fdirector%2F%5Bdin%5D.tsx ***!
   \**************************************************************************************************************************************************************************/
@@ -26187,5 +26193,5 @@ module.exports = dll_b9380c54b6aeb86e51e7;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js","styles"]]]);
+},[[5,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=[din].js.map
