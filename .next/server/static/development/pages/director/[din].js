@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1856,6 +1856,8 @@ const Home = ({
     className: "card mb-4"
   }, __jsx("div", {
     className: "card-body"
+  }, __jsx("div", {
+    className: "table-responsive"
   }, __jsx("table", {
     className: "table table-hover"
   }, __jsx("tbody", null, refData.map(data => {
@@ -1864,13 +1866,15 @@ const Home = ({
     }, __jsx("th", {
       scope: "row"
     }, data.title), __jsx("td", null, data.value));
-  }))))), __jsx("div", {
+  })))))), __jsx("div", {
     className: "card mb-4"
   }, __jsx("h2", {
     className: "card-header"
   }, "List Of Companies"), __jsx("div", {
     className: "card-body"
-  }, dinData.companies.length ? __jsx("table", {
+  }, dinData.companies.length ? __jsx("div", {
+    className: "table-responsive"
+  }, __jsx("table", {
     className: "table table-hover"
   }, __jsx("thead", null, __jsx("tr", {
     className: "text-semibold text-fiord-blue"
@@ -1894,13 +1898,15 @@ const Home = ({
       href: "/company/[cin]",
       as: `/company/${company.CIN}`
     }, __jsx("a", null, company.CIN))), __jsx("td", null, company.name), __jsx("td", null, company.beginDate), __jsx("td", null, company.endDate), __jsx("td", null, company.status));
-  }))) : __jsx("div", null, "No Companies mapped to the director"))), __jsx("div", {
+  })))) : __jsx("div", null, "No Companies mapped to the director"))), __jsx("div", {
     className: "card mb-4"
   }, __jsx("h2", {
     className: "card-header"
   }, "List Of LLP"), __jsx("div", {
     className: "card-body"
-  }, dinData.llps.length ? __jsx("table", {
+  }, dinData.llps.length ? __jsx("div", {
+    className: "table-responsive"
+  }, __jsx("table", {
     className: "table table-hover"
   }, __jsx("thead", {
     className: "bg-light"
@@ -1932,7 +1938,7 @@ const Home = ({
       href: "/company/[cin]",
       as: `/company/${llp.CIN}`
     }, __jsx("a", null, llp.CIN))), __jsx("td", null, llp.name), __jsx("td", null, llp.beginDate), __jsx("td", null, llp.endDate), __jsx("td", null, llp.status));
-  }))) : __jsx("div", null, "No LLPs mapped to the director"))));
+  })))) : __jsx("div", null, "No LLPs mapped to the director"))));
 };
 
 Home.getInitialProps = async ctx => {
@@ -2691,7 +2697,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!****************************************!*\
   !*** multi ./pages/director/[din].tsx ***!
   \****************************************/

@@ -169,90 +169,96 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
             </h1>
             <div className="card mb-4">
                 <div className="card-body">
-                    <table className="table table-hover">
-                        <tbody>
-                            {
-                                refData.filter(data => data.value).map(data => {
-                                    return (
-                                        <tr key={data.title}>
-                                            <th scope="row">{data.title}</th>
-                                            <td>{data.value}</td>
-                                        </tr>
-                                    )
-                                })
-                            }
-                        </tbody>
-                    </table>
+                    <div className="table-responsive">
+                        <table className="table table-hover">
+                            <tbody>
+                                {
+                                    refData.filter(data => data.value).map(data => {
+                                        return (
+                                            <tr key={data.title}>
+                                                <th scope="row">{data.title}</th>
+                                                <td>{data.value}</td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div className="card mb-4">
                 <h2 className="card-header">Directors</h2>
                 <div className="card-body">
-                    <table className="table table-hover">
-                        <thead>
-                            <tr className="text-semibold text-fiord-blue">
-                                <th scope="col">#</th>
-                                <th scope="col">DIN/PAN</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Begin date</th>
-                                <th scope="col">End date</th>
-                                <th scope="col">Surrendered DIN</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                details.dins.map((director, index) => {
-                                    return (
-                                        <tr key={`director_${director[0]}`} className="text-semibold text-reagent-gray">
-                                            <td>{index + 1}</td>
-                                            <td>
-                                                <Link href="/director/[din]" as={`/director/${director[0]}`}>
-                                                    <a>{director[0]}</a>
-                                                </Link>
-                                            </td>
-                                            <td>{director[6]}</td>
-                                            <td>{director[7]}</td>
-                                            <td>{director[8]}</td>
-                                            <td>{director[6]}</td>
-                                        </tr>
-                                    );
-                                })
-                            }
-                        </tbody>
-                    </table>
+                    <div className="table-responsive">
+                        <table className="table table-hover">
+                            <thead>
+                                <tr className="text-semibold text-fiord-blue">
+                                    <th scope="col">#</th>
+                                    <th scope="col">DIN/PAN</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Begin date</th>
+                                    <th scope="col">End date</th>
+                                    <th scope="col">Surrendered DIN</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    details.dins.map((director, index) => {
+                                        return (
+                                            <tr key={`director_${director[0]}`} className="text-semibold text-reagent-gray">
+                                                <td>{index + 1}</td>
+                                                <td>
+                                                    <Link href="/director/[din]" as={`/director/${director[0]}`}>
+                                                        <a>{director[0]}</a>
+                                                    </Link>
+                                                </td>
+                                                <td>{director[6]}</td>
+                                                <td>{director[7]}</td>
+                                                <td>{director[8]}</td>
+                                                <td>{director[6]}</td>
+                                            </tr>
+                                        );
+                                    })
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div className="card mb-4">
                 <h2 className="card-header">Charges</h2>
                 <div className="card-body">
-                    <table className="table table-hover">
-                        <thead className="bg-light">
-                            <tr className="text-semibold text-fiord-blue">
-                                <th scope="col" className="border-0">#</th>
-                                <th scope="col" className="border-0">Assets under charge</th>
-                                <th scope="col" className="border-0">Charge Amount</th>
-                                <th scope="col" className="border-0">Date of Creation</th>
-                                <th scope="col" className="border-0">Date of Modification</th>
-                                <th scope="col" className="border-0">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                details.charges.map((charge, index) => {
-                                    return (
-                                        <tr key={`charge_${charge[1]}`} className="text-semibold text-reagent-gray">
-                                            <td>{index + 1}</td>
-                                            <td>{charge[0]}</td>
-                                            <td>{charge[1]}</td>
-                                            <td>{charge[2]}</td>
-                                            <td>{charge[3]}</td>
-                                            <td>{charge[4]}</td>
-                                        </tr>
-                                    );
-                                })
-                            }
-                        </tbody>
-                    </table>
+                    <div className="table-responsive">
+                        <table className="table table-hover">
+                            <thead className="bg-light">
+                                <tr className="text-semibold text-fiord-blue">
+                                    <th scope="col" className="border-0">#</th>
+                                    <th scope="col" className="border-0">Assets under charge</th>
+                                    <th scope="col" className="border-0">Charge Amount</th>
+                                    <th scope="col" className="border-0">Date of Creation</th>
+                                    <th scope="col" className="border-0">Date of Modification</th>
+                                    <th scope="col" className="border-0">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    details.charges.map((charge, index) => {
+                                        return (
+                                            <tr key={`charge_${charge[1]}`} className="text-semibold text-reagent-gray">
+                                                <td>{index + 1}</td>
+                                                <td>{charge[0]}</td>
+                                                <td>{charge[1]}</td>
+                                                <td>{charge[2]}</td>
+                                                <td>{charge[3]}</td>
+                                                <td>{charge[4]}</td>
+                                            </tr>
+                                        );
+                                    })
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </Layout>
