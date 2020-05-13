@@ -1781,18 +1781,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "react-redux");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _server_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../server/i18n */ "./server/i18n.ts");
-/* harmony import */ var _src_Actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../src/Actions */ "./src/Actions/index.ts");
-/* harmony import */ var _src_Components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../src/Components */ "./src/Components/index.ts");
+/* harmony import */ var _server_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../server/i18n */ "./server/i18n.ts");
+/* harmony import */ var _src_Components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../src/Components */ "./src/Components/index.ts");
+/* harmony import */ var _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../src/Services/API/Http */ "./src/Services/API/Http/index.ts");
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0__["createElement"];
 // #region Global Imports
 
 
- // #endregion Global Imports
+// #endregion Global Imports
 // #region Local Imports
-
 
 
 
@@ -1800,90 +1797,81 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0__["createElement"];
 const Home = ({
   t,
   i18n,
-  cinData
+  bannerDetails = {
+    counts: {
+      1: 'NA',
+      7: 'NA',
+      30: 'NA'
+    }
+  },
+  companies
 }) => {
-  const home = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(state => state.home);
-  const dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
-
-  const renderLocaleButtons = activeLanguage => ["en", "es", "tr"].map(lang => __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_5__["LocaleButton"], {
-    key: lang,
-    lang: lang,
-    isActive: activeLanguage === lang,
-    onClick: () => i18n.changeLanguage(lang)
-  }));
-
-  return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_5__["Layout"], null, __jsx("h1", {
+  return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_3__["Layout"], null, __jsx("h1", {
     className: "my-4"
-  }, __jsx("small", null, "Top Companies")), __jsx("div", {
-    className: "card mb-4"
+  }, __jsx("small", null, "Number of Companies registered in last")), __jsx("div", {
+    className: "card my-4"
   }, __jsx("div", {
     className: "card-body"
+  }, __jsx("div", {
+    className: "row"
+  }, __jsx("div", {
+    className: "col-lg-4"
+  }, __jsx("ul", {
+    className: "list-unstyled mb-0"
+  }, __jsx("li", null, __jsx("h2", null, __jsx("small", null, "1 Day - "), bannerDetails.counts['1'])))), __jsx("div", {
+    className: "col-lg-4"
+  }, __jsx("ul", {
+    className: "list-unstyled mb-0"
+  }, __jsx("li", null, __jsx("h2", null, __jsx("small", null, "7 Days - "), bannerDetails.counts['7'])))), __jsx("div", {
+    className: "col-lg-4"
+  }, __jsx("ul", {
+    className: "list-unstyled mb-0"
+  }, __jsx("li", null, __jsx("h2", null, __jsx("small", null, "30 Days - "), bannerDetails.counts['30']))))))), __jsx("div", {
+    className: "card mb-4"
+  }, __jsx("h3", {
+    className: "card-header"
+  }, "List of companies registered in last 24 hours"), __jsx("div", {
+    className: "card-body"
+  }, companies.length ? __jsx("div", {
+    className: "table-responsive"
   }, __jsx("table", {
     className: "table table-hover"
   }, __jsx("thead", null, __jsx("tr", {
     className: "text-semibold text-fiord-blue"
   }, __jsx("th", {
     scope: "col"
-  }, "CIN"))), __jsx("tbody", null, __jsx("tr", {
-    className: "text-semibold text-reagent-gray"
-  }, __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/company/[cin]",
-    as: "/company/U55209DL2018PTC329158"
-  }, __jsx("a", null, "U55209DL2018PTC329158")))), __jsx("tr", {
-    className: "text-semibold text-reagent-gray"
-  }, __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/company/[cin]",
-    as: "/company/U72900KA2018PTC110187"
-  }, __jsx("a", null, "U72900KA2018PTC110187")))), __jsx("tr", {
-    className: "text-semibold text-reagent-gray"
-  }, __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/company/[cin]",
-    as: "/company/U72900KA2018PTC110253"
-  }, __jsx("a", null, "U72900KA2018PTC110253")))), __jsx("tr", {
-    className: "text-semibold text-reagent-gray"
-  }, __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/company/[cin]",
-    as: "/company/U72900KA2018PTC110387"
-  }, __jsx("a", null, "U72900KA2018PTC110387")))), __jsx("tr", {
-    className: "text-semibold text-reagent-gray"
-  }, __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/company/[cin]",
-    as: "/company/U72900KA2018PTC110438"
-  }, __jsx("a", null, "U72900KA2018PTC110438")))), __jsx("tr", {
-    className: "text-semibold text-reagent-gray"
-  }, __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/company/[cin]",
-    as: "/company/U72900KA2018PTC110187"
-  }, __jsx("a", null, "U72900KA2018PTC110187")))), __jsx("tr", {
-    className: "text-semibold text-reagent-gray"
-  }, __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/company/[cin]",
-    as: "/company/U72900KA2018PTC110253"
-  }, __jsx("a", null, "U72900KA2018PTC110253")))), __jsx("tr", {
-    className: "text-semibold text-reagent-gray"
-  }, __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/company/[cin]",
-    as: "/company/U72900KA2018PTC110387"
-  }, __jsx("a", null, "U72900KA2018PTC110387")))), __jsx("tr", {
-    className: "text-semibold text-reagent-gray"
-  }, __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/company/[cin]",
-    as: "/company/U72900KA2018PTC110438"
-  }, __jsx("a", null, "U72900KA2018PTC110438")))))))));
+  }, "#"), __jsx("th", {
+    scope: "col"
+  }, "CIN/FCRN"), __jsx("th", {
+    scope: "col"
+  }, "Company Name"))), __jsx("tbody", null, companies.map((company, index) => {
+    return __jsx("tr", {
+      key: `director_${company.CIN}`,
+      className: "text-semibold text-reagent-gray"
+    }, __jsx("td", null, index + 1), __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+      href: "/company/[cin]",
+      as: `/company/${company.CIN}`
+    }, __jsx("a", null, company.CIN))), __jsx("td", null, company.company_name));
+  })))) : __jsx("div", null, "No Company registered"))));
 };
 
 Home.getInitialProps = async ctx => {
-  await ctx.store.dispatch(_src_Actions__WEBPACK_IMPORTED_MODULE_4__["HomeActions"].GetApod({
-    params: {
-      hd: true
-    }
-  }));
-  return {
-    namespacesRequired: ["common"]
+  let response = {
+    bannerDetails: undefined,
+    companies: []
   };
+
+  try {
+    response.bannerDetails = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__["Http"].Request('GET', `https://kitaablu.com/api/v1/company/banner`);
+    response.companies = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__["Http"].Request('GET', `https://kitaablu.com/api/v1/company?doiDayDiff=1`);
+  } catch (error) {
+    console.log("Error while fetching props: ", error);
+  }
+
+  return response;
 };
 
-const Extended = Object(_server_i18n__WEBPACK_IMPORTED_MODULE_3__["withTranslation"])("common")(Home);
+const Extended = Object(_server_i18n__WEBPACK_IMPORTED_MODULE_2__["withTranslation"])("common")(Home);
 /* harmony default export */ __webpack_exports__["default"] = (Extended);
 
 /***/ }),
@@ -1913,65 +1901,6 @@ const {
   withTranslation
 } = NextI18NextInstance;
 /* harmony default export */ __webpack_exports__["default"] = (NextI18NextInstance);
-
-/***/ }),
-
-/***/ "./src/Actions/HomeActions/index.ts":
-/*!******************************************!*\
-  !*** ./src/Actions/HomeActions/index.ts ***!
-  \******************************************/
-/*! exports provided: HomeActions */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeActions", function() { return HomeActions; });
-/* harmony import */ var _Definitions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Definitions */ "./src/Definitions/index.ts");
-/* harmony import */ var _Services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Services */ "./src/Services/index.ts");
-// #region Global Imports
-// #endregion Global Imports
-// #region Local Imports
-
- // #endregion Local Imports
-// #region Interface Imports
-
-// #endregion Interface Imports
-const HomeActions = {
-  Map: payload => ({
-    payload,
-    type: _Definitions__WEBPACK_IMPORTED_MODULE_0__["ActionConsts"].Home.SetReducer
-  }),
-  Reset: () => ({
-    type: _Definitions__WEBPACK_IMPORTED_MODULE_0__["ActionConsts"].Home.ResetReducer
-  }),
-  GetApod: payload => async dispatch => {
-    const result = await _Services__WEBPACK_IMPORTED_MODULE_1__["PlanetaryService"].GetPlanetImage({
-      params: payload.params
-    });
-    dispatch({
-      payload: {
-        image: result
-      },
-      type: _Definitions__WEBPACK_IMPORTED_MODULE_0__["ActionConsts"].Home.SetReducer
-    });
-  }
-};
-
-/***/ }),
-
-/***/ "./src/Actions/index.ts":
-/*!******************************!*\
-  !*** ./src/Actions/index.ts ***!
-  \******************************/
-/*! exports provided: HomeActions */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HomeActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HomeActions */ "./src/Actions/HomeActions/index.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "HomeActions", function() { return _HomeActions__WEBPACK_IMPORTED_MODULE_0__["HomeActions"]; });
-
-
 
 /***/ }),
 
@@ -2400,57 +2329,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/Definitions/ActionConsts/ActionConsts.ts":
-/*!******************************************************!*\
-  !*** ./src/Definitions/ActionConsts/ActionConsts.ts ***!
-  \******************************************************/
-/*! exports provided: ActionConsts */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActionConsts", function() { return ActionConsts; });
-const ActionConsts = {
-  Home: {
-    ResetReducer: "Home_ResetReducer",
-    SetReducer: "Home_SetReducer"
-  }
-};
-
-/***/ }),
-
-/***/ "./src/Definitions/ActionConsts/index.ts":
-/*!***********************************************!*\
-  !*** ./src/Definitions/ActionConsts/index.ts ***!
-  \***********************************************/
-/*! exports provided: ActionConsts */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ActionConsts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ActionConsts */ "./src/Definitions/ActionConsts/ActionConsts.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ActionConsts", function() { return _ActionConsts__WEBPACK_IMPORTED_MODULE_0__["ActionConsts"]; });
-
-
-
-/***/ }),
-
-/***/ "./src/Definitions/index.ts":
-/*!**********************************!*\
-  !*** ./src/Definitions/index.ts ***!
-  \**********************************/
-/*! exports provided: ActionConsts */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ActionConsts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ActionConsts */ "./src/Definitions/ActionConsts/index.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ActionConsts", function() { return _ActionConsts__WEBPACK_IMPORTED_MODULE_0__["ActionConsts"]; });
-
-
-
-/***/ }),
-
 /***/ "./src/Services/API/Http/index.ts":
 /*!****************************************!*\
   !*** ./src/Services/API/Http/index.ts ***!
@@ -2516,46 +2394,6 @@ const Http = {
 
 /***/ }),
 
-/***/ "./src/Services/API/Planetary/index.ts":
-/*!*********************************************!*\
-  !*** ./src/Services/API/Planetary/index.ts ***!
-  \*********************************************/
-/*! exports provided: PlanetaryService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlanetaryService", function() { return PlanetaryService; });
-/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../.. */ "./src/Services/index.ts");
-// #region Local Imports
- // #endregion Local Imports
-// #region Interface Imports
-
-// #endregion Interface Imports
-const PlanetaryService = {
-  GetPlanetImage: async payload => {
-    let response;
-
-    try {
-      response = await ___WEBPACK_IMPORTED_MODULE_0__["Http"].Request("GET", "/planetary/apod", payload.params);
-    } catch (error) {
-      response = {
-        copyright: "",
-        date: "",
-        explanation: "",
-        hdurl: "",
-        service_version: "",
-        title: "",
-        url: ""
-      };
-    }
-
-    return response;
-  }
-};
-
-/***/ }),
-
 /***/ "./src/Services/analytics.ts":
 /*!***********************************!*\
   !*** ./src/Services/analytics.ts ***!
@@ -2599,27 +2437,6 @@ const logException = (description = '', fatal = false) => {
     });
   }
 };
-
-/***/ }),
-
-/***/ "./src/Services/index.ts":
-/*!*******************************!*\
-  !*** ./src/Services/index.ts ***!
-  \*******************************/
-/*! exports provided: Http, PlanetaryService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _API_Http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./API/Http */ "./src/Services/API/Http/index.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Http", function() { return _API_Http__WEBPACK_IMPORTED_MODULE_0__["Http"]; });
-
-/* harmony import */ var _API_Planetary__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./API/Planetary */ "./src/Services/API/Planetary/index.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PlanetaryService", function() { return _API_Planetary__WEBPACK_IMPORTED_MODULE_1__["PlanetaryService"]; });
-
-// #region Local Imports
-
- // #endregion Local Imports
 
 /***/ }),
 
@@ -2742,17 +2559,6 @@ module.exports = require("react-ga");
 /***/ (function(module, exports) {
 
 module.exports = require("react-is");
-
-/***/ }),
-
-/***/ "react-redux":
-/*!******************************!*\
-  !*** external "react-redux" ***!
-  \******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("react-redux");
 
 /***/ }),
 

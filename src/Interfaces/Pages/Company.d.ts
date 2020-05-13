@@ -6,9 +6,13 @@ declare namespace ICompanyPage {
     export interface IProps extends WithTranslation {
         dinData?: any;
         name?: any;
+        bannerDetails?: any;
+        companies?: any;
     }
 
     export interface InitialProps {
+        bannerDetails?: any;
+        companies?: any;
         namespacesRequired?: string[];
         cinData?: any;
         name?: any;

@@ -10,126 +10,123 @@ import { withTranslation } from "@Server/i18n";
 import { IStore } from "@Redux/IStore";
 import { HomeActions } from "@Actions";
 import { LocaleButton, Layout } from "@Components";
+import { Http } from '../../src/Services/API/Http';
 
-import { IHomePage, ReduxNextPageContext } from "@Interfaces";
+import { ICompanyPage, ReduxNextPageContext } from "@Interfaces";
 
-const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
+const Home: NextPage<ICompanyPage.IProps, ICompanyPage.InitialProps> = ({
     t,
     i18n,
-    cinData,
+    bannerDetails = {
+        counts: {
+            1: 'NA',
+            7: 'NA',
+            30: 'NA'
+        }
+    },
+    companies
 }) => {
-    const home = useSelector((state: IStore) => state.home);
-    const dispatch = useDispatch();
-
-
-    const renderLocaleButtons = (activeLanguage: string) =>
-        ["en", "es", "tr"].map(lang => (
-            <LocaleButton
-                key={lang}
-                lang={lang}
-                isActive={activeLanguage === lang}
-                onClick={() => i18n.changeLanguage(lang)}
-            />
-        ));
+    
 
     return (
         <Layout>
-
             <h1 className="my-4">
-                <small>Top Companies</small>
+                <small>Number of Companies registered in last</small>
             </h1>
-            <div className="card mb-4">
+
+            <div className="card my-4">
                 <div className="card-body">
-                    <table className="table table-hover">
-                        <thead>
-                            <tr className="text-semibold text-fiord-blue">
-                                <th scope="col">CIN</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr className="text-semibold text-reagent-gray">
-                                <td>
-                                    <Link href="/company/[cin]" as="/company/U55209DL2018PTC329158">
-                                        <a>U55209DL2018PTC329158</a>
-                                    </Link>
-                                </td>
-                            </tr>
-                            <tr className="text-semibold text-reagent-gray">
-                                <td>
-                                    <Link href="/company/[cin]" as="/company/U72900KA2018PTC110187">
-                                        <a>U72900KA2018PTC110187</a>
-                                    </Link>
-                                </td>
-                            </tr>
-                            <tr className="text-semibold text-reagent-gray">
-                                <td>
-                                    <Link href="/company/[cin]" as="/company/U72900KA2018PTC110253">
-                                        <a>U72900KA2018PTC110253</a>
-                                    </Link>
-                                </td>
-                            </tr>
-                            <tr className="text-semibold text-reagent-gray">
-                                <td>
-                                    <Link href="/company/[cin]" as="/company/U72900KA2018PTC110387">
-                                        <a>U72900KA2018PTC110387</a>
-                                    </Link>
-                                </td>
-                            </tr>
-                            <tr className="text-semibold text-reagent-gray">
-                                <td>
-                                    <Link href="/company/[cin]" as="/company/U72900KA2018PTC110438">
-                                        <a>U72900KA2018PTC110438</a>
-                                    </Link>
-                                </td>
-                            </tr>
-                            <tr className="text-semibold text-reagent-gray">
-                                <td>
-                                    <Link href="/company/[cin]" as="/company/U72900KA2018PTC110187">
-                                        <a>U72900KA2018PTC110187</a>
-                                    </Link>
-                                </td>
-                            </tr>
-                            <tr className="text-semibold text-reagent-gray">
-                                <td>
-                                    <Link href="/company/[cin]" as="/company/U72900KA2018PTC110253">
-                                        <a>U72900KA2018PTC110253</a>
-                                    </Link>
-                                </td>
-                            </tr>
-                            <tr className="text-semibold text-reagent-gray">
-                                <td>
-                                    <Link href="/company/[cin]" as="/company/U72900KA2018PTC110387">
-                                        <a>U72900KA2018PTC110387</a>
-                                    </Link>
-                                </td>
-                            </tr>
-                            <tr className="text-semibold text-reagent-gray">
-                                <td>
-                                    <Link href="/company/[cin]" as="/company/U72900KA2018PTC110438">
-                                        <a>U72900KA2018PTC110438</a>
-                                    </Link>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div className="row">
+                        <div className="col-lg-4">
+                            <ul className="list-unstyled mb-0">
+                                <li>
+                                    <h2>
+                                        <small>1 Day - </small>{bannerDetails.counts['1']}
+                                    </h2>
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="col-lg-4">
+                            <ul className="list-unstyled mb-0">
+                                <li>
+                                    <h2>
+                                        <small>7 Days - </small>{bannerDetails.counts['7']}
+                                    </h2>
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="col-lg-4">
+                            <ul className="list-unstyled mb-0">
+                                <li>
+                                    <h2>
+                                        <small>30 Days - </small>{bannerDetails.counts['30']}
+                                    </h2>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-
+            <div className="card mb-4">
+                <h3 className="card-header">List of companies registered in last 24 hours</h3>
+                <div className="card-body">
+                    {
+                        companies.length ? (
+                            <div className="table-responsive">
+                                <table className="table table-hover">
+                                    <thead>
+                                        <tr className="text-semibold text-fiord-blue">
+                                            <th scope="col">#</th>
+                                            <th scope="col">CIN/FCRN</th>
+                                            <th scope="col">Company Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            companies.map((company, index) => {
+                                                return (
+                                                    <tr key={`director_${company.CIN}`} className="text-semibold text-reagent-gray">
+                                                        <td>{index + 1}</td>
+                                                        <td>
+                                                            <Link href="/company/[cin]" as={`/company/${company.CIN}`}>
+                                                                <a>{company.CIN}</a>
+                                                            </Link>
+                                                        </td>
+                                                        <td>{company.company_name}</td>
+                                                    </tr>
+                                                );
+                                            })
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        ) :
+                        <div>
+                            No Company registered
+                        </div>
+                    }
+                </div>
+            </div>
         </Layout>
     );
 };
 
 Home.getInitialProps = async (
     ctx: ReduxNextPageContext
-): Promise<IHomePage.InitialProps> => {
-    await ctx.store.dispatch(
-        HomeActions.GetApod({
-            params: { hd: true },
-        })
-    );
-    return {
-        namespacesRequired: ["common"],
+): Promise<ICompanyPage.InitialProps> => {
+    let response = {
+        bannerDetails: undefined,
+        companies: []
     };
+
+    try {
+        response.bannerDetails = await Http.Request('GET', `https://kitaablu.com/api/v1/company/banner`);
+        response.companies = await Http.Request('GET', `https://kitaablu.com/api/v1/company?doiDayDiff=1`);
+    } catch (error) {
+        console.log("Error while fetching props: ", error);
+    }
+
+    return response;
 };
 
 const Extended = withTranslation("common")(Home);
