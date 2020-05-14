@@ -5,12 +5,14 @@ import { WithTranslation } from "next-i18next";
 declare namespace IHomePage {
     export interface IProps extends WithTranslation {
         cinData?: any;
+        similarCompanies?: any;
         name?: any;
     }
 
     export interface InitialProps {
         namespacesRequired?: string[];
         cinData?: any;
+        similarCompanies?: any;
         name?: any;
     }
 

@@ -1,5 +1,6 @@
 // #region Global Imports
 import * as React from "react";
+import _ from "lodash";
 import { NextPage, GetServerSideProps } from "next";
 import { NextSeo } from 'next-seo';
 import Link from 'next/link';
@@ -33,10 +34,8 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
     t,
     i18n,
     cinData,
+    similarCompanies = [],
 }) => {
-    const home = useSelector((state: IStore) => state.home);
-    const dispatch = useDispatch();
-
     if (!cinData) {
         return (
             <Layout>
@@ -261,6 +260,46 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
                     </div>
                 </div>
             </div>
+            <div className="card mb-4">
+                <h3 className="card-header">List of similar companies</h3>
+                <div className="card-body">
+                    {
+                        similarCompanies.length ? (
+                            <div className="table-responsive">
+                                <table className="table table-hover table-sm">
+                                    <thead>
+                                        <tr className="text-semibold text-fiord-blue">
+                                            <th scope="col">#</th>
+                                            <th scope="col">CIN/FCRN</th>
+                                            <th scope="col">Company Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            similarCompanies.map((company, index) => {
+                                                return (
+                                                    <tr key={`director_${company.CIN}`} className="text-semibold text-reagent-gray">
+                                                        <td>{index + 1}</td>
+                                                        <td>
+                                                            <Link href="/company/[cin]" as={`/company/${company.CIN}`}>
+                                                                <a>{company.CIN}</a>
+                                                            </Link>
+                                                        </td>
+                                                        <td>{company.company_name}</td>
+                                                    </tr>
+                                                );
+                                            })
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        ) :
+                        <div>
+                            No similar company registered
+                        </div>
+                    }
+                </div>
+            </div>
         </Layout>
     );
 };
@@ -270,24 +309,23 @@ Home.getInitialProps = async (
 ): Promise<IHomePage.InitialProps> => {
     const { cin } = ctx.query;
 
-    let cinData;
+    const props = {
+        cinData: null,
+        similarCompanies: []
+    };
+
     try {
-        cinData = await Http.Request('GET', `https://kitaablu.com/api/v1/company/${cin}`);
+        props.cinData = await Http.Request('GET', `https://kitaablu.com/api/v1/company/${cin}`);
+        props.similarCompanies = await Http.Request('GET', `https://kitaablu.com/api/v1/company`, {
+            roc_code: _.get(props, 'cinData.roc_code', undefined),
+            class: _.get(props, 'cinData.class', undefined),
+            limit: 100
+        });
     } catch (error) {
-        console.log("Error while fetching cin details for cin: ", cin, error);
-        cinData = null;
+        console.log("Error while fetching details for cin: ", cin, error);
     }
 
-
-    await ctx.store.dispatch(
-        HomeActions.GetApod({
-            params: { hd: true },
-        })
-    );
-    return {
-        namespacesRequired: ["common"],
-        cinData
-    };
+    return props;
 };
 
 // export const getServerSideProps: GetServerSideProps = async (context) => {
