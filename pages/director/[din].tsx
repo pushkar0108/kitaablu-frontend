@@ -46,30 +46,30 @@ const Home: NextPage<IDirectorPage.IProps, IDirectorPage.InitialProps> = ({
             title: "Name",
             value: dinData["name"]
         },
-        {
-            title: "Date of birth",
-            value: dinData["dob"]
-        },
-        {
-            title: "Father Name",
-            value: '*********'
-        },
-        {
-            title: "Mobile",
-            value: '*********'
-        },
-        {
-            title: "Phone",
-            value: '*********'
-        },
-        {
-            title: "Email",
-            value: '*********'
-        },
-        {
-            title: "Address",
-            value: '*********'
-        },
+        // {
+        //     title: "Date of birth",
+        //     value: dinData["dob"]
+        // },
+        // {
+        //     title: "Father Name",
+        //     value: '*********'
+        // },
+        // {
+        //     title: "Mobile",
+        //     value: '*********'
+        // },
+        // {
+        //     title: "Phone",
+        //     value: '*********'
+        // },
+        // {
+        //     title: "Email",
+        //     value: '*********'
+        // },
+        // {
+        //     title: "Address",
+        //     value: '*********'
+        // },
         {
             title: "City",
             value: dinData["city"]

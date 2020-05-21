@@ -92,10 +92,11 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
                     </h2>
                     <p className="card-text">
                         Just mail us your requirements and we will provide you data in your required formats.
+                        We can also provide you director contact information. Feel free to connect.
                     </p>
                 </div>
                 <div className="card-footer text-muted">
-                    Email us at info@kitaablu.com
+                    Email us at kitaablueterprise@gmail.com
                 </div>
             </div>
         </Layout>
