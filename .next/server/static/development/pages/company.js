@@ -1781,18 +1781,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _server_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../server/i18n */ "./server/i18n.ts");
-/* harmony import */ var _src_Components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../src/Components */ "./src/Components/index.ts");
-/* harmony import */ var _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../src/Services/API/Http */ "./src/Services/API/Http/index.ts");
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0__["createElement"];
+/* harmony import */ var react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap-typeahead */ "react-bootstrap-typeahead");
+/* harmony import */ var react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _server_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../server/i18n */ "./server/i18n.ts");
+/* harmony import */ var _src_Components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../src/Components */ "./src/Components/index.ts");
+/* harmony import */ var _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../src/Services/API/Http */ "./src/Services/API/Http/index.ts");
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 // #region Global Imports
 
 
-// #endregion Global Imports
+ // #endregion Global Imports
 // #region Local Imports
 
 
 
+
+const SEARCH_URI = 'https://kitaablu.com/api/v1/search/';
 
 const Home = ({
   t,
@@ -1806,7 +1810,29 @@ const Home = ({
   },
   companies
 }) => {
-  return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_3__["Layout"], null, __jsx("h1", {
+  const {
+    0: isLoading,
+    1: setIsLoading
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const {
+    0: options,
+    1: setOptions
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+
+  const handleSearch = async query => {
+    setIsLoading(true);
+
+    try {
+      const options = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_5__["Http"].Request('GET', `${SEARCH_URI + query}`, {});
+      setOptions(options);
+    } catch (error) {
+      console.log("Error while fetching props: ", error);
+    }
+
+    setIsLoading(false);
+  };
+
+  return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_4__["Layout"], null, __jsx("h1", {
     className: "my-4"
   }, __jsx("small", null, "Number of Companies registered in last")), __jsx("div", {
     className: "card my-4"
@@ -1827,6 +1853,27 @@ const Home = ({
   }, __jsx("ul", {
     className: "list-unstyled mb-0"
   }, __jsx("li", null, __jsx("h2", null, __jsx("small", null, "30 Days - "), bannerDetails.counts['30']))))))), __jsx("div", {
+    className: "card mb-4"
+  }, __jsx("h3", {
+    className: "card-header"
+  }, "Company Search"), __jsx("div", {
+    className: "card-body"
+  }, __jsx(react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_2__["AsyncTypeahead"], {
+    id: "async-example",
+    isLoading: isLoading,
+    labelKey: "name",
+    minLength: 3,
+    onSearch: handleSearch,
+    options: options,
+    placeholder: "Search using company name ...",
+    renderMenuItemChildren: (option, props) => {
+      console.log("option: ", option);
+      return __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+        href: "/company/[cin]",
+        as: `/company/${option.CIN}`
+      }, __jsx("div", null, __jsx("a", null, option.name)));
+    }
+  }))), __jsx("div", {
     className: "card mb-4"
   }, __jsx("h3", {
     className: "card-header"
@@ -1856,14 +1903,23 @@ const Home = ({
 };
 
 Home.getInitialProps = async ctx => {
-  let response = {
+  const {
+    query
+  } = ctx;
+  const {
+    doiDayDiff = 1
+  } = query;
+  const response = {
     bannerDetails: undefined,
     companies: []
   };
 
   try {
-    response.bannerDetails = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__["Http"].Request('GET', `https://kitaablu.com/api/v1/company/banner`);
-    response.companies = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__["Http"].Request('GET', `https://kitaablu.com/api/v1/company?doiDayDiff=1`);
+    response.bannerDetails = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_5__["Http"].Request('GET', `https://kitaablu.com/api/v1/company/banner`);
+    response.companies = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_5__["Http"].Request('GET', `https://kitaablu.com/api/v1/company`, {
+      doiDayDiff,
+      limit: 100
+    });
   } catch (error) {
     console.log("Error while fetching props: ", error);
   }
@@ -1871,7 +1927,7 @@ Home.getInitialProps = async ctx => {
   return response;
 };
 
-const Extended = Object(_server_i18n__WEBPACK_IMPORTED_MODULE_2__["withTranslation"])("common")(Home);
+const Extended = Object(_server_i18n__WEBPACK_IMPORTED_MODULE_3__["withTranslation"])("common")(Home);
 /* harmony default export */ __webpack_exports__["default"] = (Extended);
 
 /***/ }),
@@ -2537,6 +2593,17 @@ module.exports = require("query-string");
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "react-bootstrap-typeahead":
+/*!********************************************!*\
+  !*** external "react-bootstrap-typeahead" ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-bootstrap-typeahead");
 
 /***/ }),
 

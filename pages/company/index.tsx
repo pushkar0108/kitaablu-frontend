@@ -1,8 +1,9 @@
 // #region Global Imports
-import * as React from "react";
+import React, { useState } from 'react';
 import { NextPage } from "next";
 import Link from 'next/link';
 import { useSelector, useDispatch } from "react-redux";
+import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 // #endregion Global Imports
 
 // #region Local Imports
@@ -13,6 +14,8 @@ import { LocaleButton, Layout } from "@Components";
 import { Http } from '../../src/Services/API/Http';
 
 import { ICompanyPage, ReduxNextPageContext } from "@Interfaces";
+
+const SEARCH_URI = 'https://kitaablu.com/api/v1/search/';
 
 const Home: NextPage<ICompanyPage.IProps, ICompanyPage.InitialProps> = ({
     t,
@@ -26,7 +29,26 @@ const Home: NextPage<ICompanyPage.IProps, ICompanyPage.InitialProps> = ({
     },
     companies
 }) => {
-    
+    const [isLoading, setIsLoading] = useState(false);
+    const [options, setOptions] = useState([]);
+
+    const handleSearch = async (query) => {
+        setIsLoading(true);
+
+        try {
+            const options: any = await Http.Request(
+                'GET',
+                `${SEARCH_URI + query}`,
+                {}
+            );
+
+            setOptions(options);
+        } catch (error) {
+            console.log("Error while fetching props: ", error);
+        }
+
+        setIsLoading(false);
+    };
 
     return (
         <Layout>
@@ -67,6 +89,32 @@ const Home: NextPage<ICompanyPage.IProps, ICompanyPage.InitialProps> = ({
                     </div>
                 </div>
             </div>
+
+            <div className="card mb-4">
+                <h3 className="card-header">Company Search</h3>
+                <div className="card-body">
+                    <AsyncTypeahead
+                        id="async-example"
+                        isLoading={isLoading}
+                        labelKey="name"
+                        minLength={3}
+                        onSearch={handleSearch}
+                        options={options}
+                        placeholder="Search using company name ..."
+                        renderMenuItemChildren={(option, props) => {
+                            console.log("option: ", option);
+                            return (
+                                <Link href="/company/[cin]" as={`/company/${option.CIN}`}>
+                                    <div>
+                                        <a>{option.name}</a>
+                                    </div>
+                                </Link>
+                            )
+                        }}
+                    />
+                </div>
+            </div>
+
             <div className="card mb-4">
                 <h3 className="card-header">List of companies registered in last 24 hours</h3>
                 <div className="card-body">
@@ -101,11 +149,21 @@ const Home: NextPage<ICompanyPage.IProps, ICompanyPage.InitialProps> = ({
                                 </table>
                             </div>
                         ) :
-                        <div>
-                            No Company registered
+                            <div>
+                                No Company registered
                         </div>
                     }
                 </div>
+                {/* <nav aria-label="Page navigation example">
+                    <ul className="pagination justify-content-end">
+                        <li className="page-item disabled">
+                            <a className="page-link" href="#">Previous</a>
+                        </li>
+                        <li className="page-item">
+                            <a className="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav> */}
             </div>
         </Layout>
     );
@@ -114,14 +172,23 @@ const Home: NextPage<ICompanyPage.IProps, ICompanyPage.InitialProps> = ({
 Home.getInitialProps = async (
     ctx: ReduxNextPageContext
 ): Promise<ICompanyPage.InitialProps> => {
-    let response = {
+    const { query } = ctx;
+    const { doiDayDiff = 1 } = query;
+    const response = {
         bannerDetails: undefined,
         companies: []
     };
 
     try {
         response.bannerDetails = await Http.Request('GET', `https://kitaablu.com/api/v1/company/banner`);
-        response.companies = await Http.Request('GET', `https://kitaablu.com/api/v1/company?doiDayDiff=1`);
+        response.companies = await Http.Request(
+            'GET',
+            `https://kitaablu.com/api/v1/company`,
+            {
+                doiDayDiff,
+                limit: 100
+            }
+        );
     } catch (error) {
         console.log("Error while fetching props: ", error);
     }
