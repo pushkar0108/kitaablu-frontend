@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { IAsyncTypeahead } from "./AsyncTypeahead";
@@ -40,14 +39,14 @@ const CustomAsyncTypeahead: React.FunctionComponent<IAsyncTypeahead.IProps> = ()
         <AsyncTypeahead
             id="async-example"
             isLoading={isLoading}
-            labelKey="name"
+            labelKey={option => `${option.name} | ${option.CIN}`}
             minLength={3}
             onSearch={handleSearch}
             options={options}
-            placeholder="Search using company name ..."
+            placeholder="Search using company name or CIN ..."
             renderMenuItemChildren={(option, props) => (
                 <div>
-                    {option.name}
+                    {`${option.name}`}
                 </div>
             )}
             onChange={changeRoute}

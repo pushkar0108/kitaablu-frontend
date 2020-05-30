@@ -1977,12 +1977,12 @@ const CustomAsyncTypeahead = () => {
   return __jsx(react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_1__["AsyncTypeahead"], {
     id: "async-example",
     isLoading: isLoading,
-    labelKey: "name",
+    labelKey: option => `${option.name} | ${option.CIN}`,
     minLength: 3,
     onSearch: handleSearch,
     options: options,
-    placeholder: "Search using company name ...",
-    renderMenuItemChildren: (option, props) => __jsx("div", null, option.name),
+    placeholder: "Search using company name or CIN ...",
+    renderMenuItemChildren: (option, props) => __jsx("div", null, `${option.name}`),
     onChange: changeRoute
   });
 };

@@ -31977,13 +31977,15 @@ var CustomAsyncTypeahead = function CustomAsyncTypeahead() {
   return __jsx(react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_2__["AsyncTypeahead"], {
     id: "async-example",
     isLoading: isLoading,
-    labelKey: "name",
+    labelKey: function labelKey(option) {
+      return "".concat(option.name, " | ").concat(option.CIN);
+    },
     minLength: 3,
     onSearch: handleSearch,
     options: options,
-    placeholder: "Search using company name ...",
+    placeholder: "Search using company name or CIN ...",
     renderMenuItemChildren: function renderMenuItemChildren(option, props) {
-      return __jsx("div", null, option.name);
+      return __jsx("div", null, "".concat(option.name));
     },
     onChange: changeRoute
   });

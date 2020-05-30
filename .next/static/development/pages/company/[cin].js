@@ -50091,13 +50091,15 @@ var CustomAsyncTypeahead = function CustomAsyncTypeahead() {
   return __jsx(react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_2__["AsyncTypeahead"], {
     id: "async-example",
     isLoading: isLoading,
-    labelKey: "name",
+    labelKey: function labelKey(option) {
+      return "".concat(option.name, " | ").concat(option.CIN);
+    },
     minLength: 3,
     onSearch: handleSearch,
     options: options,
-    placeholder: "Search using company name ...",
+    placeholder: "Search using company name or CIN ...",
     renderMenuItemChildren: function renderMenuItemChildren(option, props) {
-      return __jsx("div", null, option.name);
+      return __jsx("div", null, "".concat(option.name));
     },
     onChange: changeRoute
   });
@@ -50672,7 +50674,7 @@ var logException = function logException() {
 
 /***/ }),
 
-/***/ 5:
+/***/ 2:
 /*!************************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fcompany%2F%5Bcin%5D&absolutePagePath=%2FUsers%2Fpushkargoel%2FMyapps%2Fnext-boilerplate%2Fpages%2Fcompany%2F%5Bcin%5D.tsx ***!
   \************************************************************************************************************************************************************************/
@@ -50695,5 +50697,5 @@ module.exports = dll_b9380c54b6aeb86e51e7;
 
 /***/ })
 
-},[[5,"static/runtime/webpack.js","styles"]]]);
+},[[2,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=[cin].js.map
