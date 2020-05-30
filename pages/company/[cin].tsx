@@ -170,7 +170,26 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
                 <small>{details["CIN"]}</small>
                 <div>{companyName}</div>
             </h1>
+            <h4>
+                Quick Links - 
+                <a href="#basicInfo" className="badge badge-secondary ml-1">Basic Info</a>
+                <a href="#directors" className="badge badge-dark ml-1">Directors</a>
+                <a href="#charges" className="badge badge-danger ml-1">Charges</a>
+            </h4>
             <div className="card mb-4">
+                <div className="card-body">
+                    <div>
+                        {companyName} is a {details["Class of Company"]} incorporated on {details["Date of Incorporation"]}. It is classified as {details["Company SubCategory"]} and is registered at Registrar of Companies, {details["ROC Code"]}. It's authorized share capital is INR {details["Authorised Capital(Rs)"]} and paid up capital is INR {details["Paid up Capital(Rs)"]}. It is a {details["Whether Listed or not"]} company. 
+                    </div>
+                    <div>
+                        Corporate Identification Number(CIN) of {companyName} is {details["CIN"]} and it's registration number is {details["Registration Number"]}. Company can be contacted on email - {details["Email Id"]} and registered address - {details["Registered Address"]}. Current status of {companyName} is - {details["Company Status(for efiling)"] || details["LLP Status"]}.
+                    </div>
+                    <div>
+                        Director details of {companyName} can be found <a href="#directors">Here</a>.
+                    </div>
+                </div>
+            </div>
+            <div className="card mb-4" id="basicInfo">
                 <div className="card-body">
                     <div className="table-responsive">
                         <table className="table table-hover">
@@ -190,7 +209,7 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
                     </div>
                 </div>
             </div>
-            <div className="card mb-4">
+            <div className="card mb-4" id="directors">
                 <h2 className="card-header">Directors</h2>
                 <div className="card-body">
                     <div className="table-responsive">
@@ -229,7 +248,7 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
                     </div>
                 </div>
             </div>
-            <div className="card mb-4">
+            <div className="card mb-4" id="charges">
                 <h2 className="card-header">Charges</h2>
                 <div className="card-body">
                     <div className="table-responsive">

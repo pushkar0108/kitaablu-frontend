@@ -90,26 +90,26 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
                                 <div className="col-lg-6">
                                     <ul className="list-unstyled mb-0">
                                         <li>
-                                            <a href="#">Form 3A</a>
+                                            Form 3A
                                         </li>
                                         <li>
-                                            <a href="#">Balance Sheet</a>
+                                            ITR Return
                                         </li>
                                         <li>
-                                            <a href="#">Form A</a>
+                                            Form A
                                         </li>
                                     </ul>
                                 </div>
                                 <div className="col-lg-6">
                                     <ul className="list-unstyled mb-0">
                                         <li>
-                                            <a href="#">GST Return</a>
+                                            GST Return
                                         </li>
                                         <li>
-                                            <a href="#">Form 3A</a>
+                                            Form 3A
                                         </li>
                                         <li>
-                                            <a href="#">Balance Sheet</a>
+                                            Balance Sheet
                                         </li>
                                     </ul>
                                 </div>

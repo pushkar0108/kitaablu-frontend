@@ -49810,8 +49810,24 @@ var Home = function Home(_ref) {
     description: SEO.description
   }), __jsx("h1", {
     className: "my-4"
-  }, __jsx("small", null, details["CIN"]), __jsx("div", null, companyName)), __jsx("div", {
+  }, __jsx("small", null, details["CIN"]), __jsx("div", null, companyName)), __jsx("h4", null, "Quick Links -", __jsx("a", {
+    href: "#basicInfo",
+    className: "badge badge-secondary ml-1"
+  }, "Basic Info"), __jsx("a", {
+    href: "#directors",
+    className: "badge badge-dark ml-1"
+  }, "Directors"), __jsx("a", {
+    href: "#charges",
+    className: "badge badge-danger ml-1"
+  }, "Charges")), __jsx("div", {
     className: "card mb-4"
+  }, __jsx("div", {
+    className: "card-body"
+  }, __jsx("div", null, companyName, " is a ", details["Class of Company"], " incorporated on ", details["Date of Incorporation"], ". It is classified as ", details["Company SubCategory"], " and is registered at Registrar of Companies, ", details["ROC Code"], ". It's authorized share capital is INR ", details["Authorised Capital(Rs)"], " and paid up capital is INR ", details["Paid up Capital(Rs)"], ". It is a ", details["Whether Listed or not"], " company."), __jsx("div", null, "Corporate Identification Number(CIN) of ", companyName, " is ", details["CIN"], " and it's registration number is ", details["Registration Number"], ". Company can be contacted on email - ", details["Email Id"], " and registered address - ", details["Registered Address"], ". Current status of ", companyName, " is - ", details["Company Status(for efiling)"] || details["LLP Status"], "."), __jsx("div", null, "Director details of ", companyName, " can be found ", __jsx("a", {
+    href: "#directors"
+  }, "Here"), "."))), __jsx("div", {
+    className: "card mb-4",
+    id: "basicInfo"
   }, __jsx("div", {
     className: "card-body"
   }, __jsx("div", {
@@ -49827,7 +49843,8 @@ var Home = function Home(_ref) {
       scope: "row"
     }, data.title), __jsx("td", null, data.value));
   })))))), __jsx("div", {
-    className: "card mb-4"
+    className: "card mb-4",
+    id: "directors"
   }, __jsx("h2", {
     className: "card-header"
   }, "Directors"), __jsx("div", {
@@ -49859,7 +49876,8 @@ var Home = function Home(_ref) {
       as: "/director/".concat(director[0])
     }, __jsx("a", null, director[0]))), __jsx("td", null, director[6]), __jsx("td", null, director[7]), __jsx("td", null, director[8]), __jsx("td", null, director[6]));
   })))))), __jsx("div", {
-    className: "card mb-4"
+    className: "card mb-4",
+    id: "charges"
   }, __jsx("h2", {
     className: "card-header"
   }, "Charges"), __jsx("div", {
@@ -50364,23 +50382,11 @@ var Layout = function Layout(_ref) {
     className: "col-lg-6"
   }, __jsx("ul", {
     className: "list-unstyled mb-0"
-  }, __jsx("li", null, __jsx("a", {
-    href: "#"
-  }, "Form 3A")), __jsx("li", null, __jsx("a", {
-    href: "#"
-  }, "Balance Sheet")), __jsx("li", null, __jsx("a", {
-    href: "#"
-  }, "Form A")))), __jsx("div", {
+  }, __jsx("li", null, "Form 3A"), __jsx("li", null, "ITR Return"), __jsx("li", null, "Form A"))), __jsx("div", {
     className: "col-lg-6"
   }, __jsx("ul", {
     className: "list-unstyled mb-0"
-  }, __jsx("li", null, __jsx("a", {
-    href: "#"
-  }, "GST Return")), __jsx("li", null, __jsx("a", {
-    href: "#"
-  }, "Form 3A")), __jsx("li", null, __jsx("a", {
-    href: "#"
-  }, "Balance Sheet"))))))), __jsx("div", {
+  }, __jsx("li", null, "GST Return"), __jsx("li", null, "Form 3A"), __jsx("li", null, "Balance Sheet")))))), __jsx("div", {
     className: "card my-4 sticky-top"
   }, __jsx("h5", {
     className: "card-header"
