@@ -39,7 +39,11 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
     if (!cinData) {
         return (
             <Layout>
-                <div>NO DATA PRESENT FOR CIN</div>
+                <h1 className="my-4">
+                    <div>NO DATA FOUND FOR CIN.</div>
+                </h1>
+                <div>We will try to update the dataset with the given CIN</div>
+                <div>Please try again later after sometime</div>
             </Layout>
         );
     }
@@ -244,7 +248,7 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
                                 {
                                     details.charges.map((charge, index) => {
                                         return (
-                                            <tr key={`charge_${charge[1]}`} className="text-semibold text-reagent-gray">
+                                            <tr key={`charge_${charge[1]}_${index}`} className="text-semibold text-reagent-gray">
                                                 <td>{index + 1}</td>
                                                 <td>{charge[0]}</td>
                                                 <td>{charge[1]}</td>

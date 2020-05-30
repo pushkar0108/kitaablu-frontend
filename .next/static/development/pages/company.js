@@ -31737,18 +31737,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap-typeahead */ "./node_modules/react-bootstrap-typeahead/es/index.js");
-/* harmony import */ var _server_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../server/i18n */ "./server/i18n.ts");
-/* harmony import */ var _src_Components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../src/Components */ "./src/Components/index.ts");
-/* harmony import */ var _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../src/Services/API/Http */ "./src/Services/API/Http/index.ts");
+/* harmony import */ var _server_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../server/i18n */ "./server/i18n.ts");
+/* harmony import */ var _src_Components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../src/Components */ "./src/Components/index.ts");
+/* harmony import */ var _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../src/Services/API/Http */ "./src/Services/API/Http/index.ts");
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 // #region Global Imports
 
 
- // #endregion Global Imports
+// #endregion Global Imports
 // #region Local Imports
-
 
 
 
@@ -31766,50 +31764,7 @@ var Home = function Home(_ref) {
     }
   } : _ref$bannerDetails,
       companies = _ref.companies;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
-      isLoading = _useState[0],
-      setIsLoading = _useState[1];
-
-  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
-      options = _useState2[0],
-      setOptions = _useState2[1];
-
-  var handleSearch = function handleSearch(query) {
-    var _options;
-
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function handleSearch$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            setIsLoading(true);
-            _context.prev = 1;
-            _context.next = 4;
-            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_src_Services_API_Http__WEBPACK_IMPORTED_MODULE_6__["Http"].Request('GET', "".concat(SEARCH_URI + query), {}));
-
-          case 4:
-            _options = _context.sent;
-            setOptions(_options);
-            _context.next = 11;
-            break;
-
-          case 8:
-            _context.prev = 8;
-            _context.t0 = _context["catch"](1);
-            console.log("Error while fetching props: ", _context.t0);
-
-          case 11:
-            setIsLoading(false);
-
-          case 12:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, null, null, [[1, 8]], Promise);
-  };
-
-  return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_5__["Layout"], null, __jsx("h1", {
+  return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_4__["Layout"], null, __jsx("h1", {
     className: "my-4"
   }, __jsx("small", null, "Number of Companies registered in last")), __jsx("div", {
     className: "card my-4"
@@ -31830,27 +31785,12 @@ var Home = function Home(_ref) {
   }, __jsx("ul", {
     className: "list-unstyled mb-0"
   }, __jsx("li", null, __jsx("h2", null, __jsx("small", null, "30 Days - "), bannerDetails.counts['30']))))))), __jsx("div", {
-    className: "card mb-4"
+    className: "card mb-4 d-none d-sm-block d-md-none"
   }, __jsx("h3", {
     className: "card-header"
   }, "Company Search"), __jsx("div", {
     className: "card-body"
-  }, __jsx(react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], {
-    id: "async-example",
-    isLoading: isLoading,
-    labelKey: "name",
-    minLength: 3,
-    onSearch: handleSearch,
-    options: options,
-    placeholder: "Search using company name ...",
-    renderMenuItemChildren: function renderMenuItemChildren(option, props) {
-      console.log("option: ", option);
-      return __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-        href: "/company/[cin]",
-        as: "/company/".concat(option.CIN)
-      }, __jsx("div", null, __jsx("a", null, option.name)));
-    }
-  }))), __jsx("div", {
+  }, __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_4__["AsyncTypeahead"], null))), __jsx("div", {
     className: "card mb-4"
   }, __jsx("h3", {
     className: "card-header"
@@ -31882,9 +31822,9 @@ var Home = function Home(_ref) {
 Home.getInitialProps = function _callee(ctx) {
   var query, _query$doiDayDiff, doiDayDiff, response;
 
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context2) {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
     while (1) {
-      switch (_context2.prev = _context2.next) {
+      switch (_context.prev = _context.next) {
         case 0:
           query = ctx.query;
           _query$doiDayDiff = query.doiDayDiff, doiDayDiff = _query$doiDayDiff === void 0 ? 1 : _query$doiDayDiff;
@@ -31892,40 +31832,40 @@ Home.getInitialProps = function _callee(ctx) {
             bannerDetails: undefined,
             companies: []
           };
-          _context2.prev = 3;
-          _context2.next = 6;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_src_Services_API_Http__WEBPACK_IMPORTED_MODULE_6__["Http"].Request('GET', "https://kitaablu.com/api/v1/company/banner"));
+          _context.prev = 3;
+          _context.next = 6;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_src_Services_API_Http__WEBPACK_IMPORTED_MODULE_5__["Http"].Request('GET', "https://kitaablu.com/api/v1/company/banner"));
 
         case 6:
-          response.bannerDetails = _context2.sent;
-          _context2.next = 9;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_src_Services_API_Http__WEBPACK_IMPORTED_MODULE_6__["Http"].Request('GET', "https://kitaablu.com/api/v1/company", {
+          response.bannerDetails = _context.sent;
+          _context.next = 9;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_src_Services_API_Http__WEBPACK_IMPORTED_MODULE_5__["Http"].Request('GET', "https://kitaablu.com/api/v1/company", {
             doiDayDiff: doiDayDiff,
             limit: 100
           }));
 
         case 9:
-          response.companies = _context2.sent;
-          _context2.next = 15;
+          response.companies = _context.sent;
+          _context.next = 15;
           break;
 
         case 12:
-          _context2.prev = 12;
-          _context2.t0 = _context2["catch"](3);
-          console.log("Error while fetching props: ", _context2.t0);
+          _context.prev = 12;
+          _context.t0 = _context["catch"](3);
+          console.log("Error while fetching props: ", _context.t0);
 
         case 15:
-          return _context2.abrupt("return", response);
+          return _context.abrupt("return", response);
 
         case 16:
         case "end":
-          return _context2.stop();
+          return _context.stop();
       }
     }
   }, null, null, [[3, 12]], Promise);
 };
 
-var Extended = Object(_server_i18n__WEBPACK_IMPORTED_MODULE_4__["withTranslation"])("common")(Home);
+var Extended = Object(_server_i18n__WEBPACK_IMPORTED_MODULE_3__["withTranslation"])("common")(Home);
 /* harmony default export */ __webpack_exports__["default"] = (Extended);
 
 /***/ }),
@@ -31954,6 +31894,102 @@ var appWithTranslation = NextI18NextInstance.appWithTranslation,
     withTranslation = NextI18NextInstance.withTranslation;
 
 /* harmony default export */ __webpack_exports__["default"] = (NextI18NextInstance);
+
+/***/ }),
+
+/***/ "./src/Components/AsyncTypeahead/index.tsx":
+/*!*************************************************!*\
+  !*** ./src/Components/AsyncTypeahead/index.tsx ***!
+  \*************************************************/
+/*! exports provided: AsyncTypeahead */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AsyncTypeahead", function() { return CustomAsyncTypeahead; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap-typeahead */ "./node_modules/react-bootstrap-typeahead/es/index.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/router */ "./node_modules/next/dist/client/router.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Services_API_Http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Services/API/Http */ "./src/Services/API/Http/index.ts");
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
+
+
+
+var SEARCH_URI = 'https://kitaablu.com/api/v1/search/';
+
+var CustomAsyncTypeahead = function CustomAsyncTypeahead() {
+  var router = Object(next_router__WEBPACK_IMPORTED_MODULE_3__["useRouter"])();
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      isLoading = _useState[0],
+      setIsLoading = _useState[1];
+
+  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+      options = _useState2[0],
+      setOptions = _useState2[1];
+
+  var handleSearch = function handleSearch(query) {
+    var _options;
+
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function handleSearch$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            setIsLoading(true);
+            _context.prev = 1;
+            _context.next = 4;
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__["Http"].Request('GET', "".concat(SEARCH_URI + query), {}));
+
+          case 4:
+            _options = _context.sent;
+            setOptions(_options);
+            _context.next = 11;
+            break;
+
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](1);
+            console.log("Error while fetching props: ", _context.t0);
+
+          case 11:
+            setIsLoading(false);
+
+          case 12:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, null, null, [[1, 8]], Promise);
+  };
+
+  var changeRoute = function changeRoute(options) {
+    if (options && options[0]) {
+      router.push("/company/".concat(options[0].CIN));
+    }
+  };
+
+  return __jsx(react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_2__["AsyncTypeahead"], {
+    id: "async-example",
+    isLoading: isLoading,
+    labelKey: "name",
+    minLength: 3,
+    onSearch: handleSearch,
+    options: options,
+    placeholder: "Search using company name ...",
+    renderMenuItemChildren: function renderMenuItemChildren(option, props) {
+      return __jsx("div", null, option.name);
+    },
+    onChange: changeRoute
+  });
+};
+
+
 
 /***/ }),
 
@@ -32091,8 +32127,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/router */ "./node_modules/next/dist/client/router.js");
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Services_analytics__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Services/analytics */ "./src/Services/analytics.ts");
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./.. */ "./src/Components/index.ts");
+/* harmony import */ var _Services_analytics__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Services/analytics */ "./src/Services/analytics.ts");
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 
@@ -32101,14 +32139,12 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 var Layout = function Layout(_ref) {
   var children = _ref.children;
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    console.log("GAAAAAAAA!");
-
     if (!window.GA_INITIALIZED) {
-      Object(_Services_analytics__WEBPACK_IMPORTED_MODULE_3__["initGA"])();
+      Object(_Services_analytics__WEBPACK_IMPORTED_MODULE_4__["initGA"])();
       window.GA_INITIALIZED = true;
     }
 
-    Object(_Services_analytics__WEBPACK_IMPORTED_MODULE_3__["logPageView"])();
+    Object(_Services_analytics__WEBPACK_IMPORTED_MODULE_4__["logPageView"])();
   });
   var router = Object(next_router__WEBPACK_IMPORTED_MODULE_2__["useRouter"])();
 
@@ -32148,7 +32184,12 @@ var Layout = function Layout(_ref) {
   }, __jsx("a", {
     className: "navbar-brand",
     href: "#"
-  }, "Kitaablu")), __jsx("button", {
+  }, "Kitaablu")), __jsx("div", {
+    className: "d-none d-md-block",
+    style: {
+      width: '50%'
+    }
+  }, __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], null)), __jsx("button", {
     className: "navbar-toggler",
     type: "button",
     "data-toggle": "collapse",
@@ -32340,7 +32381,7 @@ var Navbar = function Navbar() {
 /*!*********************************!*\
   !*** ./src/Components/index.ts ***!
   \*********************************/
-/*! exports provided: Layout, Navbar, Footer, Heading, LocaleButton */
+/*! exports provided: Layout, Navbar, Footer, Heading, LocaleButton, AsyncTypeahead */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -32359,6 +32400,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony import */ var _LocaleButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./LocaleButton */ "./src/Components/LocaleButton/index.tsx");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "LocaleButton", function() { return _LocaleButton__WEBPACK_IMPORTED_MODULE_4__["LocaleButton"]; });
+
+/* harmony import */ var _AsyncTypeahead__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AsyncTypeahead */ "./src/Components/AsyncTypeahead/index.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AsyncTypeahead", function() { return _AsyncTypeahead__WEBPACK_IMPORTED_MODULE_5__["AsyncTypeahead"]; });
+
 
 
 
@@ -32513,7 +32558,7 @@ var logException = function logException() {
 
 /***/ }),
 
-/***/ 2:
+/***/ 3:
 /*!********************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fcompany&absolutePagePath=%2FUsers%2Fpushkargoel%2FMyapps%2Fnext-boilerplate%2Fpages%2Fcompany%2Findex.tsx ***!
   \********************************************************************************************************************************************************/
@@ -32536,5 +32581,5 @@ module.exports = dll_b9380c54b6aeb86e51e7;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js","styles"]]]);
+},[[3,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=company.js.map

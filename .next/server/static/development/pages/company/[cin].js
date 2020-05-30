@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1809,7 +1809,9 @@ const Home = ({
   similarCompanies = []
 }) => {
   if (!cinData) {
-    return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_6__["Layout"], null, __jsx("div", null, "NO DATA PRESENT FOR CIN"));
+    return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_6__["Layout"], null, __jsx("h1", {
+      className: "my-4"
+    }, __jsx("div", null, "NO DATA FOUND FOR CIN.")), __jsx("div", null, "We will try to update the dataset with the given CIN"), __jsx("div", null, "Please try again later after sometime"));
   }
 
   const details = JSON.parse(cinData.data);
@@ -1981,7 +1983,7 @@ const Home = ({
     className: "border-0"
   }, "Status"))), __jsx("tbody", null, details.charges.map((charge, index) => {
     return __jsx("tr", {
-      key: `charge_${charge[1]}`,
+      key: `charge_${charge[1]}_${index}`,
       className: "text-semibold text-reagent-gray"
     }, __jsx("td", null, index + 1), __jsx("td", null, charge[0]), __jsx("td", null, charge[1]), __jsx("td", null, charge[2]), __jsx("td", null, charge[3]), __jsx("td", null, charge[4]));
   })))))), __jsx("div", {
@@ -2076,6 +2078,77 @@ const {
   withTranslation
 } = NextI18NextInstance;
 /* harmony default export */ __webpack_exports__["default"] = (NextI18NextInstance);
+
+/***/ }),
+
+/***/ "./src/Components/AsyncTypeahead/index.tsx":
+/*!*************************************************!*\
+  !*** ./src/Components/AsyncTypeahead/index.tsx ***!
+  \*************************************************/
+/*! exports provided: AsyncTypeahead */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AsyncTypeahead", function() { return CustomAsyncTypeahead; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap-typeahead */ "react-bootstrap-typeahead");
+/* harmony import */ var react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/router */ "next/router");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Services_API_Http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Services/API/Http */ "./src/Services/API/Http/index.ts");
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+const SEARCH_URI = 'https://kitaablu.com/api/v1/search/';
+
+const CustomAsyncTypeahead = () => {
+  const router = Object(next_router__WEBPACK_IMPORTED_MODULE_2__["useRouter"])();
+  const {
+    0: isLoading,
+    1: setIsLoading
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const {
+    0: options,
+    1: setOptions
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+
+  const handleSearch = async query => {
+    setIsLoading(true);
+
+    try {
+      const options = await _Services_API_Http__WEBPACK_IMPORTED_MODULE_3__["Http"].Request('GET', `${SEARCH_URI + query}`, {});
+      setOptions(options);
+    } catch (error) {
+      console.log("Error while fetching props: ", error);
+    }
+
+    setIsLoading(false);
+  };
+
+  const changeRoute = options => {
+    if (options && options[0]) {
+      router.push(`/company/${options[0].CIN}`);
+    }
+  };
+
+  return __jsx(react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_1__["AsyncTypeahead"], {
+    id: "async-example",
+    isLoading: isLoading,
+    labelKey: "name",
+    minLength: 3,
+    onSearch: handleSearch,
+    options: options,
+    placeholder: "Search using company name ...",
+    renderMenuItemChildren: (option, props) => __jsx("div", null, option.name),
+    onChange: changeRoute
+  });
+};
+
+
 
 /***/ }),
 
@@ -2225,8 +2298,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/router */ "next/router");
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Services_analytics__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Services/analytics */ "./src/Services/analytics.ts");
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./.. */ "./src/Components/index.ts");
+/* harmony import */ var _Services_analytics__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Services/analytics */ "./src/Services/analytics.ts");
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 
@@ -2236,14 +2311,12 @@ const Layout = ({
   children
 }) => {
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    console.log("GAAAAAAAA!");
-
     if (!window.GA_INITIALIZED) {
-      Object(_Services_analytics__WEBPACK_IMPORTED_MODULE_3__["initGA"])();
+      Object(_Services_analytics__WEBPACK_IMPORTED_MODULE_4__["initGA"])();
       window.GA_INITIALIZED = true;
     }
 
-    Object(_Services_analytics__WEBPACK_IMPORTED_MODULE_3__["logPageView"])();
+    Object(_Services_analytics__WEBPACK_IMPORTED_MODULE_4__["logPageView"])();
   });
   const router = Object(next_router__WEBPACK_IMPORTED_MODULE_2__["useRouter"])();
 
@@ -2283,7 +2356,12 @@ const Layout = ({
   }, __jsx("a", {
     className: "navbar-brand",
     href: "#"
-  }, "Kitaablu")), __jsx("button", {
+  }, "Kitaablu")), __jsx("div", {
+    className: "d-none d-md-block",
+    style: {
+      width: '50%'
+    }
+  }, __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], null)), __jsx("button", {
     className: "navbar-toggler",
     type: "button",
     "data-toggle": "collapse",
@@ -2476,7 +2554,7 @@ const Navbar = () => {
 /*!*********************************!*\
   !*** ./src/Components/index.ts ***!
   \*********************************/
-/*! exports provided: Layout, Navbar, Footer, Heading, LocaleButton */
+/*! exports provided: Layout, Navbar, Footer, Heading, LocaleButton, AsyncTypeahead */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2495,6 +2573,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony import */ var _LocaleButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./LocaleButton */ "./src/Components/LocaleButton/index.tsx");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "LocaleButton", function() { return _LocaleButton__WEBPACK_IMPORTED_MODULE_4__["LocaleButton"]; });
+
+/* harmony import */ var _AsyncTypeahead__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AsyncTypeahead */ "./src/Components/AsyncTypeahead/index.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AsyncTypeahead", function() { return _AsyncTypeahead__WEBPACK_IMPORTED_MODULE_5__["AsyncTypeahead"]; });
+
 
 
 
@@ -2615,7 +2697,7 @@ const logException = (description = '', fatal = false) => {
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /*!***************************************!*\
   !*** multi ./pages/company/[cin].tsx ***!
   \***************************************/
@@ -2734,6 +2816,17 @@ module.exports = require("query-string");
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "react-bootstrap-typeahead":
+/*!********************************************!*\
+  !*** external "react-bootstrap-typeahead" ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-bootstrap-typeahead");
 
 /***/ }),
 

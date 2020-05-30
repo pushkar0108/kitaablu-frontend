@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1781,18 +1781,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap-typeahead */ "react-bootstrap-typeahead");
-/* harmony import */ var react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _server_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../server/i18n */ "./server/i18n.ts");
-/* harmony import */ var _src_Components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../src/Components */ "./src/Components/index.ts");
-/* harmony import */ var _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../src/Services/API/Http */ "./src/Services/API/Http/index.ts");
+/* harmony import */ var _server_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../server/i18n */ "./server/i18n.ts");
+/* harmony import */ var _src_Components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../src/Components */ "./src/Components/index.ts");
+/* harmony import */ var _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../src/Services/API/Http */ "./src/Services/API/Http/index.ts");
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 // #region Global Imports
 
 
- // #endregion Global Imports
+// #endregion Global Imports
 // #region Local Imports
-
 
 
 
@@ -1810,29 +1807,7 @@ const Home = ({
   },
   companies
 }) => {
-  const {
-    0: isLoading,
-    1: setIsLoading
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
-  const {
-    0: options,
-    1: setOptions
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
-
-  const handleSearch = async query => {
-    setIsLoading(true);
-
-    try {
-      const options = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_5__["Http"].Request('GET', `${SEARCH_URI + query}`, {});
-      setOptions(options);
-    } catch (error) {
-      console.log("Error while fetching props: ", error);
-    }
-
-    setIsLoading(false);
-  };
-
-  return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_4__["Layout"], null, __jsx("h1", {
+  return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_3__["Layout"], null, __jsx("h1", {
     className: "my-4"
   }, __jsx("small", null, "Number of Companies registered in last")), __jsx("div", {
     className: "card my-4"
@@ -1853,27 +1828,12 @@ const Home = ({
   }, __jsx("ul", {
     className: "list-unstyled mb-0"
   }, __jsx("li", null, __jsx("h2", null, __jsx("small", null, "30 Days - "), bannerDetails.counts['30']))))))), __jsx("div", {
-    className: "card mb-4"
+    className: "card mb-4 d-none d-sm-block d-md-none"
   }, __jsx("h3", {
     className: "card-header"
   }, "Company Search"), __jsx("div", {
     className: "card-body"
-  }, __jsx(react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_2__["AsyncTypeahead"], {
-    id: "async-example",
-    isLoading: isLoading,
-    labelKey: "name",
-    minLength: 3,
-    onSearch: handleSearch,
-    options: options,
-    placeholder: "Search using company name ...",
-    renderMenuItemChildren: (option, props) => {
-      console.log("option: ", option);
-      return __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-        href: "/company/[cin]",
-        as: `/company/${option.CIN}`
-      }, __jsx("div", null, __jsx("a", null, option.name)));
-    }
-  }))), __jsx("div", {
+  }, __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], null))), __jsx("div", {
     className: "card mb-4"
   }, __jsx("h3", {
     className: "card-header"
@@ -1915,8 +1875,8 @@ Home.getInitialProps = async ctx => {
   };
 
   try {
-    response.bannerDetails = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_5__["Http"].Request('GET', `https://kitaablu.com/api/v1/company/banner`);
-    response.companies = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_5__["Http"].Request('GET', `https://kitaablu.com/api/v1/company`, {
+    response.bannerDetails = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__["Http"].Request('GET', `https://kitaablu.com/api/v1/company/banner`);
+    response.companies = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__["Http"].Request('GET', `https://kitaablu.com/api/v1/company`, {
       doiDayDiff,
       limit: 100
     });
@@ -1927,7 +1887,7 @@ Home.getInitialProps = async ctx => {
   return response;
 };
 
-const Extended = Object(_server_i18n__WEBPACK_IMPORTED_MODULE_3__["withTranslation"])("common")(Home);
+const Extended = Object(_server_i18n__WEBPACK_IMPORTED_MODULE_2__["withTranslation"])("common")(Home);
 /* harmony default export */ __webpack_exports__["default"] = (Extended);
 
 /***/ }),
@@ -1957,6 +1917,77 @@ const {
   withTranslation
 } = NextI18NextInstance;
 /* harmony default export */ __webpack_exports__["default"] = (NextI18NextInstance);
+
+/***/ }),
+
+/***/ "./src/Components/AsyncTypeahead/index.tsx":
+/*!*************************************************!*\
+  !*** ./src/Components/AsyncTypeahead/index.tsx ***!
+  \*************************************************/
+/*! exports provided: AsyncTypeahead */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AsyncTypeahead", function() { return CustomAsyncTypeahead; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap-typeahead */ "react-bootstrap-typeahead");
+/* harmony import */ var react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/router */ "next/router");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Services_API_Http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Services/API/Http */ "./src/Services/API/Http/index.ts");
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+const SEARCH_URI = 'https://kitaablu.com/api/v1/search/';
+
+const CustomAsyncTypeahead = () => {
+  const router = Object(next_router__WEBPACK_IMPORTED_MODULE_2__["useRouter"])();
+  const {
+    0: isLoading,
+    1: setIsLoading
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const {
+    0: options,
+    1: setOptions
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+
+  const handleSearch = async query => {
+    setIsLoading(true);
+
+    try {
+      const options = await _Services_API_Http__WEBPACK_IMPORTED_MODULE_3__["Http"].Request('GET', `${SEARCH_URI + query}`, {});
+      setOptions(options);
+    } catch (error) {
+      console.log("Error while fetching props: ", error);
+    }
+
+    setIsLoading(false);
+  };
+
+  const changeRoute = options => {
+    if (options && options[0]) {
+      router.push(`/company/${options[0].CIN}`);
+    }
+  };
+
+  return __jsx(react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_1__["AsyncTypeahead"], {
+    id: "async-example",
+    isLoading: isLoading,
+    labelKey: "name",
+    minLength: 3,
+    onSearch: handleSearch,
+    options: options,
+    placeholder: "Search using company name ...",
+    renderMenuItemChildren: (option, props) => __jsx("div", null, option.name),
+    onChange: changeRoute
+  });
+};
+
+
 
 /***/ }),
 
@@ -2106,8 +2137,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/router */ "next/router");
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Services_analytics__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Services/analytics */ "./src/Services/analytics.ts");
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./.. */ "./src/Components/index.ts");
+/* harmony import */ var _Services_analytics__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Services/analytics */ "./src/Services/analytics.ts");
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 
@@ -2117,14 +2150,12 @@ const Layout = ({
   children
 }) => {
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    console.log("GAAAAAAAA!");
-
     if (!window.GA_INITIALIZED) {
-      Object(_Services_analytics__WEBPACK_IMPORTED_MODULE_3__["initGA"])();
+      Object(_Services_analytics__WEBPACK_IMPORTED_MODULE_4__["initGA"])();
       window.GA_INITIALIZED = true;
     }
 
-    Object(_Services_analytics__WEBPACK_IMPORTED_MODULE_3__["logPageView"])();
+    Object(_Services_analytics__WEBPACK_IMPORTED_MODULE_4__["logPageView"])();
   });
   const router = Object(next_router__WEBPACK_IMPORTED_MODULE_2__["useRouter"])();
 
@@ -2164,7 +2195,12 @@ const Layout = ({
   }, __jsx("a", {
     className: "navbar-brand",
     href: "#"
-  }, "Kitaablu")), __jsx("button", {
+  }, "Kitaablu")), __jsx("div", {
+    className: "d-none d-md-block",
+    style: {
+      width: '50%'
+    }
+  }, __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], null)), __jsx("button", {
     className: "navbar-toggler",
     type: "button",
     "data-toggle": "collapse",
@@ -2357,7 +2393,7 @@ const Navbar = () => {
 /*!*********************************!*\
   !*** ./src/Components/index.ts ***!
   \*********************************/
-/*! exports provided: Layout, Navbar, Footer, Heading, LocaleButton */
+/*! exports provided: Layout, Navbar, Footer, Heading, LocaleButton, AsyncTypeahead */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2376,6 +2412,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony import */ var _LocaleButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./LocaleButton */ "./src/Components/LocaleButton/index.tsx");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "LocaleButton", function() { return _LocaleButton__WEBPACK_IMPORTED_MODULE_4__["LocaleButton"]; });
+
+/* harmony import */ var _AsyncTypeahead__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AsyncTypeahead */ "./src/Components/AsyncTypeahead/index.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AsyncTypeahead", function() { return _AsyncTypeahead__WEBPACK_IMPORTED_MODULE_5__["AsyncTypeahead"]; });
+
 
 
 
@@ -2496,7 +2536,7 @@ const logException = (description = '', fatal = false) => {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!***************************************!*\
   !*** multi ./pages/company/index.tsx ***!
   \***************************************/

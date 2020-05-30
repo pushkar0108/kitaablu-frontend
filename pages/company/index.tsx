@@ -3,14 +3,13 @@ import React, { useState } from 'react';
 import { NextPage } from "next";
 import Link from 'next/link';
 import { useSelector, useDispatch } from "react-redux";
-import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 // #endregion Global Imports
 
 // #region Local Imports
 import { withTranslation } from "@Server/i18n";
 import { IStore } from "@Redux/IStore";
 import { HomeActions } from "@Actions";
-import { LocaleButton, Layout } from "@Components";
+import { LocaleButton, Layout, AsyncTypeahead } from "@Components";
 import { Http } from '../../src/Services/API/Http';
 
 import { ICompanyPage, ReduxNextPageContext } from "@Interfaces";
@@ -29,26 +28,6 @@ const Home: NextPage<ICompanyPage.IProps, ICompanyPage.InitialProps> = ({
     },
     companies
 }) => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [options, setOptions] = useState([]);
-
-    const handleSearch = async (query) => {
-        setIsLoading(true);
-
-        try {
-            const options: any = await Http.Request(
-                'GET',
-                `${SEARCH_URI + query}`,
-                {}
-            );
-
-            setOptions(options);
-        } catch (error) {
-            console.log("Error while fetching props: ", error);
-        }
-
-        setIsLoading(false);
-    };
 
     return (
         <Layout>
@@ -90,28 +69,10 @@ const Home: NextPage<ICompanyPage.IProps, ICompanyPage.InitialProps> = ({
                 </div>
             </div>
 
-            <div className="card mb-4">
+            <div className="card mb-4 d-none d-sm-block d-md-none">
                 <h3 className="card-header">Company Search</h3>
                 <div className="card-body">
-                    <AsyncTypeahead
-                        id="async-example"
-                        isLoading={isLoading}
-                        labelKey="name"
-                        minLength={3}
-                        onSearch={handleSearch}
-                        options={options}
-                        placeholder="Search using company name ..."
-                        renderMenuItemChildren={(option, props) => {
-                            console.log("option: ", option);
-                            return (
-                                <Link href="/company/[cin]" as={`/company/${option.CIN}`}>
-                                    <div>
-                                        <a>{option.name}</a>
-                                    </div>
-                                </Link>
-                            )
-                        }}
-                    />
+                    <AsyncTypeahead />
                 </div>
             </div>
 

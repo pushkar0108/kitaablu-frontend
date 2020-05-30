@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import { AsyncTypeahead } from "@Components";
 import { initGA, logPageView } from '@Services/analytics';
 import { LayoutProps } from "./Layout";
 
@@ -10,7 +11,6 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
 }): JSX.Element => {
 
     useEffect(() => {
-        console.log("GAAAAAAAA!");
         if (!(window as any).GA_INITIALIZED) {
             initGA();
             (window as any).GA_INITIALIZED = true;
@@ -49,6 +49,9 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
                 <Link href="/home" as="/home">
                     <a className="navbar-brand" href="#">Kitaablu</a>
                 </Link>
+                <div className="d-none d-md-block" style={{width: '50%'}}>
+                    <AsyncTypeahead />
+                </div>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
