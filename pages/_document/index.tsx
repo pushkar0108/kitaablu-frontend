@@ -41,6 +41,9 @@ class WebAppDocument extends Document {
         return (
             <Html>
                 <Head>
+                    <link rel="preconnect" href="https://stats.g.doubleclick.net" />
+                    <link rel="preconnect" href="https://www.google.com" />
+                    <link rel="preconnect" href="https://www.google.co.in" />
                     {/* <script data-ad-client="ca-pub-3756716452024552" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> */}
                 </Head>
                 <body>
