@@ -1,6 +1,7 @@
 // #region Global Imports
 import React, { useState } from 'react';
 import { NextPage } from "next";
+import { NextSeo } from 'next-seo';
 import Link from 'next/link';
 import { useSelector, useDispatch } from "react-redux";
 // #endregion Global Imports
@@ -29,8 +30,17 @@ const Home: NextPage<ICompanyPage.IProps, ICompanyPage.InitialProps> = ({
     companies
 }) => {
 
+    const SEO = {
+        title: `New company registered in India in last 24 hours or 1 day _ Kitaablu`,
+        description: `Company information, business information, directors/partners details and director/partners contact information of companies registered in last 24 hours or 1 day`
+    };
+
     return (
         <Layout>
+            <NextSeo
+                title={SEO.title}
+                description={SEO.description}
+            />
             <h1 className="my-4">
                 <small>Number of Companies registered in last</small>
             </h1>
