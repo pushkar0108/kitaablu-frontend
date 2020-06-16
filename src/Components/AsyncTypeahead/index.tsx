@@ -6,7 +6,7 @@ import { IAsyncTypeahead } from "./AsyncTypeahead";
 import { Http } from '../../Services/API/Http';
 
 const SEARCH_URI = 'https://kitaablu.com/api/v1/search/';
-const CustomAsyncTypeahead: React.FunctionComponent<IAsyncTypeahead.IProps> = (): JSX.Element => {
+const CustomAsyncTypeahead: React.FunctionComponent<IAsyncTypeahead.IProps> = (props): JSX.Element => {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const [options, setOptions] = useState([]);
@@ -18,7 +18,9 @@ const CustomAsyncTypeahead: React.FunctionComponent<IAsyncTypeahead.IProps> = ()
             const options: any = await Http.Request(
                 'GET',
                 `${SEARCH_URI + query}`,
-                {}
+                {
+                    type: props.type
+                }
             );
 
             setOptions(options);
@@ -31,7 +33,11 @@ const CustomAsyncTypeahead: React.FunctionComponent<IAsyncTypeahead.IProps> = ()
 
     const changeRoute = (options) => {
         if(options && options[0]) {
-            router.push(`/company/${options[0].CIN}`);
+            if(props.type == 'director') {
+                router.push(`/director/${options[0].value}`);
+            } else {
+                router.push(`/company/${options[0].value}`);
+            }
         }
     };
 
@@ -39,11 +45,11 @@ const CustomAsyncTypeahead: React.FunctionComponent<IAsyncTypeahead.IProps> = ()
         <AsyncTypeahead
             id="async-example"
             isLoading={isLoading}
-            labelKey={option => `${option.name} | ${option.CIN}`}
+            labelKey={option => `${option.name} | ${option.value}`}
             minLength={3}
             onSearch={handleSearch}
             options={options}
-            placeholder="Search using company name or CIN ..."
+            placeholder={props.placeholder}
             renderMenuItemChildren={(option, props) => (
                 <div>
                     {`${option.name}`}

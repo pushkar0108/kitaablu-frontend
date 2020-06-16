@@ -50055,7 +50055,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 var SEARCH_URI = 'https://kitaablu.com/api/v1/search/';
 
-var CustomAsyncTypeahead = function CustomAsyncTypeahead() {
+var CustomAsyncTypeahead = function CustomAsyncTypeahead(props) {
   var router = Object(next_router__WEBPACK_IMPORTED_MODULE_3__["useRouter"])();
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
@@ -50076,7 +50076,9 @@ var CustomAsyncTypeahead = function CustomAsyncTypeahead() {
             setIsLoading(true);
             _context.prev = 1;
             _context.next = 4;
-            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__["Http"].Request('GET', "".concat(SEARCH_URI + query), {}));
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__["Http"].Request('GET', "".concat(SEARCH_URI + query), {
+              type: props.type
+            }));
 
           case 4:
             _options = _context.sent;
@@ -50102,7 +50104,11 @@ var CustomAsyncTypeahead = function CustomAsyncTypeahead() {
 
   var changeRoute = function changeRoute(options) {
     if (options && options[0]) {
-      router.push("/company/".concat(options[0].CIN));
+      if (props.type == 'director') {
+        router.push("/director/".concat(options[0].value));
+      } else {
+        router.push("/company/".concat(options[0].value));
+      }
     }
   };
 
@@ -50110,12 +50116,12 @@ var CustomAsyncTypeahead = function CustomAsyncTypeahead() {
     id: "async-example",
     isLoading: isLoading,
     labelKey: function labelKey(option) {
-      return "".concat(option.name, " | ").concat(option.CIN);
+      return "".concat(option.name, " | ").concat(option.value);
     },
     minLength: 3,
     onSearch: handleSearch,
     options: options,
-    placeholder: "Search using company name or CIN ...",
+    placeholder: props.placeholder,
     renderMenuItemChildren: function renderMenuItemChildren(option, props) {
       return __jsx("div", null, "".concat(option.name));
     },
@@ -50323,7 +50329,10 @@ var Layout = function Layout(_ref) {
     style: {
       width: '50%'
     }
-  }, __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], null)), __jsx("button", {
+  }, __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], {
+    type: "company",
+    placeholder: "Search using company name or CIN ..."
+  })), __jsx("button", {
     className: "navbar-toggler",
     type: "button",
     "data-toggle": "collapse",
@@ -50387,7 +50396,7 @@ var Layout = function Layout(_ref) {
   }, __jsx("ul", {
     className: "list-unstyled mb-0"
   }, __jsx("li", null, "GST Return"), __jsx("li", null, "Form 3A"), __jsx("li", null, "Balance Sheet")))))), __jsx("div", {
-    className: "card my-4 sticky-top"
+    className: "card my-4"
   }, __jsx("h5", {
     className: "card-header"
   }, "Search Company"), __jsx("div", {
@@ -50405,8 +50414,11 @@ var Layout = function Layout(_ref) {
     onClick: handleClick,
     className: "btn btn-secondary",
     type: "button"
-  }, "Go!"))))), __jsx("div", {
-    className: "card my-4"
+  }, "Go!"))), __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], {
+    type: "company",
+    placeholder: "Search using company name ..."
+  }))), __jsx("div", {
+    className: "card my-4 sticky-top"
   }, __jsx("h5", {
     className: "card-header"
   }, "Search Director"), __jsx("div", {
@@ -50424,7 +50436,10 @@ var Layout = function Layout(_ref) {
     onClick: handleDinSearchClick,
     className: "btn btn-secondary",
     type: "button"
-  }, "Go!")))))))), __jsx("footer", {
+  }, "Go!"))), __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], {
+    type: "director",
+    placeholder: "Search using director name ..."
+  })))))), __jsx("footer", {
     className: "py-5 bg-dark"
   }, __jsx("div", {
     className: "container"
@@ -50680,7 +50695,7 @@ var logException = function logException() {
 
 /***/ }),
 
-/***/ 2:
+/***/ 7:
 /*!************************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fcompany%2F%5Bcin%5D&absolutePagePath=%2FUsers%2Fpushkargoel%2FMyapps%2Fnext-boilerplate%2Fpages%2Fcompany%2F%5Bcin%5D.tsx ***!
   \************************************************************************************************************************************************************************/
@@ -50703,5 +50718,5 @@ module.exports = dll_b9380c54b6aeb86e51e7;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js","styles"]]]);
+},[[7,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=[cin].js.map

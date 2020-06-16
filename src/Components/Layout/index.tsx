@@ -50,7 +50,10 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
                     <a className="navbar-brand" href="#">Kitaablu</a>
                 </Link>
                 <div className="d-none d-md-block" style={{width: '50%'}}>
-                    <AsyncTypeahead />
+                    <AsyncTypeahead
+                        type = 'company'
+                        placeholder = "Search using company name or CIN ..."
+                    />
                 </div>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -116,7 +119,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
                             </div>
                         </div>
                     </div>
-                    <div className="card my-4 sticky-top">
+                    <div className="card my-4">
                         <h5 className="card-header">Search Company</h5>
                         <div className="card-body">
                             <div className="input-group">
@@ -130,10 +133,14 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
                                     </button>
                                 </span>
                             </div>
+                            <AsyncTypeahead
+                                type = 'company'
+                                placeholder = "Search using company name ..."
+                            />
                         </div>
                     </div>
 
-                    <div className="card my-4">
+                    <div className="card my-4 sticky-top">
                         <h5 className="card-header">Search Director</h5>
                         <div className="card-body">
                             <div className="input-group">
@@ -147,6 +154,10 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
                                     </button>
                                 </span>
                             </div>
+                            <AsyncTypeahead
+                                type = 'director'
+                                placeholder = "Search using director name ..."
+                            />
                         </div>
                     </div>
                 </div>

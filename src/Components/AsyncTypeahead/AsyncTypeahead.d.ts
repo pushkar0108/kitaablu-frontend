@@ -1,5 +1,8 @@
 declare namespace IAsyncTypeahead {
-    export interface IProps {}
+    export interface IProps {
+        placeholder: String,
+        type: String
+    }
 }
 
 export { IAsyncTypeahead };

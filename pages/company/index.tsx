@@ -82,7 +82,10 @@ const Home: NextPage<ICompanyPage.IProps, ICompanyPage.InitialProps> = ({
             <div className="card mb-4 d-none d-sm-block d-md-none">
                 <h3 className="card-header">Company Search</h3>
                 <div className="card-body">
-                    <AsyncTypeahead />
+                    <AsyncTypeahead
+                        type = 'company'
+                        placeholder = "Search using company name ..."
+                    />
                 </div>
             </div>
 

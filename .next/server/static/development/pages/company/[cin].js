@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -2123,7 +2123,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 const SEARCH_URI = 'https://kitaablu.com/api/v1/search/';
 
-const CustomAsyncTypeahead = () => {
+const CustomAsyncTypeahead = props => {
   const router = Object(next_router__WEBPACK_IMPORTED_MODULE_2__["useRouter"])();
   const {
     0: isLoading,
@@ -2138,7 +2138,9 @@ const CustomAsyncTypeahead = () => {
     setIsLoading(true);
 
     try {
-      const options = await _Services_API_Http__WEBPACK_IMPORTED_MODULE_3__["Http"].Request('GET', `${SEARCH_URI + query}`, {});
+      const options = await _Services_API_Http__WEBPACK_IMPORTED_MODULE_3__["Http"].Request('GET', `${SEARCH_URI + query}`, {
+        type: props.type
+      });
       setOptions(options);
     } catch (error) {
       console.log("Error while fetching props: ", error);
@@ -2149,18 +2151,22 @@ const CustomAsyncTypeahead = () => {
 
   const changeRoute = options => {
     if (options && options[0]) {
-      router.push(`/company/${options[0].CIN}`);
+      if (props.type == 'director') {
+        router.push(`/director/${options[0].value}`);
+      } else {
+        router.push(`/company/${options[0].value}`);
+      }
     }
   };
 
   return __jsx(react_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_1__["AsyncTypeahead"], {
     id: "async-example",
     isLoading: isLoading,
-    labelKey: option => `${option.name} | ${option.CIN}`,
+    labelKey: option => `${option.name} | ${option.value}`,
     minLength: 3,
     onSearch: handleSearch,
     options: options,
-    placeholder: "Search using company name or CIN ...",
+    placeholder: props.placeholder,
     renderMenuItemChildren: (option, props) => __jsx("div", null, `${option.name}`),
     onChange: changeRoute
   });
@@ -2379,7 +2385,10 @@ const Layout = ({
     style: {
       width: '50%'
     }
-  }, __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], null)), __jsx("button", {
+  }, __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], {
+    type: "company",
+    placeholder: "Search using company name or CIN ..."
+  })), __jsx("button", {
     className: "navbar-toggler",
     type: "button",
     "data-toggle": "collapse",
@@ -2443,7 +2452,7 @@ const Layout = ({
   }, __jsx("ul", {
     className: "list-unstyled mb-0"
   }, __jsx("li", null, "GST Return"), __jsx("li", null, "Form 3A"), __jsx("li", null, "Balance Sheet")))))), __jsx("div", {
-    className: "card my-4 sticky-top"
+    className: "card my-4"
   }, __jsx("h5", {
     className: "card-header"
   }, "Search Company"), __jsx("div", {
@@ -2461,8 +2470,11 @@ const Layout = ({
     onClick: handleClick,
     className: "btn btn-secondary",
     type: "button"
-  }, "Go!"))))), __jsx("div", {
-    className: "card my-4"
+  }, "Go!"))), __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], {
+    type: "company",
+    placeholder: "Search using company name ..."
+  }))), __jsx("div", {
+    className: "card my-4 sticky-top"
   }, __jsx("h5", {
     className: "card-header"
   }, "Search Director"), __jsx("div", {
@@ -2480,7 +2492,10 @@ const Layout = ({
     onClick: handleDinSearchClick,
     className: "btn btn-secondary",
     type: "button"
-  }, "Go!")))))))), __jsx("footer", {
+  }, "Go!"))), __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], {
+    type: "director",
+    placeholder: "Search using director name ..."
+  })))))), __jsx("footer", {
     className: "py-5 bg-dark"
   }, __jsx("div", {
     className: "container"
@@ -2703,7 +2718,7 @@ const logException = (description = '', fatal = false) => {
 
 /***/ }),
 
-/***/ 3:
+/***/ 7:
 /*!***************************************!*\
   !*** multi ./pages/company/[cin].tsx ***!
   \***************************************/
