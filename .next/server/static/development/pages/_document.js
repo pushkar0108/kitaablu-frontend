@@ -1108,7 +1108,11 @@ class WebAppDocument extends next_document__WEBPACK_IMPORTED_MODULE_1___default.
       "data-ad-client": "ca-pub-3756716452024552",
       async: true,
       src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-    })), __jsx("body", null, __jsx(next_document__WEBPACK_IMPORTED_MODULE_1__["Main"], null), __jsx(next_document__WEBPACK_IMPORTED_MODULE_1__["NextScript"], null)), __jsx("script", {
+    })), __jsx("body", {
+      "data-spy": "scroll",
+      "data-target": "#list-example",
+      "data-offset": "200"
+    }, __jsx(next_document__WEBPACK_IMPORTED_MODULE_1__["Main"], null), __jsx(next_document__WEBPACK_IMPORTED_MODULE_1__["NextScript"], null)), __jsx("script", {
       src: "https://code.jquery.com/jquery-3.2.1.slim.min.js",
       integrity: "sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN",
       crossOrigin: "anonymous"

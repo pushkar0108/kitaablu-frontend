@@ -49805,28 +49805,51 @@ var Home = function Home(_ref) {
     title: "".concat(companyName, ", ").concat(details["CIN"], " - Company, charges, directors, CIN, DIN and contact details _ Kitaablu"),
     description: "Company information, business information, directors/partners details and director/partners contact information of ".concat(companyName, ", ").concat(details["CIN"])
   };
-  return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_7__["Layout"], null, __jsx(next_seo__WEBPACK_IMPORTED_MODULE_3__["NextSeo"], {
+  return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_7__["Layout"], {
+    containerClass: "container-fluid",
+    gridSize: {
+      left: 'col-md-2',
+      mid: 'col-lg-7 col-md-8',
+      right: 'col-lg-3 col-md-4'
+    },
+    leftNav: __jsx("div", {
+      id: "list-example",
+      className: "list-group sticky-top shadow-sm bg-white rounded",
+      style: {
+        top: '100px'
+      }
+    }, __jsx("a", {
+      className: "list-group-item list-group-item-action",
+      href: "#intro"
+    }, "Introduction"), __jsx("a", {
+      className: "list-group-item list-group-item-action",
+      href: "#basicInfo"
+    }, "Basic Information"), __jsx("a", {
+      className: "list-group-item list-group-item-action",
+      href: "#directors"
+    }, "Directors"), __jsx("a", {
+      className: "list-group-item list-group-item-action",
+      href: "#charges"
+    }, "Charges"), __jsx("a", {
+      className: "list-group-item list-group-item-action",
+      href: "#similarCompanies"
+    }, "Similar Companies"))
+  }, __jsx(next_seo__WEBPACK_IMPORTED_MODULE_3__["NextSeo"], {
     title: SEO.title,
     description: SEO.description
   }), __jsx("h1", {
     className: "my-4"
-  }, __jsx("small", null, details["CIN"]), __jsx("div", null, companyName)), __jsx("h4", null, "Quick Links -", __jsx("a", {
-    href: "#basicInfo",
-    className: "badge badge-secondary ml-1"
-  }, "Basic Info"), __jsx("a", {
-    href: "#directors",
-    className: "badge badge-dark ml-1"
-  }, "Directors"), __jsx("a", {
-    href: "#charges",
-    className: "badge badge-danger ml-1"
-  }, "Charges")), __jsx("div", {
-    className: "card mb-4"
+  }, __jsx("small", null, details["CIN"]), __jsx("div", null, companyName)), __jsx("div", {
+    className: "card mb-4 shadow bg-white rounded",
+    id: "intro"
   }, __jsx("div", {
     className: "card-body"
   }, __jsx("div", null, companyName, " is a ", details["Class of Company"], " incorporated on ", details["Date of Incorporation"], ". It is classified as ", details["Company SubCategory"], " and is registered at Registrar of Companies, ", details["ROC Code"], ". It's authorized share capital is INR ", details["Authorised Capital(Rs)"], " and paid up capital is INR ", details["Paid up Capital(Rs)"], ". It is a ", details["Whether Listed or not"], " company."), __jsx("div", null, "Corporate Identification Number(CIN) of ", companyName, " is ", details["CIN"], " and it's registration number is ", details["Registration Number"], ". Company can be contacted on email - ", details["Email Id"], " and registered address - ", details["Registered Address"], ". Current status of ", companyName, " is - ", details["Company Status(for efiling)"] || details["LLP Status"], "."), __jsx("div", null, "Director details of ", companyName, " can be found ", __jsx("a", {
     href: "#directors"
-  }, "Here"), "."))), __jsx("div", {
-    className: "card mb-4",
+  }, "Here"), "."))), __jsx("h4", {
+    id: "basicInfo"
+  }, "Basic Information"), __jsx("div", {
+    className: "card mb-4 shadow bg-white rounded",
     id: "basicInfo"
   }, __jsx("div", {
     className: "card-body"
@@ -49842,12 +49865,11 @@ var Home = function Home(_ref) {
     }, __jsx("th", {
       scope: "row"
     }, data.title), __jsx("td", null, data.value));
-  })))))), __jsx("div", {
-    className: "card mb-4",
+  })))))), __jsx("h4", {
     id: "directors"
-  }, __jsx("h2", {
-    className: "card-header"
   }, "Directors"), __jsx("div", {
+    className: "card mb-4 shadow bg-white rounded"
+  }, __jsx("div", {
     className: "card-body"
   }, __jsx("div", {
     className: "table-responsive"
@@ -49875,12 +49897,11 @@ var Home = function Home(_ref) {
       href: "/director/[din]",
       as: "/director/".concat(director[0])
     }, __jsx("a", null, director[0]))), __jsx("td", null, director[6]), __jsx("td", null, director[7]), __jsx("td", null, director[8]), __jsx("td", null, director[6]));
-  })))))), __jsx("div", {
-    className: "card mb-4",
+  })))))), __jsx("h4", {
     id: "charges"
-  }, __jsx("h2", {
-    className: "card-header"
   }, "Charges"), __jsx("div", {
+    className: "card mb-4 shadow bg-white rounded"
+  }, __jsx("div", {
     className: "card-body"
   }, __jsx("div", {
     className: "table-responsive"
@@ -49913,11 +49934,11 @@ var Home = function Home(_ref) {
       key: "charge_".concat(charge[1], "_").concat(index),
       className: "text-semibold text-reagent-gray"
     }, __jsx("td", null, index + 1), __jsx("td", null, charge[0]), __jsx("td", null, charge[1]), __jsx("td", null, charge[2]), __jsx("td", null, charge[3]), __jsx("td", null, charge[4]));
-  })))))), __jsx("div", {
-    className: "card mb-4"
-  }, __jsx("h3", {
-    className: "card-header"
+  })))))), __jsx("h4", {
+    id: "similarCompanies"
   }, "List of similar companies"), __jsx("div", {
+    className: "card mb-4 shadow bg-white rounded"
+  }, __jsx("div", {
     className: "card-body"
   }, similarCompanies.length ? __jsx("div", {
     className: "table-responsive"
@@ -50125,7 +50146,8 @@ var CustomAsyncTypeahead = function CustomAsyncTypeahead(props) {
     renderMenuItemChildren: function renderMenuItemChildren(option, props) {
       return __jsx("div", null, "".concat(option.name));
     },
-    onChange: changeRoute
+    onChange: changeRoute // size={props.size || 'large'}
+
   });
 };
 
@@ -50277,7 +50299,16 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 var Layout = function Layout(_ref) {
-  var children = _ref.children;
+  var children = _ref.children,
+      leftNav = _ref.leftNav,
+      _ref$containerClass = _ref.containerClass,
+      containerClass = _ref$containerClass === void 0 ? "container" : _ref$containerClass,
+      _ref$gridSize = _ref.gridSize,
+      gridSize = _ref$gridSize === void 0 ? {
+    left: 'col-md-2',
+    mid: 'col-md-8',
+    right: 'col-md-4'
+  } : _ref$gridSize;
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     if (!window.GA_INITIALIZED) {
       Object(_Services_analytics__WEBPACK_IMPORTED_MODULE_4__["initGA"])();
@@ -50372,34 +50403,23 @@ var Layout = function Layout(_ref) {
     className: "nav-link",
     href: "#"
   }, "Directors"))))))), __jsx("div", {
-    className: "container"
+    className: containerClass
   }, __jsx("div", {
     className: "row"
-  }, __jsx("div", {
-    className: "col-md-8"
+  }, leftNav && __jsx("div", {
+    className: "".concat(gridSize.left, " d-none d-lg-block")
+  }, leftNav), __jsx("div", {
+    className: "".concat(gridSize.mid)
   }, children), __jsx("div", {
-    className: "col-md-4"
+    className: "".concat(gridSize.right)
   }, __jsx("div", {
-    className: "card my-4"
-  }, __jsx("h5", {
-    className: "card-header"
-  }, "Documents Coming Soon"), __jsx("div", {
-    className: "card-body"
+    className: "sticky-top",
+    style: {
+      top: '100px'
+    }
+  }, __jsx("h5", null, "Search For Company"), __jsx("div", {
+    className: "card shadow-sm bg-white rounded"
   }, __jsx("div", {
-    className: "row"
-  }, __jsx("div", {
-    className: "col-lg-6"
-  }, __jsx("ul", {
-    className: "list-unstyled mb-0"
-  }, __jsx("li", null, "Form 3A"), __jsx("li", null, "ITR Return"), __jsx("li", null, "Form A"))), __jsx("div", {
-    className: "col-lg-6"
-  }, __jsx("ul", {
-    className: "list-unstyled mb-0"
-  }, __jsx("li", null, "GST Return"), __jsx("li", null, "Form 3A"), __jsx("li", null, "Balance Sheet")))))), __jsx("div", {
-    className: "card my-4"
-  }, __jsx("h5", {
-    className: "card-header"
-  }, "Search Company"), __jsx("div", {
     className: "card-body"
   }, __jsx("div", {
     className: "input-group"
@@ -50407,21 +50427,24 @@ var Layout = function Layout(_ref) {
     id: "cinInput",
     type: "text",
     className: "form-control",
-    placeholder: "Search using CIN/LLPIN"
+    placeholder: "Enter CIN/LLPIN"
   }), __jsx("span", {
     className: "input-group-btn"
   }, __jsx("button", {
     onClick: handleClick,
     className: "btn btn-secondary",
     type: "button"
-  }, "Go!"))), __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], {
+  }, "Go!"))), __jsx("div", {
+    className: "mt-2"
+  }, __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], {
+    size: "small",
     type: "company",
-    placeholder: "Search using company name ..."
-  }))), __jsx("div", {
-    className: "card my-4 sticky-top"
-  }, __jsx("h5", {
-    className: "card-header"
-  }, "Search Director"), __jsx("div", {
+    placeholder: "Enter Name ..."
+  })))), __jsx("h5", {
+    className: "mt-4"
+  }, "Search For Director"), __jsx("div", {
+    className: "card shadow-sm bg-white rounded"
+  }, __jsx("div", {
     className: "card-body"
   }, __jsx("div", {
     className: "input-group"
@@ -50429,23 +50452,27 @@ var Layout = function Layout(_ref) {
     id: "dinInput",
     type: "text",
     className: "form-control",
-    placeholder: "Search using DIN"
+    placeholder: "Enter DIN"
   }), __jsx("span", {
     className: "input-group-btn"
   }, __jsx("button", {
     onClick: handleDinSearchClick,
     className: "btn btn-secondary",
     type: "button"
-  }, "Go!"))), __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], {
+  }, "Go!"))), __jsx("div", {
+    className: "mt-2"
+  }, __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], {
     type: "director",
-    placeholder: "Search using director name ..."
-  })))))), __jsx("footer", {
+    placeholder: "Enter Name ..."
+  })))))))), __jsx("footer", {
     className: "py-5 bg-dark"
   }, __jsx("div", {
     className: "container"
   }, __jsx("p", {
     className: "m-0 text-center text-white"
-  }, "Copyright \xA9 Kitaablu 2020"))));
+  }, "Copyright \xA9 Kitaablu 2020"), __jsx("p", {
+    className: "m-0 text-center text-white"
+  }, "Email - kitaablueterprise@gmail.com"))));
 };
 
 
@@ -50695,7 +50722,7 @@ var logException = function logException() {
 
 /***/ }),
 
-/***/ 7:
+/***/ 5:
 /*!************************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fcompany%2F%5Bcin%5D&absolutePagePath=%2FUsers%2Fpushkargoel%2FMyapps%2Fnext-boilerplate%2Fpages%2Fcompany%2F%5Bcin%5D.tsx ***!
   \************************************************************************************************************************************************************************/
@@ -50718,5 +50745,5 @@ module.exports = dll_b9380c54b6aeb86e51e7;
 
 /***/ })
 
-},[[7,"static/runtime/webpack.js","styles"]]]);
+},[[5,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=[cin].js.map

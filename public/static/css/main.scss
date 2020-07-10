@@ -3,4 +3,19 @@
 
 body {
     padding-top: 56px;
+    font-size: .95rem;
+    background: #f7f7f7;
+}
+
+#list-example .active {
+    background-color: #343a40 !important;
+    border: none;
+}
+
+.dropdown-menu {
+    font-size: .95rem !important;
+}
+
+input {
+    font-size: .95rem !important;
 }

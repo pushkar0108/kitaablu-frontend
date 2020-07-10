@@ -56,6 +56,7 @@ const CustomAsyncTypeahead: React.FunctionComponent<IAsyncTypeahead.IProps> = (p
                 </div>
             )}
             onChange={changeRoute}
+            // size={props.size || 'large'}
         />
     );
 };

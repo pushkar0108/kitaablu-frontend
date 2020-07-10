@@ -35267,13 +35267,38 @@ var Home = function Home(_ref) {
     title: "".concat(dinData["name"], ", ").concat(dinData["DIN"], " - Company, charges, directors, CIN, DIN and contact details _ Kitaablu"),
     description: "Company information, business information, directors/partners details and director/partners contact information of ".concat(directorName, ", ").concat(dinData["DIN"])
   };
-  return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_8__["Layout"], null, __jsx(next_seo__WEBPACK_IMPORTED_MODULE_3__["NextSeo"], {
+  return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_8__["Layout"], {
+    containerClass: "container-fluid",
+    gridSize: {
+      left: 'col-md-2',
+      mid: 'col-lg-7 col-md-8',
+      right: 'col-lg-3 col-md-4'
+    },
+    leftNav: __jsx("div", {
+      id: "list-example",
+      className: "list-group sticky-top",
+      style: {
+        top: '100px'
+      }
+    }, __jsx("a", {
+      className: "list-group-item list-group-item-action",
+      href: "#basicInfo"
+    }, "Basic Information"), __jsx("a", {
+      className: "list-group-item list-group-item-action",
+      href: "#companyList"
+    }, "List Of Companies"), __jsx("a", {
+      className: "list-group-item list-group-item-action",
+      href: "#llpList"
+    }, "List Of LLPs"))
+  }, __jsx(next_seo__WEBPACK_IMPORTED_MODULE_3__["NextSeo"], {
     title: SEO.title,
     description: SEO.description
   }), __jsx("h1", {
     className: "my-4"
-  }, __jsx("small", null, dinData["DIN"]), __jsx("div", null, directorName)), __jsx("div", {
-    className: "card mb-4"
+  }, __jsx("small", null, dinData["DIN"]), __jsx("div", null, directorName)), __jsx("h4", {
+    id: "basicInfo"
+  }, "Basic Information"), __jsx("div", {
+    className: "card mb-4 shadow bg-white rounded"
   }, __jsx("div", {
     className: "card-body"
   }, __jsx("div", {
@@ -35286,11 +35311,11 @@ var Home = function Home(_ref) {
     }, __jsx("th", {
       scope: "row"
     }, data.title), __jsx("td", null, data.value));
-  })))))), __jsx("div", {
-    className: "card mb-4"
-  }, __jsx("h2", {
-    className: "card-header"
+  })))))), __jsx("h4", {
+    id: "companyList"
   }, "List Of Companies"), __jsx("div", {
+    className: "card mb-4 shadow bg-white rounded"
+  }, __jsx("div", {
     className: "card-body"
   }, dinData.companies.length ? __jsx("div", {
     className: "table-responsive"
@@ -35318,11 +35343,11 @@ var Home = function Home(_ref) {
       href: "/company/[cin]",
       as: "/company/".concat(company.CIN)
     }, __jsx("a", null, company.CIN))), __jsx("td", null, company.name), __jsx("td", null, company.beginDate), __jsx("td", null, company.endDate), __jsx("td", null, company.status));
-  })))) : __jsx("div", null, "No Companies mapped to the director"))), __jsx("div", {
-    className: "card mb-4"
-  }, __jsx("h2", {
-    className: "card-header"
+  })))) : __jsx("div", null, "No Companies mapped ".concat(dinData["name"])))), __jsx("h4", {
+    id: "llpList"
   }, "List Of LLP"), __jsx("div", {
+    className: "card mb-4 shadow bg-white rounded"
+  }, __jsx("div", {
     className: "card-body"
   }, dinData.llps.length ? __jsx("div", {
     className: "table-responsive"
@@ -35358,7 +35383,7 @@ var Home = function Home(_ref) {
       href: "/company/[cin]",
       as: "/company/".concat(llp.CIN)
     }, __jsx("a", null, llp.CIN))), __jsx("td", null, llp.name), __jsx("td", null, llp.beginDate), __jsx("td", null, llp.endDate), __jsx("td", null, llp.status));
-  })))) : __jsx("div", null, "No LLPs mapped to the director"))));
+  })))) : __jsx("div", null, "No LLPs mapped to ".concat(dinData["name"])))));
 };
 
 Home.getInitialProps = function _callee(ctx) {
@@ -35606,7 +35631,8 @@ var CustomAsyncTypeahead = function CustomAsyncTypeahead(props) {
     renderMenuItemChildren: function renderMenuItemChildren(option, props) {
       return __jsx("div", null, "".concat(option.name));
     },
-    onChange: changeRoute
+    onChange: changeRoute // size={props.size || 'large'}
+
   });
 };
 
@@ -35758,7 +35784,16 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 var Layout = function Layout(_ref) {
-  var children = _ref.children;
+  var children = _ref.children,
+      leftNav = _ref.leftNav,
+      _ref$containerClass = _ref.containerClass,
+      containerClass = _ref$containerClass === void 0 ? "container" : _ref$containerClass,
+      _ref$gridSize = _ref.gridSize,
+      gridSize = _ref$gridSize === void 0 ? {
+    left: 'col-md-2',
+    mid: 'col-md-8',
+    right: 'col-md-4'
+  } : _ref$gridSize;
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     if (!window.GA_INITIALIZED) {
       Object(_Services_analytics__WEBPACK_IMPORTED_MODULE_4__["initGA"])();
@@ -35853,34 +35888,23 @@ var Layout = function Layout(_ref) {
     className: "nav-link",
     href: "#"
   }, "Directors"))))))), __jsx("div", {
-    className: "container"
+    className: containerClass
   }, __jsx("div", {
     className: "row"
-  }, __jsx("div", {
-    className: "col-md-8"
+  }, leftNav && __jsx("div", {
+    className: "".concat(gridSize.left, " d-none d-lg-block")
+  }, leftNav), __jsx("div", {
+    className: "".concat(gridSize.mid)
   }, children), __jsx("div", {
-    className: "col-md-4"
+    className: "".concat(gridSize.right)
   }, __jsx("div", {
-    className: "card my-4"
-  }, __jsx("h5", {
-    className: "card-header"
-  }, "Documents Coming Soon"), __jsx("div", {
-    className: "card-body"
+    className: "sticky-top",
+    style: {
+      top: '100px'
+    }
+  }, __jsx("h5", null, "Search For Company"), __jsx("div", {
+    className: "card shadow-sm bg-white rounded"
   }, __jsx("div", {
-    className: "row"
-  }, __jsx("div", {
-    className: "col-lg-6"
-  }, __jsx("ul", {
-    className: "list-unstyled mb-0"
-  }, __jsx("li", null, "Form 3A"), __jsx("li", null, "ITR Return"), __jsx("li", null, "Form A"))), __jsx("div", {
-    className: "col-lg-6"
-  }, __jsx("ul", {
-    className: "list-unstyled mb-0"
-  }, __jsx("li", null, "GST Return"), __jsx("li", null, "Form 3A"), __jsx("li", null, "Balance Sheet")))))), __jsx("div", {
-    className: "card my-4"
-  }, __jsx("h5", {
-    className: "card-header"
-  }, "Search Company"), __jsx("div", {
     className: "card-body"
   }, __jsx("div", {
     className: "input-group"
@@ -35888,21 +35912,24 @@ var Layout = function Layout(_ref) {
     id: "cinInput",
     type: "text",
     className: "form-control",
-    placeholder: "Search using CIN/LLPIN"
+    placeholder: "Enter CIN/LLPIN"
   }), __jsx("span", {
     className: "input-group-btn"
   }, __jsx("button", {
     onClick: handleClick,
     className: "btn btn-secondary",
     type: "button"
-  }, "Go!"))), __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], {
+  }, "Go!"))), __jsx("div", {
+    className: "mt-2"
+  }, __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], {
+    size: "small",
     type: "company",
-    placeholder: "Search using company name ..."
-  }))), __jsx("div", {
-    className: "card my-4 sticky-top"
-  }, __jsx("h5", {
-    className: "card-header"
-  }, "Search Director"), __jsx("div", {
+    placeholder: "Enter Name ..."
+  })))), __jsx("h5", {
+    className: "mt-4"
+  }, "Search For Director"), __jsx("div", {
+    className: "card shadow-sm bg-white rounded"
+  }, __jsx("div", {
     className: "card-body"
   }, __jsx("div", {
     className: "input-group"
@@ -35910,23 +35937,27 @@ var Layout = function Layout(_ref) {
     id: "dinInput",
     type: "text",
     className: "form-control",
-    placeholder: "Search using DIN"
+    placeholder: "Enter DIN"
   }), __jsx("span", {
     className: "input-group-btn"
   }, __jsx("button", {
     onClick: handleDinSearchClick,
     className: "btn btn-secondary",
     type: "button"
-  }, "Go!"))), __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], {
+  }, "Go!"))), __jsx("div", {
+    className: "mt-2"
+  }, __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], {
     type: "director",
-    placeholder: "Search using director name ..."
-  })))))), __jsx("footer", {
+    placeholder: "Enter Name ..."
+  })))))))), __jsx("footer", {
     className: "py-5 bg-dark"
   }, __jsx("div", {
     className: "container"
   }, __jsx("p", {
     className: "m-0 text-center text-white"
-  }, "Copyright \xA9 Kitaablu 2020"))));
+  }, "Copyright \xA9 Kitaablu 2020"), __jsx("p", {
+    className: "m-0 text-center text-white"
+  }, "Email - kitaablueterprise@gmail.com"))));
 };
 
 
@@ -36310,7 +36341,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 6:
+/***/ 2:
 /*!**************************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fdirector%2F%5Bdin%5D&absolutePagePath=%2FUsers%2Fpushkargoel%2FMyapps%2Fnext-boilerplate%2Fpages%2Fdirector%2F%5Bdin%5D.tsx ***!
   \**************************************************************************************************************************************************************************/
@@ -36333,5 +36364,5 @@ module.exports = dll_b9380c54b6aeb86e51e7;
 
 /***/ })
 
-},[[6,"static/runtime/webpack.js","styles"]]]);
+},[[2,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=[din].js.map

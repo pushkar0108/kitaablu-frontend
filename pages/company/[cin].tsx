@@ -161,7 +161,23 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
     };
 
     return (
-        <Layout>
+        <Layout
+            containerClass = "container-fluid"
+            gridSize = {{
+                left: 'col-md-2',
+                mid: 'col-lg-7 col-md-8',
+                right: 'col-lg-3 col-md-4'
+            }}
+            leftNav = {
+                <div id="list-example" className="list-group sticky-top shadow-sm bg-white rounded" style={{ top: '100px' }}>
+                    <a className="list-group-item list-group-item-action" href="#intro">Introduction</a>
+                    <a className="list-group-item list-group-item-action" href="#basicInfo">Basic Information</a>
+                    <a className="list-group-item list-group-item-action" href="#directors">Directors</a>
+                    <a className="list-group-item list-group-item-action" href="#charges">Charges</a>
+                    <a className="list-group-item list-group-item-action" href="#similarCompanies">Similar Companies</a>
+                </div>
+            }
+        >
             <NextSeo
                 title={SEO.title}
                 description={SEO.description}
@@ -170,13 +186,7 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
                 <small>{details["CIN"]}</small>
                 <div>{companyName}</div>
             </h1>
-            <h4>
-                Quick Links - 
-                <a href="#basicInfo" className="badge badge-secondary ml-1">Basic Info</a>
-                <a href="#directors" className="badge badge-dark ml-1">Directors</a>
-                <a href="#charges" className="badge badge-danger ml-1">Charges</a>
-            </h4>
-            <div className="card mb-4">
+            <div className="card mb-4 shadow bg-white rounded" id="intro">
                 <div className="card-body">
                     <div>
                         {companyName} is a {details["Class of Company"]} incorporated on {details["Date of Incorporation"]}. It is classified as {details["Company SubCategory"]} and is registered at Registrar of Companies, {details["ROC Code"]}. It's authorized share capital is INR {details["Authorised Capital(Rs)"]} and paid up capital is INR {details["Paid up Capital(Rs)"]}. It is a {details["Whether Listed or not"]} company. 
@@ -189,7 +199,9 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
                     </div>
                 </div>
             </div>
-            <div className="card mb-4" id="basicInfo">
+
+            <h4 id="basicInfo">Basic Information</h4>
+            <div className="card mb-4 shadow bg-white rounded" id="basicInfo">
                 <div className="card-body">
                     <div className="table-responsive">
                         <table className="table table-hover">
@@ -209,8 +221,9 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
                     </div>
                 </div>
             </div>
-            <div className="card mb-4" id="directors">
-                <h2 className="card-header">Directors</h2>
+
+            <h4 id="directors">Directors</h4>
+            <div className="card mb-4 shadow bg-white rounded">
                 <div className="card-body">
                     <div className="table-responsive">
                         <table className="table table-hover">
@@ -248,8 +261,9 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
                     </div>
                 </div>
             </div>
-            <div className="card mb-4" id="charges">
-                <h2 className="card-header">Charges</h2>
+
+            <h4 id="charges">Charges</h4>
+            <div className="card mb-4 shadow bg-white rounded">
                 <div className="card-body">
                     <div className="table-responsive">
                         <table className="table table-hover">
@@ -283,8 +297,9 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
                     </div>
                 </div>
             </div>
-            <div className="card mb-4">
-                <h3 className="card-header">List of similar companies</h3>
+
+            <h4 id="similarCompanies">List of similar companies</h4>
+            <div className="card mb-4 shadow bg-white rounded">
                 <div className="card-body">
                     {
                         similarCompanies.length ? (

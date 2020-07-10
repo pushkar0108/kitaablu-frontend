@@ -8,6 +8,13 @@ import { LayoutProps } from "./Layout";
 
 const Layout: React.FunctionComponent<LayoutProps> = ({
     children,
+    leftNav,
+    containerClass = "container",
+    gridSize = {
+        left: 'col-md-2',
+        mid: 'col-md-8',
+        right: 'col-md-4'
+    }
 }): JSX.Element => {
 
     useEffect(() => {
@@ -22,7 +29,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
     const handleClick = e => {
         e.preventDefault();
         let cin = (document.getElementById('cinInput') as HTMLInputElement).value;
-        if(cin) {
+        if (cin) {
             router.push('/company/[cin]', `/company/${cin}`);
             setTimeout(() => {
                 window.scrollTo(0, 0);
@@ -34,7 +41,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
     const handleDinSearchClick = e => {
         e.preventDefault();
         let din = (document.getElementById('dinInput') as HTMLInputElement).value;
-        if(din) {
+        if (din) {
             router.push('/director/[din]', `/director/${din}`);
             setTimeout(() => {
                 window.scrollTo(0, 0);
@@ -49,10 +56,10 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
                 <Link href="/home" as="/home">
                     <a className="navbar-brand" href="#">Kitaablu</a>
                 </Link>
-                <div className="d-none d-md-block" style={{width: '50%'}}>
+                <div className="d-none d-md-block" style={{ width: '50%' }}>
                     <AsyncTypeahead
-                        type = 'company'
-                        placeholder = "Search using company name or CIN ..."
+                        type='company'
+                        placeholder="Search using company name or CIN ..."
                     />
                 </div>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,13 +87,70 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
             </div>
         </nav>
 
-        <div className="container">
+        <div className={containerClass}>
             <div className="row">
-                <div className="col-md-8">
+                {
+                    leftNav && (
+                        <div className={`${gridSize.left} d-none d-lg-block`}>
+                            {leftNav}
+                        </div>
+                    )
+                }
+                <div className={`${gridSize.mid}`}>
                     {children}
                 </div>
-                <div className="col-md-4">
-                    <div className="card my-4">
+                <div className={`${gridSize.right}`}>
+                    <div className="sticky-top" style={{ top: '100px' }}>
+
+                        <h5>Search For Company</h5>
+                        <div className="card shadow-sm bg-white rounded">
+                            <div className="card-body">
+                                <div className="input-group">
+                                    <input id="cinInput" type="text" className="form-control" placeholder="Enter CIN/LLPIN" />
+                                    <span className="input-group-btn">
+                                        <button
+                                            onClick={handleClick}
+                                            className="btn btn-secondary"
+                                            type="button">
+                                            Go!
+                                    </button>
+                                    </span>
+                                </div>
+                                <div className="mt-2">
+                                    <AsyncTypeahead
+                                        size='small'
+                                        type='company'
+                                        placeholder="Enter Name ..."
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <h5 className="mt-4">Search For Director</h5>
+                        <div className="card shadow-sm bg-white rounded">
+                            <div className="card-body">
+                                <div className="input-group">
+                                    <input id="dinInput" type="text" className="form-control" placeholder="Enter DIN" />
+                                    <span className="input-group-btn">
+                                        <button
+                                            onClick={handleDinSearchClick}
+                                            className="btn btn-secondary"
+                                            type="button">
+                                            Go!
+                                    </button>
+                                    </span>
+                                </div>
+                                <div className="mt-2">
+                                    <AsyncTypeahead
+                                        type='director'
+                                        placeholder="Enter Name ..."
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* <div className="card my-4">
                         <h5 className="card-header">Documents Coming Soon</h5>
                         <div className="card-body">
                             <div className="row">
@@ -118,54 +182,15 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="card my-4">
-                        <h5 className="card-header">Search Company</h5>
-                        <div className="card-body">
-                            <div className="input-group">
-                                <input id="cinInput" type="text" className="form-control" placeholder="Search using CIN/LLPIN" />
-                                <span className="input-group-btn">
-                                    <button 
-                                        onClick={handleClick}
-                                        className="btn btn-secondary" 
-                                        type="button">
-                                            Go!
-                                    </button>
-                                </span>
-                            </div>
-                            <AsyncTypeahead
-                                type = 'company'
-                                placeholder = "Search using company name ..."
-                            />
-                        </div>
-                    </div>
+                    </div> */}
 
-                    <div className="card my-4 sticky-top">
-                        <h5 className="card-header">Search Director</h5>
-                        <div className="card-body">
-                            <div className="input-group">
-                                <input id="dinInput" type="text" className="form-control" placeholder="Search using DIN" />
-                                <span className="input-group-btn">
-                                    <button 
-                                        onClick={handleDinSearchClick}
-                                        className="btn btn-secondary" 
-                                        type="button">
-                                            Go!
-                                    </button>
-                                </span>
-                            </div>
-                            <AsyncTypeahead
-                                type = 'director'
-                                placeholder = "Search using director name ..."
-                            />
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
         <footer className="py-5 bg-dark">
             <div className="container">
                 <p className="m-0 text-center text-white">Copyright &copy; Kitaablu 2020</p>
+                <p className="m-0 text-center text-white">Email - kitaablueterprise@gmail.com</p>
             </div>
         </footer>
     </div>;

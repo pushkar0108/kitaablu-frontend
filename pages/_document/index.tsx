@@ -46,7 +46,7 @@ class WebAppDocument extends Document {
                     <link rel="preconnect" href="https://www.google.co.in" />
                     <script data-ad-client="ca-pub-3756716452024552" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 </Head>
-                <body>
+                <body data-spy="scroll" data-target="#list-example" data-offset="200">
                     <Main />
                     <NextScript />
                 </body>

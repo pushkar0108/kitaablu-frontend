@@ -87,7 +87,21 @@ const Home: NextPage<IDirectorPage.IProps, IDirectorPage.InitialProps> = ({
     };
 
     return (
-        <Layout>
+        <Layout
+            containerClass = "container-fluid"
+            gridSize = {{
+                left: 'col-md-2',
+                mid: 'col-lg-7 col-md-8',
+                right: 'col-lg-3 col-md-4'
+            }}
+            leftNav = {
+                <div id="list-example" className="list-group sticky-top" style={{ top: '100px' }}>
+                    <a className="list-group-item list-group-item-action" href="#basicInfo">Basic Information</a>
+                    <a className="list-group-item list-group-item-action" href="#companyList">List Of Companies</a>
+                    <a className="list-group-item list-group-item-action" href="#llpList">List Of LLPs</a>
+                </div>
+            }
+        >
             <NextSeo
                 title={SEO.title}
                 description={SEO.description}
@@ -96,7 +110,9 @@ const Home: NextPage<IDirectorPage.IProps, IDirectorPage.InitialProps> = ({
                 <small>{dinData["DIN"]}</small>
                 <div>{directorName}</div>
             </h1>
-            <div className="card mb-4">
+
+            <h4 id="basicInfo">Basic Information</h4>
+            <div className="card mb-4 shadow bg-white rounded">
                 <div className="card-body">
                     <div className="table-responsive">
                         <table className="table table-hover">
@@ -116,8 +132,9 @@ const Home: NextPage<IDirectorPage.IProps, IDirectorPage.InitialProps> = ({
                     </div>
                 </div>
             </div>
-            <div className="card mb-4">
-                <h2 className="card-header">List Of Companies</h2>
+
+            <h4 id="companyList">List Of Companies</h4>
+            <div className="card mb-4 shadow bg-white rounded">
                 <div className="card-body">
                     {
                         dinData.companies.length ? (
@@ -157,13 +174,14 @@ const Home: NextPage<IDirectorPage.IProps, IDirectorPage.InitialProps> = ({
                             </div>
                         ) :
                         <div>
-                            No Companies mapped to the director
+                            {`No Companies mapped ${dinData["name"]}`}
                         </div>
                     }
                 </div>
             </div>
-            <div className="card mb-4">
-                <h2 className="card-header">List Of LLP</h2>
+
+            <h4 id="llpList">List Of LLP</h4>
+            <div className="card mb-4 shadow bg-white rounded">
                 <div className="card-body">
                     {
                         dinData.llps.length ? (
@@ -203,7 +221,7 @@ const Home: NextPage<IDirectorPage.IProps, IDirectorPage.InitialProps> = ({
                             </div>
                         ) :
                         <div>
-                            No LLPs mapped to the director
+                            {`No LLPs mapped to ${dinData["name"]}`}
                         </div>
                     }
                 </div>

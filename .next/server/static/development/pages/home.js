@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -2022,7 +2022,8 @@ const CustomAsyncTypeahead = props => {
     options: options,
     placeholder: props.placeholder,
     renderMenuItemChildren: (option, props) => __jsx("div", null, `${option.name}`),
-    onChange: changeRoute
+    onChange: changeRoute // size={props.size || 'large'}
+
   });
 };
 
@@ -2186,7 +2187,14 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 const Layout = ({
-  children
+  children,
+  leftNav,
+  containerClass = "container",
+  gridSize = {
+    left: 'col-md-2',
+    mid: 'col-md-8',
+    right: 'col-md-4'
+  }
 }) => {
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     if (!window.GA_INITIALIZED) {
@@ -2282,34 +2290,23 @@ const Layout = ({
     className: "nav-link",
     href: "#"
   }, "Directors"))))))), __jsx("div", {
-    className: "container"
+    className: containerClass
   }, __jsx("div", {
     className: "row"
-  }, __jsx("div", {
-    className: "col-md-8"
+  }, leftNav && __jsx("div", {
+    className: `${gridSize.left} d-none d-lg-block`
+  }, leftNav), __jsx("div", {
+    className: `${gridSize.mid}`
   }, children), __jsx("div", {
-    className: "col-md-4"
+    className: `${gridSize.right}`
   }, __jsx("div", {
-    className: "card my-4"
-  }, __jsx("h5", {
-    className: "card-header"
-  }, "Documents Coming Soon"), __jsx("div", {
-    className: "card-body"
+    className: "sticky-top",
+    style: {
+      top: '100px'
+    }
+  }, __jsx("h5", null, "Search For Company"), __jsx("div", {
+    className: "card shadow-sm bg-white rounded"
   }, __jsx("div", {
-    className: "row"
-  }, __jsx("div", {
-    className: "col-lg-6"
-  }, __jsx("ul", {
-    className: "list-unstyled mb-0"
-  }, __jsx("li", null, "Form 3A"), __jsx("li", null, "ITR Return"), __jsx("li", null, "Form A"))), __jsx("div", {
-    className: "col-lg-6"
-  }, __jsx("ul", {
-    className: "list-unstyled mb-0"
-  }, __jsx("li", null, "GST Return"), __jsx("li", null, "Form 3A"), __jsx("li", null, "Balance Sheet")))))), __jsx("div", {
-    className: "card my-4"
-  }, __jsx("h5", {
-    className: "card-header"
-  }, "Search Company"), __jsx("div", {
     className: "card-body"
   }, __jsx("div", {
     className: "input-group"
@@ -2317,21 +2314,24 @@ const Layout = ({
     id: "cinInput",
     type: "text",
     className: "form-control",
-    placeholder: "Search using CIN/LLPIN"
+    placeholder: "Enter CIN/LLPIN"
   }), __jsx("span", {
     className: "input-group-btn"
   }, __jsx("button", {
     onClick: handleClick,
     className: "btn btn-secondary",
     type: "button"
-  }, "Go!"))), __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], {
+  }, "Go!"))), __jsx("div", {
+    className: "mt-2"
+  }, __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], {
+    size: "small",
     type: "company",
-    placeholder: "Search using company name ..."
-  }))), __jsx("div", {
-    className: "card my-4 sticky-top"
-  }, __jsx("h5", {
-    className: "card-header"
-  }, "Search Director"), __jsx("div", {
+    placeholder: "Enter Name ..."
+  })))), __jsx("h5", {
+    className: "mt-4"
+  }, "Search For Director"), __jsx("div", {
+    className: "card shadow-sm bg-white rounded"
+  }, __jsx("div", {
     className: "card-body"
   }, __jsx("div", {
     className: "input-group"
@@ -2339,23 +2339,27 @@ const Layout = ({
     id: "dinInput",
     type: "text",
     className: "form-control",
-    placeholder: "Search using DIN"
+    placeholder: "Enter DIN"
   }), __jsx("span", {
     className: "input-group-btn"
   }, __jsx("button", {
     onClick: handleDinSearchClick,
     className: "btn btn-secondary",
     type: "button"
-  }, "Go!"))), __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], {
+  }, "Go!"))), __jsx("div", {
+    className: "mt-2"
+  }, __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], {
     type: "director",
-    placeholder: "Search using director name ..."
-  })))))), __jsx("footer", {
+    placeholder: "Enter Name ..."
+  })))))))), __jsx("footer", {
     className: "py-5 bg-dark"
   }, __jsx("div", {
     className: "container"
   }, __jsx("p", {
     className: "m-0 text-center text-white"
-  }, "Copyright \xA9 Kitaablu 2020"))));
+  }, "Copyright \xA9 Kitaablu 2020"), __jsx("p", {
+    className: "m-0 text-center text-white"
+  }, "Email - kitaablueterprise@gmail.com"))));
 };
 
 
@@ -2684,7 +2688,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 5:
+/***/ 6:
 /*!************************************!*\
   !*** multi ./pages/home/index.tsx ***!
   \************************************/
