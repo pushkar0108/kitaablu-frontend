@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1783,15 +1783,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var next_seo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next-seo */ "next-seo");
 /* harmony import */ var next_seo__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_seo__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "react-redux");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../src/Services/API/Http */ "./src/Services/API/Http/index.ts");
-/* harmony import */ var _server_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../server/i18n */ "./server/i18n.ts");
-/* harmony import */ var _src_Actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../src/Actions */ "./src/Actions/index.ts");
-/* harmony import */ var _src_Components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../src/Components */ "./src/Components/index.ts");
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0__["createElement"];
+/* harmony import */ var _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../src/Services/API/Http */ "./src/Services/API/Http/index.ts");
+/* harmony import */ var _server_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../server/i18n */ "./server/i18n.ts");
+/* harmony import */ var _src_Actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../src/Actions */ "./src/Actions/index.ts");
+/* harmony import */ var _src_Components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../src/Components */ "./src/Components/index.ts");
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 // #region Global Imports
-
 
 
 
@@ -1809,8 +1806,13 @@ const Home = ({
   i18n,
   dinData
 }) => {
-  const home = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["useSelector"])(state => state.home);
-  const dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["useDispatch"])();
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    /* tslint:disable-next-line */
+    $(function () {
+      /* tslint:disable-next-line */
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+  });
   const refData = [{
     title: "DIN",
     value: dinData["DIN"]
@@ -1819,22 +1821,28 @@ const Home = ({
     value: dinData["name"]
   }, {
     title: "Date of birth",
-    value: '*********'
+    value: '*********',
+    tooltip: true
   }, {
     title: "Father Name",
-    value: '*********'
+    value: '*********',
+    tooltip: true
   }, {
     title: "Mobile",
-    value: '*********'
+    value: '*********',
+    tooltip: true
   }, {
     title: "Phone",
-    value: '*********'
+    value: '*********',
+    tooltip: true
   }, {
     title: "Email",
-    value: '*********'
+    value: '*********',
+    tooltip: true
   }, {
     title: "Address",
-    value: '*********'
+    value: '*********',
+    tooltip: true
   }, {
     title: "City",
     value: dinData["city"]
@@ -1847,7 +1855,7 @@ const Home = ({
     title: `${dinData["name"]}, ${dinData["DIN"]} - Company, charges, directors, CIN, DIN and contact details _ Kitaablu`,
     description: `Company information, business information, directors/partners details and director/partners contact information of ${directorName}, ${dinData["DIN"]}`
   };
-  return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_7__["Layout"], {
+  return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_6__["Layout"], {
     containerClass: "container-fluid",
     gridSize: {
       left: 'col-md-2',
@@ -1890,7 +1898,13 @@ const Home = ({
       key: data.title
     }, __jsx("th", {
       scope: "row"
-    }, data.title), __jsx("td", null, data.value));
+    }, data.title), __jsx("td", null, data.tooltip ? __jsx("button", {
+      type: "button",
+      className: "btn btn-secondary btn-sm",
+      "data-toggle": "tooltip",
+      "data-placement": "right",
+      title: "Contact us at kitaablueterprise@gmail.com"
+    }, data.value) : data.value));
   })))))), __jsx("h4", {
     id: "companyList"
   }, "List Of Companies"), __jsx("div", {
@@ -1970,8 +1984,8 @@ Home.getInitialProps = async ctx => {
   const {
     din
   } = ctx.query;
-  const dinData = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__["Http"].Request('GET', `https://kitaablu.com/api/v1/director/${din}`);
-  await ctx.store.dispatch(_src_Actions__WEBPACK_IMPORTED_MODULE_6__["HomeActions"].GetApod({
+  const dinData = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_3__["Http"].Request('GET', `https://kitaablu.com/api/v1/director/${din}`);
+  await ctx.store.dispatch(_src_Actions__WEBPACK_IMPORTED_MODULE_5__["HomeActions"].GetApod({
     params: {
       hd: true
     }
@@ -1982,7 +1996,7 @@ Home.getInitialProps = async ctx => {
   };
 };
 
-const Extended = Object(_server_i18n__WEBPACK_IMPORTED_MODULE_5__["withTranslation"])("common")(Home);
+const Extended = Object(_server_i18n__WEBPACK_IMPORTED_MODULE_4__["withTranslation"])("common")(Home);
 /* harmony default export */ __webpack_exports__["default"] = (Extended);
 
 /***/ }),
@@ -2809,7 +2823,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!****************************************!*\
   !*** multi ./pages/director/[din].tsx ***!
   \****************************************/
@@ -2950,17 +2964,6 @@ module.exports = require("react-ga");
 /***/ (function(module, exports) {
 
 module.exports = require("react-is");
-
-/***/ }),
-
-/***/ "react-redux":
-/*!******************************!*\
-  !*** external "react-redux" ***!
-  \******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("react-redux");
 
 /***/ }),
 

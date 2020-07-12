@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -2743,7 +2743,7 @@ const logException = (description = '', fatal = false) => {
 
 /***/ }),
 
-/***/ 5:
+/***/ 8:
 /*!***************************************!*\
   !*** multi ./pages/company/[cin].tsx ***!
   \***************************************/

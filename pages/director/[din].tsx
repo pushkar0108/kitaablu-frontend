@@ -1,5 +1,5 @@
 // #region Global Imports
-import * as React from "react";
+import React, { useEffect } from "react";
 import { NextPage, GetServerSideProps } from "next";
 import Link from 'next/link';
 import { NextSeo } from 'next-seo';
@@ -34,8 +34,11 @@ const Home: NextPage<IDirectorPage.IProps, IDirectorPage.InitialProps> = ({
     i18n,
     dinData,
 }) => {
-    const home = useSelector((state: IStore) => state.home);
-    const dispatch = useDispatch();
+    useEffect(() => { /* tslint:disable-next-line */
+        $(function () { /* tslint:disable-next-line */
+            ($('[data-toggle="tooltip"]') as any).tooltip()
+        });
+    });
 
     const refData = [
         {
@@ -48,27 +51,33 @@ const Home: NextPage<IDirectorPage.IProps, IDirectorPage.InitialProps> = ({
         },
         {
             title: "Date of birth",
-            value: '*********'
+            value: '*********',
+            tooltip: true
         },
         {
             title: "Father Name",
-            value: '*********'
+            value: '*********',
+            tooltip: true
         },
         {
             title: "Mobile",
-            value: '*********'
+            value: '*********',
+            tooltip: true
         },
         {
             title: "Phone",
-            value: '*********'
+            value: '*********',
+            tooltip: true
         },
         {
             title: "Email",
-            value: '*********'
+            value: '*********',
+            tooltip: true
         },
         {
             title: "Address",
-            value: '*********'
+            value: '*********',
+            tooltip: true
         },
         {
             title: "City",
@@ -122,7 +131,17 @@ const Home: NextPage<IDirectorPage.IProps, IDirectorPage.InitialProps> = ({
                                         return (
                                             <tr key={data.title}>
                                                 <th scope="row">{data.title}</th>
-                                                <td>{data.value}</td>
+                                                <td>
+                                                    {
+                                                        data.tooltip ? (
+                                                            <button type="button" className="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="right" title="Contact us at kitaablueterprise@gmail.com">
+                                                                {data.value}
+                                                            </button>
+                                                            
+                                                        ) : data.value
+                                                    }
+                                                </td>
+                                                
                                             </tr>
                                         )
                                     })
