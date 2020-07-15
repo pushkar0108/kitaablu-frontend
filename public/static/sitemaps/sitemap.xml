@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-      <loc>https://kitaablu.com</loc>
-      <lastmod>2020-05-08T00:20:56+05:30</lastmod>
-    </url>
-    <url>
-      <loc>https://kitaablu.com/company</loc>
-      <lastmod>2020-05-08T00:20:56+05:30</lastmod>
-      <changefreq>daily</changefreq>
-      <priority>1</priority>
-    </url>
-</urlset>
 <sitemapindex xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+    <sitemap>
+      <loc>https://kitaablu.com/static/sitemaps/common.xml</loc>
+      <lastmod>2020-05-08T00:22:56+05:30</lastmod>
+    </sitemap>
     <sitemap>
       <loc>https://kitaablu.com/static/sitemaps/companies.xml</loc>
       <lastmod>2020-05-08T00:22:56+05:30</lastmod>
