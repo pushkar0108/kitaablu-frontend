@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -2281,15 +2281,7 @@ const Layout = ({
   }, __jsx("a", {
     className: "nav-link",
     href: "#"
-  }, "Companies"))), __jsx("li", {
-    className: "nav-item"
-  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/director",
-    as: "/director"
-  }, __jsx("a", {
-    className: "nav-link",
-    href: "#"
-  }, "Directors"))))))), __jsx("div", {
+  }, "Companies"))))))), __jsx("div", {
     className: containerClass
   }, __jsx("div", {
     className: "row"
@@ -2688,7 +2680,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 7:
+/***/ 3:
 /*!************************************!*\
   !*** multi ./pages/home/index.tsx ***!
   \************************************/

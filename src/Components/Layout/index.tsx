@@ -77,11 +77,11 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
                                 <a className="nav-link" href="#">Companies</a>
                             </Link>
                         </li>
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <Link href="/director" as="/director">
                                 <a className="nav-link" href="#">Directors</a>
                             </Link>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </div>

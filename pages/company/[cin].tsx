@@ -1,5 +1,6 @@
 // #region Global Imports
 import * as React from "react";
+import MOMENT from "moment";
 import _ from "lodash";
 import { NextPage, GetServerSideProps } from "next";
 import { NextSeo } from 'next-seo';
@@ -169,13 +170,21 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
                 right: 'col-lg-3 col-md-4'
             }}
             leftNav = {
-                <div id="list-example" className="list-group sticky-top shadow-sm bg-white rounded" style={{ top: '100px' }}>
-                    <a className="list-group-item list-group-item-action" href="#intro">Introduction</a>
-                    <a className="list-group-item list-group-item-action" href="#basicInfo">Basic Information</a>
-                    <a className="list-group-item list-group-item-action" href="#directors">Directors</a>
-                    <a className="list-group-item list-group-item-action" href="#charges">Charges</a>
-                    <a className="list-group-item list-group-item-action" href="#similarCompanies">Similar Companies</a>
+                <div className="sticky-top" style={{ top: '100px' }}>
+                    <div id="list-example" className="list-group shadow-sm bg-white rounded">
+                        <a className="list-group-item list-group-item-action" href="#intro">Introduction</a>
+                        <a className="list-group-item list-group-item-action" href="#basicInfo">Basic Information</a>
+                        <a className="list-group-item list-group-item-action" href="#directors">Directors</a>
+                        <a className="list-group-item list-group-item-action" href="#charges">Charges</a>
+                        {/* <a className="list-group-item list-group-item-action" href="#location">Location on Maps</a> */}
+                        <a className="list-group-item list-group-item-action" href="#similarCompanies">Similar Companies</a>
+                    </div>
+                    <div className="mt-2 ml-1">
+                        <div>Info last updated on </div>
+                        <div>{MOMENT(cinData.updated_at).format("MMMM Do, YYYY")}</div>
+                    </div>
                 </div>
+                
             }
         >
             <NextSeo
@@ -297,6 +306,22 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
                     </div>
                 </div>
             </div>
+
+            {/* <h4 id="location">Location on Maps</h4>
+            <div className="card mb-4 shadow bg-white rounded">
+                <div className="card-body">
+                    {
+                        details["Registered Address"].length > 0 &&
+                            <iframe 
+                        className="embed-responsive-item" 
+                        style={{ width: '100%' }} 
+                        frameBorder="0" 
+                        src={`https://www.google.com/maps/embed/v1/place?q=${details["Registered Address"].replace(/ /g, '+')}&key=AIzaSyCrpmMagfAnUiDnQwj4PTXjb7-FmPQ6Jxo`}></iframe>
+                    }
+                </div>
+            </div> */}
+
+            
 
             <h4 id="similarCompanies">List of similar companies</h4>
             <div className="card mb-4 shadow bg-white rounded">

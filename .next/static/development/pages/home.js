@@ -34967,15 +34967,7 @@ var Layout = function Layout(_ref) {
   }, __jsx("a", {
     className: "nav-link",
     href: "#"
-  }, "Companies"))), __jsx("li", {
-    className: "nav-item"
-  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/director",
-    as: "/director"
-  }, __jsx("a", {
-    className: "nav-link",
-    href: "#"
-  }, "Directors"))))))), __jsx("div", {
+  }, "Companies"))))))), __jsx("div", {
     className: containerClass
   }, __jsx("div", {
     className: "row"
@@ -35429,7 +35421,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 7:
+/***/ 2:
 /*!**************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fhome&absolutePagePath=%2FUsers%2Fpushkargoel%2FMyapps%2Fnext-boilerplate%2Fpages%2Fhome%2Findex.tsx ***!
   \**************************************************************************************************************************************************/
@@ -35452,5 +35444,5 @@ module.exports = dll_b9380c54b6aeb86e51e7;
 
 /***/ })
 
-},[[7,"static/runtime/webpack.js","styles"]]]);
+},[[2,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=home.js.map
