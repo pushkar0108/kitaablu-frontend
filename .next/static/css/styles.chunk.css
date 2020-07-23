@@ -7198,6 +7198,9 @@ body {
 input {
   font-size: .95rem !important; }
 
+.tool-tip [disabled] {
+  pointer-events: none; }
+
 .title {
   font-family: Arial, Helvetica, sans-serif;
   display: flex;

@@ -70870,21 +70870,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var next_seo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next-seo */ "./node_modules/next-seo/lib/index.js");
-/* harmony import */ var next_seo__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_seo__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../src/Services/API/Http */ "./src/Services/API/Http/index.ts");
-/* harmony import */ var _server_i18n__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../server/i18n */ "./server/i18n.ts");
-/* harmony import */ var _src_Components__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../src/Components */ "./src/Components/index.ts");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var next_seo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next-seo */ "./node_modules/next-seo/lib/index.js");
+/* harmony import */ var next_seo__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_seo__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../src/Services/API/Http */ "./src/Services/API/Http/index.ts");
+/* harmony import */ var _server_i18n__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../server/i18n */ "./server/i18n.ts");
+/* harmony import */ var _src_Components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../src/Components */ "./src/Components/index.ts");
 
-var __jsx = react__WEBPACK_IMPORTED_MODULE_1__["createElement"];
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 // #region Global Imports
-
 
 
 
@@ -70905,7 +70902,7 @@ var Home = function Home(_ref) {
       similarCompanies = _ref$similarCompanies === void 0 ? [] : _ref$similarCompanies;
 
   if (!cinData) {
-    return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_8__["Layout"], null, __jsx("h1", {
+    return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_7__["Layout"], null, __jsx("h1", {
       className: "my-4"
     }, __jsx("div", null, "NO DATA FOUND FOR CIN.")), __jsx("div", null, "We will try to update the dataset with the given CIN"), __jsx("div", null, "Please try again later after sometime"));
   }
@@ -70981,26 +70978,12 @@ var Home = function Home(_ref) {
     title: "LLP Status",
     value: details["LLP Status"]
   }];
-
-  var renderLocaleButtons = function renderLocaleButtons(activeLanguage) {
-    return ["en", "es", "tr"].map(function (lang) {
-      return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_8__["LocaleButton"], {
-        key: lang,
-        lang: lang,
-        isActive: activeLanguage === lang,
-        onClick: function onClick() {
-          return i18n.changeLanguage(lang);
-        }
-      });
-    });
-  };
-
   var companyName = details["Company Name"] || details["LLP Name"];
   var SEO = {
     title: "".concat(companyName, ", ").concat(details["CIN"], " - Company, charges, directors, CIN, DIN and contact details _ Kitaablu"),
     description: "Company information, business information, directors/partners details and director/partners contact information of ".concat(companyName, ", ").concat(details["CIN"])
   };
-  return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_8__["Layout"], {
+  return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_7__["Layout"], {
     containerClass: "container-fluid",
     gridSize: {
       left: 'col-md-2',
@@ -71030,10 +71013,12 @@ var Home = function Home(_ref) {
     }, "Charges"), __jsx("a", {
       className: "list-group-item list-group-item-action",
       href: "#similarCompanies"
-    }, "Similar Companies")), __jsx("div", {
-      className: "mt-2 ml-1"
-    }, __jsx("div", null, "Info last updated on "), __jsx("div", null, moment__WEBPACK_IMPORTED_MODULE_2___default()(cinData.updated_at).format("MMMM Do, YYYY"))))
-  }, __jsx(next_seo__WEBPACK_IMPORTED_MODULE_4__["NextSeo"], {
+    }, "Similar Companies")), __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_7__["EntityUpdate"], {
+      lastUpdatedAt: cinData.updated_at,
+      entityType: "1",
+      entityId: details["CIN"]
+    }))
+  }, __jsx(next_seo__WEBPACK_IMPORTED_MODULE_3__["NextSeo"], {
     title: SEO.title,
     description: SEO.description
   }), __jsx("h1", {
@@ -71092,7 +71077,7 @@ var Home = function Home(_ref) {
     return __jsx("tr", {
       key: "director_".concat(director[0]),
       className: "text-semibold text-reagent-gray"
-    }, __jsx("td", null, index + 1), __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_5___default.a, {
+    }, __jsx("td", null, index + 1), __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_4___default.a, {
       href: "/director/[din]",
       as: "/director/".concat(director[0])
     }, __jsx("a", null, director[0]))), __jsx("td", null, director[6]), __jsx("td", null, director[7]), __jsx("td", null, director[8]), __jsx("td", null, director[6]));
@@ -71155,7 +71140,7 @@ var Home = function Home(_ref) {
     return __jsx("tr", {
       key: "director_".concat(company.CIN),
       className: "text-semibold text-reagent-gray"
-    }, __jsx("td", null, index + 1), __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_5___default.a, {
+    }, __jsx("td", null, index + 1), __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_4___default.a, {
       href: "/company/[cin]",
       as: "/company/".concat(company.CIN)
     }, __jsx("a", null, company.CIN))), __jsx("td", null, company.company_name));
@@ -71175,14 +71160,14 @@ Home.getInitialProps = function _callee(ctx) {
           };
           _context.prev = 2;
           _context.next = 5;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_src_Services_API_Http__WEBPACK_IMPORTED_MODULE_6__["Http"].Request('GET', "https://kitaablu.com/api/v1/company/".concat(cin)));
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_src_Services_API_Http__WEBPACK_IMPORTED_MODULE_5__["Http"].Request('GET', "https://kitaablu.com/api/v1/company/".concat(cin)));
 
         case 5:
           props.cinData = _context.sent;
           _context.next = 8;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_src_Services_API_Http__WEBPACK_IMPORTED_MODULE_6__["Http"].Request('GET', "https://kitaablu.com/api/v1/company", {
-            roc_code: lodash__WEBPACK_IMPORTED_MODULE_3___default.a.get(props, 'cinData.roc_code', undefined),
-            "class": lodash__WEBPACK_IMPORTED_MODULE_3___default.a.get(props, 'cinData.class', undefined),
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_src_Services_API_Http__WEBPACK_IMPORTED_MODULE_5__["Http"].Request('GET', "https://kitaablu.com/api/v1/company", {
+            roc_code: lodash__WEBPACK_IMPORTED_MODULE_2___default.a.get(props, 'cinData.roc_code', undefined),
+            "class": lodash__WEBPACK_IMPORTED_MODULE_2___default.a.get(props, 'cinData.class', undefined),
             limit: 100
           }));
 
@@ -71217,7 +71202,7 @@ Home.getInitialProps = function _callee(ctx) {
 // }
 
 
-var Extended = Object(_server_i18n__WEBPACK_IMPORTED_MODULE_7__["withTranslation"])("common")(Home);
+var Extended = Object(_server_i18n__WEBPACK_IMPORTED_MODULE_6__["withTranslation"])("common")(Home);
 /* harmony default export */ __webpack_exports__["default"] = (Extended);
 
 /***/ }),
@@ -71401,6 +71386,110 @@ var Button = function Button(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Button */ "./src/Components/Basic/Button/index.tsx");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Button", function() { return _Button__WEBPACK_IMPORTED_MODULE_0__["Button"]; });
+
+
+
+/***/ }),
+
+/***/ "./src/Components/EntityUpdate/index.tsx":
+/*!***********************************************!*\
+  !*** ./src/Components/EntityUpdate/index.tsx ***!
+  \***********************************************/
+/*! exports provided: EntityUpdate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EntityUpdate", function() { return EntityUpdate; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../src/Services/API/Http */ "./src/Services/API/Http/index.ts");
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
+
+
+
+var EntityUpdate = function EntityUpdate(_ref) {
+  var lastUpdatedAt = _ref.lastUpdatedAt,
+      entityType = _ref.entityType,
+      entityId = _ref.entityId;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      showAlert = _useState[0],
+      updateShowAlert = _useState[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    /* tslint:disable-next-line */
+    $(function () {
+      /* tslint:disable-next-line */
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+    $('[data-toggle="tooltip"]').tooltip({
+      trigger: 'hover'
+    });
+  });
+  var entityUpdateAllowed = moment__WEBPACK_IMPORTED_MODULE_2___default()().diff(moment__WEBPACK_IMPORTED_MODULE_2___default()(lastUpdatedAt), 'days') > 7;
+
+  var handleClick = function handleClick() {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function handleClick$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_src_Services_API_Http__WEBPACK_IMPORTED_MODULE_3__["Http"].Request('POST', "https://kitaablu.com/api/v1/entity/".concat(entityType, "/update/").concat(entityId)));
+
+          case 3:
+            updateShowAlert(true);
+            setTimeout(function () {
+              updateShowAlert(false);
+            }, 4000);
+            _context.next = 9;
+            break;
+
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context["catch"](0);
+
+          case 9:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, null, null, [[0, 7]], Promise);
+  };
+
+  return __jsx("div", {
+    className: "mt-3"
+  }, __jsx("div", {
+    className: "tool-tip",
+    "data-toggle": "tooltip",
+    "data-placement": "right",
+    title: entityUpdateAllowed ? "Click here to raise an updation request" : "Information is already upto date, cannot raise request"
+  }, __jsx("button", {
+    onClick: handleClick,
+    disabled: !entityUpdateAllowed,
+    type: "button",
+    className: "btn btn-secondary btn-sm btn-block"
+  }, "Request Data Updation")), __jsx("div", {
+    className: "mt-2 ml-1"
+  }, __jsx("div", null, "Info last updated on "), __jsx("div", null, moment__WEBPACK_IMPORTED_MODULE_2___default()(lastUpdatedAt).format("MMMM Do, YYYY"))), showAlert && __jsx("div", {
+    className: "mt-2 alert alert-warning alert-dismissible fade show",
+    role: "alert"
+  }, __jsx("strong", null, "Request Raised Successfully!"), " We will try to update the data as soon as possible, Kindly check after few minutes.", __jsx("button", {
+    type: "button",
+    className: "close",
+    "data-dismiss": "alert",
+    "aria-label": "Close"
+  }, __jsx("span", {
+    "aria-hidden": "true"
+  }, "\xD7"))));
+};
 
 
 
@@ -71736,7 +71825,7 @@ var Navbar = function Navbar() {
 /*!*********************************!*\
   !*** ./src/Components/index.ts ***!
   \*********************************/
-/*! exports provided: Layout, Navbar, Footer, Heading, LocaleButton, AsyncTypeahead */
+/*! exports provided: Layout, Navbar, Footer, Heading, LocaleButton, AsyncTypeahead, EntityUpdate */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -71758,6 +71847,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony import */ var _AsyncTypeahead__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AsyncTypeahead */ "./src/Components/AsyncTypeahead/index.tsx");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AsyncTypeahead", function() { return _AsyncTypeahead__WEBPACK_IMPORTED_MODULE_5__["AsyncTypeahead"]; });
+
+/* harmony import */ var _EntityUpdate__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./EntityUpdate */ "./src/Components/EntityUpdate/index.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EntityUpdate", function() { return _EntityUpdate__WEBPACK_IMPORTED_MODULE_6__["EntityUpdate"]; });
+
 
 
 

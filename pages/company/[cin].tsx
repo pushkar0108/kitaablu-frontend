@@ -1,5 +1,5 @@
 // #region Global Imports
-import * as React from "react";
+import React, { useEffect } from "react";
 import MOMENT from "moment";
 import _ from "lodash";
 import { NextPage, GetServerSideProps } from "next";
@@ -24,7 +24,7 @@ import {
 } from "@Styled/Home";
 import { IStore } from "@Redux/IStore";
 import { HomeActions } from "@Actions";
-import { Heading, LocaleButton, Layout } from "@Components";
+import { Heading, LocaleButton, Layout, EntityUpdate } from "@Components";
 // #endregion Local Imports
 
 // #region Interface Imports
@@ -145,16 +145,6 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
         }
     ];
 
-    const renderLocaleButtons = (activeLanguage: string) =>
-        ["en", "es", "tr"].map(lang => (
-            <LocaleButton
-                key={lang}
-                lang={lang}
-                isActive={activeLanguage === lang}
-                onClick={() => i18n.changeLanguage(lang)}
-            />
-        ));
-    
     const companyName = details["Company Name"] || details["LLP Name"];
     const SEO = {
         title: `${companyName}, ${details["CIN"]} - Company, charges, directors, CIN, DIN and contact details _ Kitaablu`,
@@ -179,12 +169,12 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
                         {/* <a className="list-group-item list-group-item-action" href="#location">Location on Maps</a> */}
                         <a className="list-group-item list-group-item-action" href="#similarCompanies">Similar Companies</a>
                     </div>
-                    <div className="mt-2 ml-1">
-                        <div>Info last updated on </div>
-                        <div>{MOMENT(cinData.updated_at).format("MMMM Do, YYYY")}</div>
-                    </div>
+                    <EntityUpdate 
+                        lastUpdatedAt = {cinData.updated_at}
+                        entityType = "1"
+                        entityId = {details["CIN"]}
+                    />
                 </div>
-                
             }
         >
             <NextSeo

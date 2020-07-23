@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -2082,6 +2082,88 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/Components/EntityUpdate/index.tsx":
+/*!***********************************************!*\
+  !*** ./src/Components/EntityUpdate/index.tsx ***!
+  \***********************************************/
+/*! exports provided: EntityUpdate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EntityUpdate", function() { return EntityUpdate; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "moment");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../src/Services/API/Http */ "./src/Services/API/Http/index.ts");
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+const EntityUpdate = ({
+  lastUpdatedAt,
+  entityType,
+  entityId
+}) => {
+  const {
+    0: showAlert,
+    1: updateShowAlert
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    /* tslint:disable-next-line */
+    $(function () {
+      /* tslint:disable-next-line */
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+    $('[data-toggle="tooltip"]').tooltip({
+      trigger: 'hover'
+    });
+  });
+  const entityUpdateAllowed = moment__WEBPACK_IMPORTED_MODULE_1___default()().diff(moment__WEBPACK_IMPORTED_MODULE_1___default()(lastUpdatedAt), 'days') > 7;
+
+  const handleClick = async () => {
+    try {
+      await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_2__["Http"].Request('POST', `https://kitaablu.com/api/v1/entity/${entityType}/update/${entityId}`);
+      updateShowAlert(true);
+      setTimeout(() => {
+        updateShowAlert(false);
+      }, 4000);
+    } catch (error) {}
+  };
+
+  return __jsx("div", {
+    className: "mt-3"
+  }, __jsx("div", {
+    className: "tool-tip",
+    "data-toggle": "tooltip",
+    "data-placement": "right",
+    title: entityUpdateAllowed ? "Click here to raise an updation request" : "Information is already upto date, cannot raise request"
+  }, __jsx("button", {
+    onClick: handleClick,
+    disabled: !entityUpdateAllowed,
+    type: "button",
+    className: "btn btn-secondary btn-sm btn-block"
+  }, "Request Data Updation")), __jsx("div", {
+    className: "mt-2 ml-1"
+  }, __jsx("div", null, "Info last updated on "), __jsx("div", null, moment__WEBPACK_IMPORTED_MODULE_1___default()(lastUpdatedAt).format("MMMM Do, YYYY"))), showAlert && __jsx("div", {
+    className: "mt-2 alert alert-warning alert-dismissible fade show",
+    role: "alert"
+  }, __jsx("strong", null, "Request Raised Successfully!"), " We will try to update the data as soon as possible, Kindly check after few minutes.", __jsx("button", {
+    type: "button",
+    className: "close",
+    "data-dismiss": "alert",
+    "aria-label": "Close"
+  }, __jsx("span", {
+    "aria-hidden": "true"
+  }, "\xD7"))));
+};
+
+
+
+/***/ }),
+
 /***/ "./src/Components/Footer/index.tsx":
 /*!*****************************************!*\
   !*** ./src/Components/Footer/index.tsx ***!
@@ -2425,7 +2507,7 @@ const Navbar = () => {
 /*!*********************************!*\
   !*** ./src/Components/index.ts ***!
   \*********************************/
-/*! exports provided: Layout, Navbar, Footer, Heading, LocaleButton, AsyncTypeahead */
+/*! exports provided: Layout, Navbar, Footer, Heading, LocaleButton, AsyncTypeahead, EntityUpdate */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2447,6 +2529,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony import */ var _AsyncTypeahead__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AsyncTypeahead */ "./src/Components/AsyncTypeahead/index.tsx");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AsyncTypeahead", function() { return _AsyncTypeahead__WEBPACK_IMPORTED_MODULE_5__["AsyncTypeahead"]; });
+
+/* harmony import */ var _EntityUpdate__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./EntityUpdate */ "./src/Components/EntityUpdate/index.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EntityUpdate", function() { return _EntityUpdate__WEBPACK_IMPORTED_MODULE_6__["EntityUpdate"]; });
+
 
 
 
@@ -2680,7 +2766,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!************************************!*\
   !*** multi ./pages/home/index.tsx ***!
   \************************************/
@@ -2700,6 +2786,17 @@ module.exports = __webpack_require__(/*! /Users/pushkargoel/Myapps/next-boilerpl
 /***/ (function(module, exports) {
 
 module.exports = require("isomorphic-unfetch");
+
+/***/ }),
+
+/***/ "moment":
+/*!*************************!*\
+  !*** external "moment" ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("moment");
 
 /***/ }),
 

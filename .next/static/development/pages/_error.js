@@ -17012,7 +17012,7 @@ var appWithTranslation = NextI18NextInstance.appWithTranslation,
 
 /***/ }),
 
-/***/ 4:
+/***/ 6:
 /*!******************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F_error&absolutePagePath=%2FUsers%2Fpushkargoel%2FMyapps%2Fnext-boilerplate%2Fpages%2F_error%2Findex.tsx ***!
   \******************************************************************************************************************************************************/
@@ -17035,5 +17035,5 @@ module.exports = dll_b9380c54b6aeb86e51e7;
 
 /***/ })
 
-},[[4,"static/runtime/webpack.js"]]]);
+},[[6,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=_error.js.map

@@ -1779,20 +1779,17 @@ module.exports = _typeof;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "moment");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "lodash");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var next_seo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next-seo */ "next-seo");
-/* harmony import */ var next_seo__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_seo__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../src/Services/API/Http */ "./src/Services/API/Http/index.ts");
-/* harmony import */ var _server_i18n__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../server/i18n */ "./server/i18n.ts");
-/* harmony import */ var _src_Components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../src/Components */ "./src/Components/index.ts");
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0__["createElement"];
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_seo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next-seo */ "next-seo");
+/* harmony import */ var next_seo__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_seo__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../src/Services/API/Http */ "./src/Services/API/Http/index.ts");
+/* harmony import */ var _server_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../server/i18n */ "./server/i18n.ts");
+/* harmony import */ var _src_Components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../src/Components */ "./src/Components/index.ts");
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 // #region Global Imports
-
 
 
 
@@ -1812,7 +1809,7 @@ const Home = ({
   similarCompanies = []
 }) => {
   if (!cinData) {
-    return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_7__["Layout"], null, __jsx("h1", {
+    return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_6__["Layout"], null, __jsx("h1", {
       className: "my-4"
     }, __jsx("div", null, "NO DATA FOUND FOR CIN.")), __jsx("div", null, "We will try to update the dataset with the given CIN"), __jsx("div", null, "Please try again later after sometime"));
   }
@@ -1888,20 +1885,12 @@ const Home = ({
     title: "LLP Status",
     value: details["LLP Status"]
   }];
-
-  const renderLocaleButtons = activeLanguage => ["en", "es", "tr"].map(lang => __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_7__["LocaleButton"], {
-    key: lang,
-    lang: lang,
-    isActive: activeLanguage === lang,
-    onClick: () => i18n.changeLanguage(lang)
-  }));
-
   const companyName = details["Company Name"] || details["LLP Name"];
   const SEO = {
     title: `${companyName}, ${details["CIN"]} - Company, charges, directors, CIN, DIN and contact details _ Kitaablu`,
     description: `Company information, business information, directors/partners details and director/partners contact information of ${companyName}, ${details["CIN"]}`
   };
-  return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_7__["Layout"], {
+  return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_6__["Layout"], {
     containerClass: "container-fluid",
     gridSize: {
       left: 'col-md-2',
@@ -1931,10 +1920,12 @@ const Home = ({
     }, "Charges"), __jsx("a", {
       className: "list-group-item list-group-item-action",
       href: "#similarCompanies"
-    }, "Similar Companies")), __jsx("div", {
-      className: "mt-2 ml-1"
-    }, __jsx("div", null, "Info last updated on "), __jsx("div", null, moment__WEBPACK_IMPORTED_MODULE_1___default()(cinData.updated_at).format("MMMM Do, YYYY"))))
-  }, __jsx(next_seo__WEBPACK_IMPORTED_MODULE_3__["NextSeo"], {
+    }, "Similar Companies")), __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_6__["EntityUpdate"], {
+      lastUpdatedAt: cinData.updated_at,
+      entityType: "1",
+      entityId: details["CIN"]
+    }))
+  }, __jsx(next_seo__WEBPACK_IMPORTED_MODULE_2__["NextSeo"], {
     title: SEO.title,
     description: SEO.description
   }), __jsx("h1", {
@@ -1991,7 +1982,7 @@ const Home = ({
     return __jsx("tr", {
       key: `director_${director[0]}`,
       className: "text-semibold text-reagent-gray"
-    }, __jsx("td", null, index + 1), __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_4___default.a, {
+    }, __jsx("td", null, index + 1), __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
       href: "/director/[din]",
       as: `/director/${director[0]}`
     }, __jsx("a", null, director[0]))), __jsx("td", null, director[6]), __jsx("td", null, director[7]), __jsx("td", null, director[8]), __jsx("td", null, director[6]));
@@ -2054,7 +2045,7 @@ const Home = ({
     return __jsx("tr", {
       key: `director_${company.CIN}`,
       className: "text-semibold text-reagent-gray"
-    }, __jsx("td", null, index + 1), __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_4___default.a, {
+    }, __jsx("td", null, index + 1), __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
       href: "/company/[cin]",
       as: `/company/${company.CIN}`
     }, __jsx("a", null, company.CIN))), __jsx("td", null, company.company_name));
@@ -2071,10 +2062,10 @@ Home.getInitialProps = async ctx => {
   };
 
   try {
-    props.cinData = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_5__["Http"].Request('GET', `https://kitaablu.com/api/v1/company/${cin}`);
-    props.similarCompanies = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_5__["Http"].Request('GET', `https://kitaablu.com/api/v1/company`, {
-      roc_code: lodash__WEBPACK_IMPORTED_MODULE_2___default.a.get(props, 'cinData.roc_code', undefined),
-      class: lodash__WEBPACK_IMPORTED_MODULE_2___default.a.get(props, 'cinData.class', undefined),
+    props.cinData = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__["Http"].Request('GET', `https://kitaablu.com/api/v1/company/${cin}`);
+    props.similarCompanies = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__["Http"].Request('GET', `https://kitaablu.com/api/v1/company`, {
+      roc_code: lodash__WEBPACK_IMPORTED_MODULE_1___default.a.get(props, 'cinData.roc_code', undefined),
+      class: lodash__WEBPACK_IMPORTED_MODULE_1___default.a.get(props, 'cinData.class', undefined),
       limit: 100
     });
   } catch (error) {
@@ -2094,7 +2085,7 @@ Home.getInitialProps = async ctx => {
 // }
 
 
-const Extended = Object(_server_i18n__WEBPACK_IMPORTED_MODULE_6__["withTranslation"])("common")(Home);
+const Extended = Object(_server_i18n__WEBPACK_IMPORTED_MODULE_5__["withTranslation"])("common")(Home);
 /* harmony default export */ __webpack_exports__["default"] = (Extended);
 
 /***/ }),
@@ -2251,6 +2242,88 @@ const Button = props => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Button */ "./src/Components/Basic/Button/index.tsx");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Button", function() { return _Button__WEBPACK_IMPORTED_MODULE_0__["Button"]; });
+
+
+
+/***/ }),
+
+/***/ "./src/Components/EntityUpdate/index.tsx":
+/*!***********************************************!*\
+  !*** ./src/Components/EntityUpdate/index.tsx ***!
+  \***********************************************/
+/*! exports provided: EntityUpdate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EntityUpdate", function() { return EntityUpdate; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "moment");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../src/Services/API/Http */ "./src/Services/API/Http/index.ts");
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+const EntityUpdate = ({
+  lastUpdatedAt,
+  entityType,
+  entityId
+}) => {
+  const {
+    0: showAlert,
+    1: updateShowAlert
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    /* tslint:disable-next-line */
+    $(function () {
+      /* tslint:disable-next-line */
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+    $('[data-toggle="tooltip"]').tooltip({
+      trigger: 'hover'
+    });
+  });
+  const entityUpdateAllowed = moment__WEBPACK_IMPORTED_MODULE_1___default()().diff(moment__WEBPACK_IMPORTED_MODULE_1___default()(lastUpdatedAt), 'days') > 7;
+
+  const handleClick = async () => {
+    try {
+      await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_2__["Http"].Request('POST', `https://kitaablu.com/api/v1/entity/${entityType}/update/${entityId}`);
+      updateShowAlert(true);
+      setTimeout(() => {
+        updateShowAlert(false);
+      }, 4000);
+    } catch (error) {}
+  };
+
+  return __jsx("div", {
+    className: "mt-3"
+  }, __jsx("div", {
+    className: "tool-tip",
+    "data-toggle": "tooltip",
+    "data-placement": "right",
+    title: entityUpdateAllowed ? "Click here to raise an updation request" : "Information is already upto date, cannot raise request"
+  }, __jsx("button", {
+    onClick: handleClick,
+    disabled: !entityUpdateAllowed,
+    type: "button",
+    className: "btn btn-secondary btn-sm btn-block"
+  }, "Request Data Updation")), __jsx("div", {
+    className: "mt-2 ml-1"
+  }, __jsx("div", null, "Info last updated on "), __jsx("div", null, moment__WEBPACK_IMPORTED_MODULE_1___default()(lastUpdatedAt).format("MMMM Do, YYYY"))), showAlert && __jsx("div", {
+    className: "mt-2 alert alert-warning alert-dismissible fade show",
+    role: "alert"
+  }, __jsx("strong", null, "Request Raised Successfully!"), " We will try to update the data as soon as possible, Kindly check after few minutes.", __jsx("button", {
+    type: "button",
+    className: "close",
+    "data-dismiss": "alert",
+    "aria-label": "Close"
+  }, __jsx("span", {
+    "aria-hidden": "true"
+  }, "\xD7"))));
+};
 
 
 
@@ -2599,7 +2672,7 @@ const Navbar = () => {
 /*!*********************************!*\
   !*** ./src/Components/index.ts ***!
   \*********************************/
-/*! exports provided: Layout, Navbar, Footer, Heading, LocaleButton, AsyncTypeahead */
+/*! exports provided: Layout, Navbar, Footer, Heading, LocaleButton, AsyncTypeahead, EntityUpdate */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2621,6 +2694,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony import */ var _AsyncTypeahead__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AsyncTypeahead */ "./src/Components/AsyncTypeahead/index.tsx");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AsyncTypeahead", function() { return _AsyncTypeahead__WEBPACK_IMPORTED_MODULE_5__["AsyncTypeahead"]; });
+
+/* harmony import */ var _EntityUpdate__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./EntityUpdate */ "./src/Components/EntityUpdate/index.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EntityUpdate", function() { return _EntityUpdate__WEBPACK_IMPORTED_MODULE_6__["EntityUpdate"]; });
+
 
 
 

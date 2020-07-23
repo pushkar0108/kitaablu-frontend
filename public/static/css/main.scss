@@ -19,3 +19,7 @@ body {
 input {
     font-size: .95rem !important;
 }
+
+.tool-tip [disabled] {
+    pointer-events: none;
+}

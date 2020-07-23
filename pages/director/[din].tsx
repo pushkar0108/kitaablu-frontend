@@ -22,7 +22,7 @@ import {
 } from "@Styled/Home";
 import { IStore } from "@Redux/IStore";
 import { HomeActions } from "@Actions";
-import { Heading, LocaleButton, Layout } from "@Components";
+import { Heading, LocaleButton, Layout, EntityUpdate } from "@Components";
 // #endregion Local Imports
 
 // #region Interface Imports
@@ -104,10 +104,17 @@ const Home: NextPage<IDirectorPage.IProps, IDirectorPage.InitialProps> = ({
                 right: 'col-lg-3 col-md-4'
             }}
             leftNav = {
-                <div id="list-example" className="list-group sticky-top" style={{ top: '100px' }}>
+                <div className="sticky-top" style={{ top: '100px' }}>
+                    <div id="list-example" className="list-group shadow-sm bg-white rounded">
                     <a className="list-group-item list-group-item-action" href="#basicInfo">Basic Information</a>
                     <a className="list-group-item list-group-item-action" href="#companyList">List Of Companies</a>
                     <a className="list-group-item list-group-item-action" href="#llpList">List Of LLPs</a>
+                    </div>
+                    <EntityUpdate
+                        lastUpdatedAt = {dinData.updated_at}
+                        entityType = "2"
+                        entityId = {dinData["DIN"]}
+                    />
                 </div>
             }
         >
