@@ -344,4 +344,20 @@
       <loc>https://kitaablu.com/static/sitemaps/directors/sitemap_49.xml</loc>
       <lastmod>2020-07-14T00:22:56+05:30</lastmod>
     </sitemap>
+    <sitemap>
+      <loc>https://kitaablu.com/static/sitemaps/ifsc/sitemap_1.xml</loc>
+      <lastmod>2020-07-25T01:31:13+05:30</lastmod>
+    </sitemap>
+    <sitemap>
+      <loc>https://kitaablu.com/static/sitemaps/ifsc/sitemap_2.xml</loc>
+      <lastmod>2020-07-25T01:31:13+05:30</lastmod>
+    </sitemap>
+    <sitemap>
+      <loc>https://kitaablu.com/static/sitemaps/ifsc/sitemap_3.xml</loc>
+      <lastmod>2020-07-25T01:31:13+05:30</lastmod>
+    </sitemap>
+    <sitemap>
+      <loc>https://kitaablu.com/static/sitemaps/ifsc/sitemap_4.xml</loc>
+      <lastmod>2020-07-25T01:31:13+05:30</lastmod>
+    </sitemap>
 </sitemapindex>
