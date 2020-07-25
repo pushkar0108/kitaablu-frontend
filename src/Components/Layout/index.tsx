@@ -45,7 +45,19 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
             router.push('/director/[din]', `/director/${din}`);
             setTimeout(() => {
                 window.scrollTo(0, 0);
-                (document.getElementById('cinInput') as HTMLInputElement).value = '';
+                (document.getElementById('dinInput') as HTMLInputElement).value = '';
+            }, 1000);
+        }
+    };
+
+    const handleIFSCSearchClick = e => {
+        e.preventDefault();
+        let ifsc = (document.getElementById('ifscInput') as HTMLInputElement).value;
+        if (ifsc) {
+            router.push('/ifsc/[ifsc]', `/ifsc/${ifsc}`);
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+                (document.getElementById('ifscInput') as HTMLInputElement).value = '';
             }, 1000);
         }
     };
@@ -77,6 +89,11 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
                                 <a className="nav-link" href="#">Companies</a>
                             </Link>
                         </li>
+                        {/* <li className="nav-item">
+                            <Link href="/ifsc" as="/ifsc">
+                                <a className="nav-link" href="#">IFSC Codes</a>
+                            </Link>
+                        </li> */}
                         {/* <li className="nav-item">
                             <Link href="/director" as="/director">
                                 <a className="nav-link" href="#">Directors</a>
@@ -145,6 +162,23 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
                                         type='director'
                                         placeholder="Enter Name ..."
                                     />
+                                </div>
+                            </div>
+                        </div>
+
+                        <h5 className="mt-4">Search For IFSC</h5>
+                        <div className="card shadow-sm bg-white rounded">
+                            <div className="card-body">
+                                <div className="input-group">
+                                    <input id="ifscInput" type="text" className="form-control" placeholder="Enter IFSC Code" />
+                                    <span className="input-group-btn">
+                                        <button
+                                            onClick={handleIFSCSearchClick}
+                                            className="btn btn-secondary"
+                                            type="button">
+                                            Go!
+                                    </button>
+                                    </span>
                                 </div>
                             </div>
                         </div>

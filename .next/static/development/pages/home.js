@@ -56030,6 +56030,8 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 var EntityUpdate = function EntityUpdate(_ref) {
   var lastUpdatedAt = _ref.lastUpdatedAt,
+      _ref$hideUpdateButton = _ref.hideUpdateButton,
+      hideUpdateButton = _ref$hideUpdateButton === void 0 ? false : _ref$hideUpdateButton,
       entityType = _ref.entityType,
       entityId = _ref.entityId;
 
@@ -56085,7 +56087,7 @@ var EntityUpdate = function EntityUpdate(_ref) {
     "data-toggle": "tooltip",
     "data-placement": "right",
     title: entityUpdateAllowed ? "Click here to raise an updation request" : "Information is already upto date, cannot raise request"
-  }, __jsx("button", {
+  }, !hideUpdateButton && __jsx("button", {
     onClick: handleClick,
     disabled: !entityUpdateAllowed,
     type: "button",
@@ -56095,14 +56097,7 @@ var EntityUpdate = function EntityUpdate(_ref) {
   }, __jsx("div", null, "Info last updated on "), __jsx("div", null, moment__WEBPACK_IMPORTED_MODULE_2___default()(lastUpdatedAt).format("MMMM Do, YYYY"))), showAlert && __jsx("div", {
     className: "mt-2 alert alert-warning alert-dismissible fade show",
     role: "alert"
-  }, __jsx("strong", null, "Request Raised Successfully!"), " We will try to update the data as soon as possible, Kindly check after few minutes.", __jsx("button", {
-    type: "button",
-    className: "close",
-    "data-dismiss": "alert",
-    "aria-label": "Close"
-  }, __jsx("span", {
-    "aria-hidden": "true"
-  }, "\xD7"))));
+  }, __jsx("strong", null, "Request Raised Successfully!"), " We will try to update the data as soon as possible, Kindly check after few minutes."));
 };
 
 
@@ -56242,7 +56237,20 @@ var Layout = function Layout(_ref) {
       router.push('/director/[din]', "/director/".concat(din));
       setTimeout(function () {
         window.scrollTo(0, 0);
-        document.getElementById('cinInput').value = '';
+        document.getElementById('dinInput').value = '';
+      }, 1000);
+    }
+  };
+
+  var handleIFSCSearchClick = function handleIFSCSearchClick(e) {
+    e.preventDefault();
+    var ifsc = document.getElementById('ifscInput').value;
+
+    if (ifsc) {
+      router.push('/ifsc/[ifsc]', "/ifsc/".concat(ifsc));
+      setTimeout(function () {
+        window.scrollTo(0, 0);
+        document.getElementById('ifscInput').value = '';
       }, 1000);
     }
   };
@@ -56358,7 +56366,26 @@ var Layout = function Layout(_ref) {
   }, __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], {
     type: "director",
     placeholder: "Enter Name ..."
-  })))))))), __jsx("footer", {
+  })))), __jsx("h5", {
+    className: "mt-4"
+  }, "Search For IFSC"), __jsx("div", {
+    className: "card shadow-sm bg-white rounded"
+  }, __jsx("div", {
+    className: "card-body"
+  }, __jsx("div", {
+    className: "input-group"
+  }, __jsx("input", {
+    id: "ifscInput",
+    type: "text",
+    className: "form-control",
+    placeholder: "Enter IFSC Code"
+  }), __jsx("span", {
+    className: "input-group-btn"
+  }, __jsx("button", {
+    onClick: handleIFSCSearchClick,
+    className: "btn btn-secondary",
+    type: "button"
+  }, "Go!"))))))))), __jsx("footer", {
     className: "py-5 bg-dark"
   }, __jsx("div", {
     className: "container"
@@ -56754,7 +56781,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /*!**************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fhome&absolutePagePath=%2FUsers%2Fpushkargoel%2FMyapps%2Fnext-boilerplate%2Fpages%2Fhome%2Findex.tsx ***!
   \**************************************************************************************************************************************************/
@@ -56777,5 +56804,5 @@ module.exports = dll_b9380c54b6aeb86e51e7;
 
 /***/ })
 
-},[[4,"static/runtime/webpack.js","styles"]]]);
+},[[5,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=home.js.map

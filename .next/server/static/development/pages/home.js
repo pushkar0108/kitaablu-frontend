@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -2104,6 +2104,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 const EntityUpdate = ({
   lastUpdatedAt,
+  hideUpdateButton = false,
   entityType,
   entityId
 }) => {
@@ -2140,7 +2141,7 @@ const EntityUpdate = ({
     "data-toggle": "tooltip",
     "data-placement": "right",
     title: entityUpdateAllowed ? "Click here to raise an updation request" : "Information is already upto date, cannot raise request"
-  }, __jsx("button", {
+  }, !hideUpdateButton && __jsx("button", {
     onClick: handleClick,
     disabled: !entityUpdateAllowed,
     type: "button",
@@ -2150,14 +2151,7 @@ const EntityUpdate = ({
   }, __jsx("div", null, "Info last updated on "), __jsx("div", null, moment__WEBPACK_IMPORTED_MODULE_1___default()(lastUpdatedAt).format("MMMM Do, YYYY"))), showAlert && __jsx("div", {
     className: "mt-2 alert alert-warning alert-dismissible fade show",
     role: "alert"
-  }, __jsx("strong", null, "Request Raised Successfully!"), " We will try to update the data as soon as possible, Kindly check after few minutes.", __jsx("button", {
-    type: "button",
-    className: "close",
-    "data-dismiss": "alert",
-    "aria-label": "Close"
-  }, __jsx("span", {
-    "aria-hidden": "true"
-  }, "\xD7"))));
+  }, __jsx("strong", null, "Request Raised Successfully!"), " We will try to update the data as soon as possible, Kindly check after few minutes."));
 };
 
 
@@ -2309,7 +2303,20 @@ const Layout = ({
       router.push('/director/[din]', `/director/${din}`);
       setTimeout(() => {
         window.scrollTo(0, 0);
-        document.getElementById('cinInput').value = '';
+        document.getElementById('dinInput').value = '';
+      }, 1000);
+    }
+  };
+
+  const handleIFSCSearchClick = e => {
+    e.preventDefault();
+    let ifsc = document.getElementById('ifscInput').value;
+
+    if (ifsc) {
+      router.push('/ifsc/[ifsc]', `/ifsc/${ifsc}`);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        document.getElementById('ifscInput').value = '';
       }, 1000);
     }
   };
@@ -2425,7 +2432,26 @@ const Layout = ({
   }, __jsx(___WEBPACK_IMPORTED_MODULE_3__["AsyncTypeahead"], {
     type: "director",
     placeholder: "Enter Name ..."
-  })))))))), __jsx("footer", {
+  })))), __jsx("h5", {
+    className: "mt-4"
+  }, "Search For IFSC"), __jsx("div", {
+    className: "card shadow-sm bg-white rounded"
+  }, __jsx("div", {
+    className: "card-body"
+  }, __jsx("div", {
+    className: "input-group"
+  }, __jsx("input", {
+    id: "ifscInput",
+    type: "text",
+    className: "form-control",
+    placeholder: "Enter IFSC Code"
+  }), __jsx("span", {
+    className: "input-group-btn"
+  }, __jsx("button", {
+    onClick: handleIFSCSearchClick,
+    className: "btn btn-secondary",
+    type: "button"
+  }, "Go!"))))))))), __jsx("footer", {
     className: "py-5 bg-dark"
   }, __jsx("div", {
     className: "container"
@@ -2766,7 +2792,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /*!************************************!*\
   !*** multi ./pages/home/index.tsx ***!
   \************************************/
