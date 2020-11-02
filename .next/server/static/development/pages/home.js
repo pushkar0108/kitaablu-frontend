@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -2792,14 +2792,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 5:
+/***/ 4:
 /*!************************************!*\
   !*** multi ./pages/home/index.tsx ***!
   \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/pushkargoel/Myapps/next-boilerplate/pages/home/index.tsx */"./pages/home/index.tsx");
+module.exports = __webpack_require__(/*! /Users/pushkar.goel/Myapps/next-boilerplate/pages/home/index.tsx */"./pages/home/index.tsx");
 
 
 /***/ }),

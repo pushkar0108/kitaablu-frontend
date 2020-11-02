@@ -1,0 +1,1 @@
+{"ast":null,"code":"// #region Global Imports\n// #endregion Global Imports\nconst theme = {\n  colors: {\n    primary: \"#2c3e50\"\n  }\n};\nexport { theme };","map":null,"metadata":{},"sourceType":"module"}
