@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { IAsyncTypeahead } from "./AsyncTypeahead";
 import { Http } from '../../Services/API/Http';
 
-const SEARCH_URI = 'https://kitaablu.com/api/v1/search/';
+const SEARCH_URI = 'v1/search/';
 const CustomAsyncTypeahead: React.FunctionComponent<IAsyncTypeahead.IProps> = (props): JSX.Element => {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);

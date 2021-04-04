@@ -2,6 +2,7 @@
 import "isomorphic-unfetch";
 import getConfig from "next/config";
 import { stringify } from "query-string";
+import { isServer } from '../Helper';
 // #endregion Global Imports
 
 // #region Interface Imports
@@ -12,7 +13,22 @@ const {
     publicRuntimeConfig: { API_KEY, API_URL },
 } = getConfig();
 
-const BaseUrl = `${API_URL}/api`;
+const BASE_URL_CONFIG = {
+    PRODUCTION: {
+        server: "http://localhost:4000/api/",
+        client: "https://kitaablu.com/api/"
+    },
+    DEVELOPMENT: {
+        server: "https://kitaablu.com/api/",
+        client: "https://kitaablu.com/api/"
+    }
+};
+
+const getBaseUrl = () => {
+    let env = process.env.NODE_ENV ? process.env.NODE_ENV.toUpperCase() : "DEVELOPMENT";
+    let config = BASE_URL_CONFIG[env];
+    return isServer() ? config.server : config.client;
+};
 
 export const Http = {
     Request: async <A>(
@@ -26,8 +42,7 @@ export const Http = {
                 ? `?${stringify({ ...params, api_key: API_KEY })}`
                 : "";
 
-            // fetch(`${BaseUrl}${url}${query}`, {
-            fetch(`${url}${query}`, {
+            fetch(`${getBaseUrl()}${url}${query}`, {
                 body: JSON.stringify(payload),
                 cache: "no-cache",
                 headers: {

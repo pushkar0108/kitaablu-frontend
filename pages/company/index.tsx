@@ -15,8 +15,6 @@ import { Http } from '../../src/Services/API/Http';
 
 import { ICompanyPage, ReduxNextPageContext } from "@Interfaces";
 
-const SEARCH_URI = 'https://kitaablu.com/api/v1/search/';
-
 const Home: NextPage<ICompanyPage.IProps, ICompanyPage.InitialProps> = ({
     t,
     i18n,
@@ -154,10 +152,10 @@ Home.getInitialProps = async (
     };
 
     try {
-        response.bannerDetails = await Http.Request('GET', `https://kitaablu.com/api/v1/company/banner`);
+        response.bannerDetails = await Http.Request('GET', `v1/company/banner`);
         response.companies = await Http.Request(
             'GET',
-            `https://kitaablu.com/api/v1/company`,
+            `v1/company`,
             {
                 doiDayDiff,
                 limit: 100

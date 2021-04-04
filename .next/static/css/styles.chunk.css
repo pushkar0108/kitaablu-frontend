@@ -7201,29 +7201,5 @@ input {
 .tool-tip [disabled] {
   pointer-events: none; }
 
-.title {
-  font-family: Arial, Helvetica, sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 1;
-  text-align: center; }
-  .title__back {
-    color: rgba(255, 255, 255, 0.15);
-    font-size: 140px;
-    font-weight: 800;
-    line-height: 86px; }
-  .title__front {
-    color: #ffffff;
-    font-size: 80px;
-    font-weight: 500;
-    position: absolute; }
-  .title--contact .title__back {
-    font-size: 70px; }
-  .title--contact .title__front {
-    font-size: 38px; }
-
 
 /*# sourceMappingURL=styles.chunk.css.map*/

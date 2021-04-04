@@ -368,8 +368,8 @@ Home.getInitialProps = async (
     };
 
     try {
-        props.cinData = await Http.Request('GET', `https://kitaablu.com/api/v1/company/${cin}`);
-        props.similarCompanies = await Http.Request('GET', `https://kitaablu.com/api/v1/company`, {
+        props.cinData = await Http.Request('GET', `v1/company/${cin}`);
+        props.similarCompanies = await Http.Request('GET', `v1/company`, {
             roc_code: _.get(props, 'cinData.roc_code', undefined),
             class: _.get(props, 'cinData.class', undefined),
             limit: 100

@@ -188,10 +188,10 @@ Home.getInitialProps = async (
     };
 
     try {
-        props.data = await Http.Request('GET', `https://kitaablu.com/api/v1/ifsc`, {
+        props.data = await Http.Request('GET', `v1/ifsc`, {
             ifsc
         });
-        props.similarData = await Http.Request('GET', `https://kitaablu.com/api/v1/ifsc`, {
+        props.similarData = await Http.Request('GET', `v1/ifsc`, {
             city: _.get(props, 'data.0.city', undefined),
             bank: _.get(props, 'data.0.bank', undefined),
             limit: 100

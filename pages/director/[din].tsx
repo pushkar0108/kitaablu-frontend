@@ -260,7 +260,7 @@ Home.getInitialProps = async (
     ctx: ReduxNextPageContext
 ): Promise<IDirectorPage.InitialProps> => {
     const { din } = ctx.query;
-    const dinData = await Http.Request('GET', `https://kitaablu.com/api/v1/director/${din}`);
+    const dinData = await Http.Request('GET', `v1/director/${din}`);
 
     await ctx.store.dispatch(
         HomeActions.GetApod({

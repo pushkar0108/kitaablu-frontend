@@ -25,7 +25,7 @@ const EntityUpdate: React.FunctionComponent<EntityUpdateProps> = ({
     const entityUpdateAllowed = MOMENT().diff(MOMENT(lastUpdatedAt), 'days') > 7;
     const handleClick = async () => {
         try {
-            await Http.Request('POST', `https://kitaablu.com/api/v1/entity/${entityType}/update/${entityId}`);
+            await Http.Request('POST', `v1/entity/${entityType}/update/${entityId}`);
             updateShowAlert(true);
             setTimeout(() => {
                 updateShowAlert(false);
