@@ -1,7 +1,7 @@
 module.exports =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
-/******/ 	var installedModules = require('../../../ssr-module-cache.js');
+/******/ 	var installedModules = require('../../../../ssr-module-cache.js');
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1768,10 +1768,10 @@ module.exports = _typeof;
 
 /***/ }),
 
-/***/ "./pages/home/index.tsx":
-/*!******************************!*\
-  !*** ./pages/home/index.tsx ***!
-  \******************************/
+/***/ "./pages/company/[cin].tsx":
+/*!*********************************!*\
+  !*** ./pages/company/[cin].tsx ***!
+  \*********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1779,16 +1779,22 @@ module.exports = _typeof;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "react-redux");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _server_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../server/i18n */ "./server/i18n.ts");
-/* harmony import */ var _src_Actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../src/Actions */ "./src/Actions/index.ts");
-/* harmony import */ var _src_Components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../src/Components */ "./src/Components/index.ts");
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0__["createElement"];
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_seo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next-seo */ "next-seo");
+/* harmony import */ var next_seo__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_seo__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../src/Services/API/Http */ "./src/Services/API/Http/index.ts");
+/* harmony import */ var _server_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../server/i18n */ "./server/i18n.ts");
+/* harmony import */ var _src_Components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../src/Components */ "./src/Components/index.ts");
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 // #region Global Imports
 
 
-// #endregion Global Imports
+
+
+ // #endregion Global Imports
 // #region Local Imports
 
 
@@ -1799,69 +1805,287 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0__["createElement"];
 const Home = ({
   t,
   i18n,
-  cinData
+  cinData,
+  similarCompanies = []
 }) => {
-  const home = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(state => state.home);
-  const dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
+  if (!cinData) {
+    return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_6__["Layout"], null, __jsx("h1", {
+      className: "my-4"
+    }, __jsx("div", null, "NO DATA FOUND FOR CIN.")), __jsx("div", null, "We will try to update the dataset with the given CIN"), __jsx("div", null, "Please try again later after sometime"));
+  }
 
-  const renderLocaleButtons = activeLanguage => ["en", "es", "tr"].map(lang => __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_4__["LocaleButton"], {
-    key: lang,
-    lang: lang,
-    isActive: activeLanguage === lang,
-    onClick: () => i18n.changeLanguage(lang)
-  }));
-
-  return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_4__["Layout"], null, __jsx("h1", {
+  const details = JSON.parse(cinData.data);
+  const refData = [{
+    title: "CIN",
+    value: details["CIN"]
+  }, {
+    title: "Company Name",
+    value: details["Company Name"]
+  }, {
+    title: "LLP Name",
+    value: details["LLP Name"]
+  }, {
+    title: "ROC Code",
+    value: details["ROC Code"]
+  }, {
+    title: "Registration Number",
+    value: details["Registration Number"]
+  }, {
+    title: "Company Category",
+    value: details["Company Category"]
+  }, {
+    title: "Company SubCategory",
+    value: details["Company SubCategory"]
+  }, {
+    title: "Class of Company",
+    value: details["Class of Company"]
+  }, {
+    title: "Authorised Capital(Rs)",
+    value: details["Authorised Capital(Rs)"]
+  }, {
+    title: "Paid up Capital(Rs)",
+    value: details["Paid up Capital(Rs)"]
+  }, {
+    title: "Number of Members(Applicable in case of company without Share Capital)",
+    value: details["Number of Members(Applicable in case of company without Share Capital)"]
+  }, {
+    title: "Number of Partners",
+    value: details["Number of Partners"]
+  }, {
+    title: "Number of Designated Partners",
+    value: details["Number of Designated Partners"]
+  }, {
+    title: "Date of Incorporation",
+    value: details["Date of Incorporation"]
+  }, {
+    title: "Registered Address",
+    value: details["Registered Address"]
+  }, {
+    title: "Address",
+    value: details["Address other than R/o where all or any books of account and papers are maintained"]
+  }, {
+    title: "Email Id",
+    value: details["Email Id"]
+  }, {
+    title: "Whether Listed or not",
+    value: details["Whether Listed or not"]
+  }, {
+    title: "Suspended at stock exchange",
+    value: details["Suspended at stock exchange"]
+  }, {
+    title: "Date of last AGM",
+    value: details["Date of last AGM"]
+  }, {
+    title: "Date of Balance Sheet",
+    value: details["Date of Balance Sheet"]
+  }, {
+    title: "Company Status(for efiling)",
+    value: details["Company Status(for efiling)"]
+  }, {
+    title: "LLP Status",
+    value: details["LLP Status"]
+  }];
+  const companyName = details["Company Name"] || details["LLP Name"];
+  const SEO = {
+    title: `${companyName}, ${details["CIN"]} - Company, charges, directors, CIN, DIN and contact details _ Kitaablu`,
+    description: `Company information, business information, directors/partners details and director/partners contact information of ${companyName}, ${details["CIN"]}`
+  };
+  return __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_6__["Layout"], {
+    containerClass: "container-fluid",
+    gridSize: {
+      left: 'col-md-2',
+      mid: 'col-lg-7 col-md-8',
+      right: 'col-lg-3 col-md-4'
+    },
+    leftNav: __jsx("div", {
+      className: "sticky-top",
+      style: {
+        top: '100px'
+      }
+    }, __jsx("div", {
+      id: "list-example",
+      className: "list-group shadow-sm bg-white rounded"
+    }, __jsx("a", {
+      className: "list-group-item list-group-item-action",
+      href: "#intro"
+    }, "Introduction"), __jsx("a", {
+      className: "list-group-item list-group-item-action",
+      href: "#basicInfo"
+    }, "Basic Information"), __jsx("a", {
+      className: "list-group-item list-group-item-action",
+      href: "#directors"
+    }, "Directors"), __jsx("a", {
+      className: "list-group-item list-group-item-action",
+      href: "#charges"
+    }, "Charges"), __jsx("a", {
+      className: "list-group-item list-group-item-action",
+      href: "#similarCompanies"
+    }, "Similar Companies")), __jsx(_src_Components__WEBPACK_IMPORTED_MODULE_6__["EntityUpdate"], {
+      lastUpdatedAt: cinData.updated_at,
+      entityType: "1",
+      entityId: details["CIN"]
+    }))
+  }, __jsx(next_seo__WEBPACK_IMPORTED_MODULE_2__["NextSeo"], {
+    title: SEO.title,
+    description: SEO.description
+  }), __jsx("h1", {
     className: "my-4"
-  }, __jsx("div", null, "Home")), __jsx("div", {
-    className: "card mb-4"
+  }, __jsx("small", null, details["CIN"]), __jsx("div", null, companyName)), __jsx("div", {
+    className: "card mb-4 shadow bg-white rounded",
+    id: "intro"
   }, __jsx("div", {
     className: "card-body"
-  }, __jsx("h2", {
-    className: "card-title"
-  }, "What we do?"), __jsx("p", {
-    className: "card-text"
-  }, "We are provider of commercial information and insight on businesses. The team have one goal - to be your sole resource for critical information. We gather data from a number of official sources and third parties to give you all the information you need, in one easy to use website."))), __jsx("div", {
-    className: "card mb-4"
+  }, __jsx("div", null, companyName, " is a ", details["Class of Company"], " incorporated on ", details["Date of Incorporation"], ". It is classified as ", details["Company SubCategory"], " and is registered at Registrar of Companies, ", details["ROC Code"], ". It's authorized share capital is INR ", details["Authorised Capital(Rs)"], " and paid up capital is INR ", details["Paid up Capital(Rs)"], ". It is a ", details["Whether Listed or not"], " company."), __jsx("div", null, "Corporate Identification Number(CIN) of ", companyName, " is ", details["CIN"], " and it's registration number is ", details["Registration Number"], ". Company can be contacted on email - ", details["Email Id"], " and registered address - ", details["Registered Address"], ". Current status of ", companyName, " is - ", details["Company Status(for efiling)"] || details["LLP Status"], "."), __jsx("div", null, "Director details of ", companyName, " can be found ", __jsx("a", {
+    href: "#directors"
+  }, "Here"), "."))), __jsx("h4", {
+    id: "basicInfo"
+  }, "Basic Information"), __jsx("div", {
+    className: "card mb-4 shadow bg-white rounded",
+    id: "basicInfo"
   }, __jsx("div", {
     className: "card-body"
-  }, __jsx("h2", {
-    className: "card-title"
-  }, "We have authentic dataset"), __jsx("p", {
-    className: "card-text"
-  }, "We have a continuously growing dataset with data of more than 20 Lakh companies and 45 Lakh directors."))), __jsx("div", {
-    className: "card mb-4"
+  }, __jsx("div", {
+    className: "table-responsive"
+  }, __jsx("table", {
+    className: "table table-hover"
+  }, __jsx("tbody", null, refData.filter(data => data.value).map(data => {
+    return __jsx("tr", {
+      key: data.title
+    }, __jsx("th", {
+      scope: "row"
+    }, data.title), __jsx("td", null, data.value));
+  })))))), __jsx("h4", {
+    id: "directors"
+  }, "Directors"), __jsx("div", {
+    className: "card mb-4 shadow bg-white rounded"
   }, __jsx("div", {
     className: "card-body"
-  }, __jsx("h2", {
-    className: "card-title"
-  }, "How well do you know your customers, suppliers or competitors ?"), __jsx("p", {
-    className: "card-text"
-  }, "When asked how well they know their competition, most business owners respond by naming direct competitors. Knowing your direct competitors is important, but it's not enough. Your direct competitors do not represent the entire competitive landscape facing your business, service or product. A myriad of other dangerous competitors are lurking out there. To succeed in the long term, you must identify, analyze, then differentiate from them."))), __jsx("div", {
-    className: "card mb-4"
+  }, __jsx("div", {
+    className: "table-responsive"
+  }, __jsx("table", {
+    className: "table table-hover"
+  }, __jsx("thead", null, __jsx("tr", {
+    className: "text-semibold text-fiord-blue"
+  }, __jsx("th", {
+    scope: "col"
+  }, "#"), __jsx("th", {
+    scope: "col"
+  }, "DIN/PAN"), __jsx("th", {
+    scope: "col"
+  }, "Name"), __jsx("th", {
+    scope: "col"
+  }, "Begin date"), __jsx("th", {
+    scope: "col"
+  }, "End date"), __jsx("th", {
+    scope: "col"
+  }, "Surrendered DIN"))), __jsx("tbody", null, details.dins.map((director, index) => {
+    return __jsx("tr", {
+      key: `director_${director[0]}`,
+      className: "text-semibold text-reagent-gray"
+    }, __jsx("td", null, index + 1), __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
+      href: "/director/[din]",
+      as: `/director/${director[0]}`
+    }, __jsx("a", null, director[0]))), __jsx("td", null, director[6]), __jsx("td", null, director[7]), __jsx("td", null, director[8]), __jsx("td", null, director[6]));
+  })))))), __jsx("h4", {
+    id: "charges"
+  }, "Charges"), __jsx("div", {
+    className: "card mb-4 shadow bg-white rounded"
   }, __jsx("div", {
     className: "card-body"
-  }, __jsx("h2", {
-    className: "card-title"
-  }, "Get data in your required formats"), __jsx("p", {
-    className: "card-text"
-  }, "Just mail us your requirements and we will provide you data in your required formats. We can also provide you director contact information. Feel free to connect.")), __jsx("div", {
-    className: "card-footer text-muted"
-  }, "Email us at kitaablueterprise@gmail.com")));
+  }, __jsx("div", {
+    className: "table-responsive"
+  }, __jsx("table", {
+    className: "table table-hover"
+  }, __jsx("thead", {
+    className: "bg-light"
+  }, __jsx("tr", {
+    className: "text-semibold text-fiord-blue"
+  }, __jsx("th", {
+    scope: "col",
+    className: "border-0"
+  }, "#"), __jsx("th", {
+    scope: "col",
+    className: "border-0"
+  }, "Assets under charge"), __jsx("th", {
+    scope: "col",
+    className: "border-0"
+  }, "Charge Amount"), __jsx("th", {
+    scope: "col",
+    className: "border-0"
+  }, "Date of Creation"), __jsx("th", {
+    scope: "col",
+    className: "border-0"
+  }, "Date of Modification"), __jsx("th", {
+    scope: "col",
+    className: "border-0"
+  }, "Status"))), __jsx("tbody", null, details.charges.map((charge, index) => {
+    return __jsx("tr", {
+      key: `charge_${charge[1]}_${index}`,
+      className: "text-semibold text-reagent-gray"
+    }, __jsx("td", null, index + 1), __jsx("td", null, charge[0]), __jsx("td", null, charge[1]), __jsx("td", null, charge[2]), __jsx("td", null, charge[3]), __jsx("td", null, charge[4]));
+  })))))), __jsx("h4", {
+    id: "similarCompanies"
+  }, "List of similar companies"), __jsx("div", {
+    className: "card mb-4 shadow bg-white rounded"
+  }, __jsx("div", {
+    className: "card-body"
+  }, similarCompanies.length ? __jsx("div", {
+    className: "table-responsive"
+  }, __jsx("table", {
+    className: "table table-hover table-sm"
+  }, __jsx("thead", null, __jsx("tr", {
+    className: "text-semibold text-fiord-blue"
+  }, __jsx("th", {
+    scope: "col"
+  }, "#"), __jsx("th", {
+    scope: "col"
+  }, "CIN/FCRN"), __jsx("th", {
+    scope: "col"
+  }, "Company Name"))), __jsx("tbody", null, similarCompanies.map((company, index) => {
+    return __jsx("tr", {
+      key: `director_${company.CIN}`,
+      className: "text-semibold text-reagent-gray"
+    }, __jsx("td", null, index + 1), __jsx("td", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
+      href: "/company/[cin]",
+      as: `/company/${company.CIN}`
+    }, __jsx("a", null, company.CIN))), __jsx("td", null, company.company_name));
+  })))) : __jsx("div", null, "No similar company registered"))));
 };
 
 Home.getInitialProps = async ctx => {
-  await ctx.store.dispatch(_src_Actions__WEBPACK_IMPORTED_MODULE_3__["HomeActions"].GetApod({
-    params: {
-      hd: true
-    }
-  }));
-  return {
-    namespacesRequired: ["common"]
+  const {
+    cin
+  } = ctx.query;
+  const props = {
+    cinData: null,
+    similarCompanies: []
   };
-};
 
-const Extended = Object(_server_i18n__WEBPACK_IMPORTED_MODULE_2__["withTranslation"])("common")(Home);
+  try {
+    props.cinData = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__["Http"].Request('GET', `https://kitaablu.com/api/v1/company/${cin}`);
+    props.similarCompanies = await _src_Services_API_Http__WEBPACK_IMPORTED_MODULE_4__["Http"].Request('GET', `https://kitaablu.com/api/v1/company`, {
+      roc_code: lodash__WEBPACK_IMPORTED_MODULE_1___default.a.get(props, 'cinData.roc_code', undefined),
+      class: lodash__WEBPACK_IMPORTED_MODULE_1___default.a.get(props, 'cinData.class', undefined),
+      limit: 100
+    });
+  } catch (error) {
+    console.log("Error while fetching details for cin: ", cin, error);
+  }
+
+  return props;
+}; // export const getServerSideProps: GetServerSideProps = async (context) => {
+//     const cinData = await Http.Request('GET', `http://3.7.5.125:4000/v1/company/U55209AP2018PTC107672`);
+//     console.log("cinData on server side: ", cinData);
+//     return {
+//       props: {
+//         cinData,
+//         name: "pushkar"
+//       }
+//     }
+// }
+
+
+const Extended = Object(_server_i18n__WEBPACK_IMPORTED_MODULE_5__["withTranslation"])("common")(Home);
 /* harmony default export */ __webpack_exports__["default"] = (Extended);
 
 /***/ }),
@@ -1891,65 +2115,6 @@ const {
   withTranslation
 } = NextI18NextInstance;
 /* harmony default export */ __webpack_exports__["default"] = (NextI18NextInstance);
-
-/***/ }),
-
-/***/ "./src/Actions/HomeActions/index.ts":
-/*!******************************************!*\
-  !*** ./src/Actions/HomeActions/index.ts ***!
-  \******************************************/
-/*! exports provided: HomeActions */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeActions", function() { return HomeActions; });
-/* harmony import */ var _Definitions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Definitions */ "./src/Definitions/index.ts");
-/* harmony import */ var _Services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Services */ "./src/Services/index.ts");
-// #region Global Imports
-// #endregion Global Imports
-// #region Local Imports
-
- // #endregion Local Imports
-// #region Interface Imports
-
-// #endregion Interface Imports
-const HomeActions = {
-  Map: payload => ({
-    payload,
-    type: _Definitions__WEBPACK_IMPORTED_MODULE_0__["ActionConsts"].Home.SetReducer
-  }),
-  Reset: () => ({
-    type: _Definitions__WEBPACK_IMPORTED_MODULE_0__["ActionConsts"].Home.ResetReducer
-  }),
-  GetApod: payload => async dispatch => {
-    const result = await _Services__WEBPACK_IMPORTED_MODULE_1__["PlanetaryService"].GetPlanetImage({
-      params: payload.params
-    });
-    dispatch({
-      payload: {
-        image: result
-      },
-      type: _Definitions__WEBPACK_IMPORTED_MODULE_0__["ActionConsts"].Home.SetReducer
-    });
-  }
-};
-
-/***/ }),
-
-/***/ "./src/Actions/index.ts":
-/*!******************************!*\
-  !*** ./src/Actions/index.ts ***!
-  \******************************/
-/*! exports provided: HomeActions */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HomeActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HomeActions */ "./src/Actions/HomeActions/index.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "HomeActions", function() { return _HomeActions__WEBPACK_IMPORTED_MODULE_0__["HomeActions"]; });
-
-
 
 /***/ }),
 
@@ -2569,57 +2734,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/Definitions/ActionConsts/ActionConsts.ts":
-/*!******************************************************!*\
-  !*** ./src/Definitions/ActionConsts/ActionConsts.ts ***!
-  \******************************************************/
-/*! exports provided: ActionConsts */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActionConsts", function() { return ActionConsts; });
-const ActionConsts = {
-  Home: {
-    ResetReducer: "Home_ResetReducer",
-    SetReducer: "Home_SetReducer"
-  }
-};
-
-/***/ }),
-
-/***/ "./src/Definitions/ActionConsts/index.ts":
-/*!***********************************************!*\
-  !*** ./src/Definitions/ActionConsts/index.ts ***!
-  \***********************************************/
-/*! exports provided: ActionConsts */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ActionConsts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ActionConsts */ "./src/Definitions/ActionConsts/ActionConsts.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ActionConsts", function() { return _ActionConsts__WEBPACK_IMPORTED_MODULE_0__["ActionConsts"]; });
-
-
-
-/***/ }),
-
-/***/ "./src/Definitions/index.ts":
-/*!**********************************!*\
-  !*** ./src/Definitions/index.ts ***!
-  \**********************************/
-/*! exports provided: ActionConsts */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ActionConsts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ActionConsts */ "./src/Definitions/ActionConsts/index.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ActionConsts", function() { return _ActionConsts__WEBPACK_IMPORTED_MODULE_0__["ActionConsts"]; });
-
-
-
-/***/ }),
-
 /***/ "./src/Services/API/Http/index.ts":
 /*!****************************************!*\
   !*** ./src/Services/API/Http/index.ts ***!
@@ -2685,46 +2799,6 @@ const Http = {
 
 /***/ }),
 
-/***/ "./src/Services/API/Planetary/index.ts":
-/*!*********************************************!*\
-  !*** ./src/Services/API/Planetary/index.ts ***!
-  \*********************************************/
-/*! exports provided: PlanetaryService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlanetaryService", function() { return PlanetaryService; });
-/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../.. */ "./src/Services/index.ts");
-// #region Local Imports
- // #endregion Local Imports
-// #region Interface Imports
-
-// #endregion Interface Imports
-const PlanetaryService = {
-  GetPlanetImage: async payload => {
-    let response;
-
-    try {
-      response = await ___WEBPACK_IMPORTED_MODULE_0__["Http"].Request("GET", "/planetary/apod", payload.params);
-    } catch (error) {
-      response = {
-        copyright: "",
-        date: "",
-        explanation: "",
-        hdurl: "",
-        service_version: "",
-        title: "",
-        url: ""
-      };
-    }
-
-    return response;
-  }
-};
-
-/***/ }),
-
 /***/ "./src/Services/analytics.ts":
 /*!***********************************!*\
   !*** ./src/Services/analytics.ts ***!
@@ -2771,35 +2845,14 @@ const logException = (description = '', fatal = false) => {
 
 /***/ }),
 
-/***/ "./src/Services/index.ts":
-/*!*******************************!*\
-  !*** ./src/Services/index.ts ***!
-  \*******************************/
-/*! exports provided: Http, PlanetaryService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _API_Http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./API/Http */ "./src/Services/API/Http/index.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Http", function() { return _API_Http__WEBPACK_IMPORTED_MODULE_0__["Http"]; });
-
-/* harmony import */ var _API_Planetary__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./API/Planetary */ "./src/Services/API/Planetary/index.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PlanetaryService", function() { return _API_Planetary__WEBPACK_IMPORTED_MODULE_1__["PlanetaryService"]; });
-
-// #region Local Imports
-
- // #endregion Local Imports
-
-/***/ }),
-
-/***/ 3:
-/*!************************************!*\
-  !*** multi ./pages/home/index.tsx ***!
-  \************************************/
+/***/ 5:
+/*!***************************************!*\
+  !*** multi ./pages/company/[cin].tsx ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/pushkar.goel/Myapps/next-boilerplate/pages/home/index.tsx */"./pages/home/index.tsx");
+module.exports = __webpack_require__(/*! /Users/pushkar.goel/Myapps/next-boilerplate/pages/company/[cin].tsx */"./pages/company/[cin].tsx");
 
 
 /***/ }),
@@ -2812,6 +2865,17 @@ module.exports = __webpack_require__(/*! /Users/pushkar.goel/Myapps/next-boilerp
 /***/ (function(module, exports) {
 
 module.exports = require("isomorphic-unfetch");
+
+/***/ }),
+
+/***/ "lodash":
+/*!*************************!*\
+  !*** external "lodash" ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("lodash");
 
 /***/ }),
 
@@ -2834,6 +2898,17 @@ module.exports = require("moment");
 /***/ (function(module, exports) {
 
 module.exports = require("next-i18next");
+
+/***/ }),
+
+/***/ "next-seo":
+/*!***************************!*\
+  !*** external "next-seo" ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("next-seo");
 
 /***/ }),
 
@@ -2936,17 +3011,6 @@ module.exports = require("react-is");
 
 /***/ }),
 
-/***/ "react-redux":
-/*!******************************!*\
-  !*** external "react-redux" ***!
-  \******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("react-redux");
-
-/***/ }),
-
 /***/ "styled-components":
 /*!************************************!*\
   !*** external "styled-components" ***!
@@ -2970,4 +3034,4 @@ module.exports = require("url");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=home.js.map
+//# sourceMappingURL=[cin].js.map
